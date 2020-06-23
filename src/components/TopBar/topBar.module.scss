@@ -1,0 +1,31 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: var(--fixedWidth);
+  margin: auto;
+}
+
+.information,
+.socialIcons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  i {
+    color: white;
+  }
+}
+.emailContainer,
+.locationContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  h4 {
+    font-weight: 400;
+    color: white;
+    padding: 0 5px;
+  }
+}
+.locationContainer {
+  margin-left: 10px;
+}

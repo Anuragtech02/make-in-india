@@ -1,0 +1,42 @@
+.slider {
+  width: var(--fixedWidth);
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sliderCard {
+  box-shadow: none !important;
+  position: relative;
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+.slide {
+  position: relative;
+  min-width: 100%;
+  align-items: center;
+  transition: 0.5s;
+  min-height: 100px;
+}
+
+.leftClick {
+  position: absolute !important;
+  top: 50% !important;
+  left: 0 !important;
+  transform: translateY(-50%) !important;
+  margin-left: 5px !important;
+  i {
+    color: var(--primaryColor) !important;
+  }
+}
+.rightClick {
+  position: absolute !important;
+  top: 50% !important;
+  right: 0 !important;
+  transform: translateY(-50%) !important;
+  margin-right: 5px !important;
+  i {
+    color: var(--primaryColor) !important;
+  }
+}

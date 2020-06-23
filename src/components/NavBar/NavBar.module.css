@@ -1,1 +1,39 @@
-/* No CSS *//*# sourceMappingURL=NavBar.module.css.map */
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.navContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 20px 0;
+  width: 100%;
+  border-radius: 0px !important;
+}
+
+.nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: var(--fixedWidth);
+  margin: auto;
+}
+
+.nav a {
+  text-decoration: none;
+  color: black;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+/*# sourceMappingURL=NavBar.module.css.map */

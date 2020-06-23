@@ -1,1 +1,55 @@
-/* No CSS *//*# sourceMappingURL=AppBar.module.css.map */
+.logo {
+  font-weight: 700 !important;
+  color: white;
+  width: -webkit-fit-content !important;
+  width: -moz-fit-content !important;
+  width: fit-content !important;
+}
+
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 20px 0;
+  margin: auto;
+  width: var(--fixedWidth);
+}
+
+.inputPaper {
+  padding: 0 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  margin: 0 100px;
+}
+
+.searchInput {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.account {
+  color: white;
+}
+
+.itemText {
+  margin-left: -30px !important;
+}
+
+.searchIcon i {
+  color: var(--greyIcon) !important;
+}
+/*# sourceMappingURL=AppBar.module.css.map */

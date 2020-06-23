@@ -1,0 +1,36 @@
+.logo {
+  font-weight: 700 !important;
+  color: white;
+  width: fit-content !important;
+}
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+  margin: auto;
+  width: var(--fixedWidth);
+}
+.inputPaper {
+  padding: 0 10px;
+  //border-radius: 20px !important;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  margin: 0 100px;
+}
+.searchInput {
+  flex: 1;
+}
+
+.account {
+  color: white;
+}
+.itemText {
+  margin-left: -30px !important;
+}
+.searchIcon {
+  i {
+    color: var(--greyIcon) !important;
+  }
+}
