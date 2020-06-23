@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primaryColor: #09814a;
+  --backgroundWhite: #fbfbfb;
+}
+
+body {
+  font-family: "Open Sans", sans-serif !important;
+  background: var(--backgroundWhite);
+}
