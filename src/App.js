@@ -1,9 +1,13 @@
 import React from "react";
+import { Page } from "@material-ui/core";
+import { TopBar, Appbar } from "./components";
+import "./App.css";
 
 const App = () => {
   return (
     <div>
-      <h1>Hello Make in India</h1>
+      <TopBar />
+      <Appbar />
     </div>
   );
 };
