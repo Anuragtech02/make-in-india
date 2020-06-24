@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/make-in-india/static/css/main.5e0058b2.chunk.css",
+    "main.css": "/make-in-india/static/css/main.7f968fba.chunk.css",
     "main.js": "/make-in-india/static/js/main.083ae399.chunk.js",
     "main.js.map": "/make-in-india/static/js/main.083ae399.chunk.js.map",
     "runtime-main.js": "/make-in-india/static/js/runtime-main.d6189ffa.js",
@@ -8,9 +8,9 @@
     "static/js/2.5fe414a8.chunk.js": "/make-in-india/static/js/2.5fe414a8.chunk.js",
     "static/js/2.5fe414a8.chunk.js.map": "/make-in-india/static/js/2.5fe414a8.chunk.js.map",
     "index.html": "/make-in-india/index.html",
-    "precache-manifest.d80e3bcce9b4ad2bd15b74856271e608.js": "/make-in-india/precache-manifest.d80e3bcce9b4ad2bd15b74856271e608.js",
+    "precache-manifest.ac21d512febc041217f2b7b65de50259.js": "/make-in-india/precache-manifest.ac21d512febc041217f2b7b65de50259.js",
     "service-worker.js": "/make-in-india/service-worker.js",
-    "static/css/main.5e0058b2.chunk.css.map": "/make-in-india/static/css/main.5e0058b2.chunk.css.map",
+    "static/css/main.7f968fba.chunk.css.map": "/make-in-india/static/css/main.7f968fba.chunk.css.map",
     "static/js/2.5fe414a8.chunk.js.LICENSE.txt": "/make-in-india/static/js/2.5fe414a8.chunk.js.LICENSE.txt",
     "static/media/image1.jpg": "/make-in-india/static/media/image1.996ff928.jpg",
     "static/media/image2.jpg": "/make-in-india/static/media/image2.5eaff8f6.jpg",
@@ -21,7 +21,7 @@
   "entrypoints": [
     "static/js/runtime-main.d6189ffa.js",
     "static/js/2.5fe414a8.chunk.js",
-    "static/css/main.5e0058b2.chunk.css",
+    "static/css/main.7f968fba.chunk.css",
     "static/js/main.083ae399.chunk.js"
   ]
 }
