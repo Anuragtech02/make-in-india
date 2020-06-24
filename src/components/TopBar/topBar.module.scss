@@ -29,3 +29,10 @@
 .locationContainer {
   margin-left: 10px;
 }
+
+@media screen and (max-width: 800px) {
+  .container,
+  .information {
+    flex-direction: column;
+  }
+}

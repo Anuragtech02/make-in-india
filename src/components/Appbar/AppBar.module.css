@@ -52,4 +52,16 @@
 .searchIcon i {
   color: var(--greyIcon) !important;
 }
+
+@media screen and (max-width: 800px) {
+  .container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .inputPaper {
+    margin: 0 10px;
+  }
+}
 /*# sourceMappingURL=AppBar.module.css.map */

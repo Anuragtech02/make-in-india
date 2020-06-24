@@ -52,4 +52,14 @@
 .locationContainer {
   margin-left: 10px;
 }
+
+@media screen and (max-width: 800px) {
+  .container,
+  .information {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
 /*# sourceMappingURL=topBar.module.css.map */

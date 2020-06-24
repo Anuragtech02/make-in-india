@@ -22,3 +22,9 @@
     text-transform: uppercase;
   }
 }
+
+@media screen and (max-width: 800px) {
+  .nav {
+    flex-direction: column;
+  }
+}

@@ -34,3 +34,12 @@
     color: var(--greyIcon) !important;
   }
 }
+
+@media screen and (max-width: 800px) {
+  .container {
+    flex-direction: column;
+  }
+  .inputPaper {
+    margin: 0 10px;
+  }
+}
