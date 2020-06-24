@@ -15,9 +15,17 @@
 .slide {
   position: relative;
   min-width: 100%;
+  min-height: 50vh;
   align-items: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   transition: 0.5s;
-  min-height: 100px;
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  flex-direction: column;
 }
 
 .leftClick {
@@ -29,6 +37,7 @@
   i {
     color: var(--primaryColor) !important;
   }
+  z-index: 100;
 }
 .rightClick {
   position: absolute !important;
@@ -39,4 +48,15 @@
   i {
     color: var(--primaryColor) !important;
   }
+  z-index: 100;
+}
+.buyBtn {
+  margin-top: 20px !important;
+  background: var(--primaryColor) !important;
+  color: white !important;
+}
+.title {
+  font-size: 5rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 5px !important;
 }

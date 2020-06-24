@@ -28,12 +28,27 @@
 .slide {
   position: relative;
   min-width: 100%;
+  min-height: 50vh;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   -webkit-transition: 0.5s;
   transition: 0.5s;
-  min-height: 100px;
+  min-height: 50vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  align-items: center;
+  color: white;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .leftClick {
@@ -43,6 +58,7 @@
   -webkit-transform: translateY(-50%) !important;
           transform: translateY(-50%) !important;
   margin-left: 5px !important;
+  z-index: 100;
 }
 
 .leftClick i {
@@ -56,9 +72,22 @@
   -webkit-transform: translateY(-50%) !important;
           transform: translateY(-50%) !important;
   margin-right: 5px !important;
+  z-index: 100;
 }
 
 .rightClick i {
   color: var(--primaryColor) !important;
+}
+
+.buyBtn {
+  margin-top: 20px !important;
+  background: var(--primaryColor) !important;
+  color: white !important;
+}
+
+.title {
+  font-size: 5rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 5px !important;
 }
 /*# sourceMappingURL=Slider.module.css.map */

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Slider.module.css";
-import { Card, IconButton } from "@material-ui/core";
+import { Card, IconButton, Button, Typography } from "@material-ui/core";
 import image1 from "../../images/image1.jpg";
 import image2 from "../../images/image2.jpg";
 import image3 from "../../images/image3.jpg";
@@ -9,13 +9,7 @@ import image5 from "../../images/image5.jpg";
 import { ImageSlide } from "../../components";
 
 const Slider = () => {
-  let arr = [
-    ImageSlide(image1),
-    ImageSlide(image2),
-    ImageSlide(image3),
-    ImageSlide(image4),
-    ImageSlide(image5),
-  ];
+  let arr = [image1, image2, image3, image4, image5];
   const [X, setX] = useState(0);
 
   const onClickLeft = () => {
@@ -33,9 +27,17 @@ const Slider = () => {
             <div
               key={index}
               className={styles.slide}
-              style={{ transform: `translateX(${X}%)` }}
+              style={{
+                transform: `translateX(${X}%)`,
+                backgroundImage: `url(${item})`,
+              }}
             >
-              {item}
+              <Typography className={styles.title} variant="h2">
+                Slide {index}
+              </Typography>
+              <Button className={styles.buyBtn} variant="contained">
+                Buy Now
+              </Button>
             </div>
           );
         })}
