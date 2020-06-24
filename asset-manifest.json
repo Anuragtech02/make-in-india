@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/make-in-india/static/css/main.5c741cde.chunk.css",
-    "main.js": "/make-in-india/static/js/main.1fb009cb.chunk.js",
-    "main.js.map": "/make-in-india/static/js/main.1fb009cb.chunk.js.map",
+    "main.css": "/make-in-india/static/css/main.5e0058b2.chunk.css",
+    "main.js": "/make-in-india/static/js/main.083ae399.chunk.js",
+    "main.js.map": "/make-in-india/static/js/main.083ae399.chunk.js.map",
     "runtime-main.js": "/make-in-india/static/js/runtime-main.d6189ffa.js",
     "runtime-main.js.map": "/make-in-india/static/js/runtime-main.d6189ffa.js.map",
-    "static/js/2.2cbea55e.chunk.js": "/make-in-india/static/js/2.2cbea55e.chunk.js",
-    "static/js/2.2cbea55e.chunk.js.map": "/make-in-india/static/js/2.2cbea55e.chunk.js.map",
+    "static/js/2.5fe414a8.chunk.js": "/make-in-india/static/js/2.5fe414a8.chunk.js",
+    "static/js/2.5fe414a8.chunk.js.map": "/make-in-india/static/js/2.5fe414a8.chunk.js.map",
     "index.html": "/make-in-india/index.html",
-    "precache-manifest.e19a0a7286a4f95c6dacbb393f18a800.js": "/make-in-india/precache-manifest.e19a0a7286a4f95c6dacbb393f18a800.js",
+    "precache-manifest.d80e3bcce9b4ad2bd15b74856271e608.js": "/make-in-india/precache-manifest.d80e3bcce9b4ad2bd15b74856271e608.js",
     "service-worker.js": "/make-in-india/service-worker.js",
-    "static/css/main.5c741cde.chunk.css.map": "/make-in-india/static/css/main.5c741cde.chunk.css.map",
-    "static/js/2.2cbea55e.chunk.js.LICENSE.txt": "/make-in-india/static/js/2.2cbea55e.chunk.js.LICENSE.txt",
+    "static/css/main.5e0058b2.chunk.css.map": "/make-in-india/static/css/main.5e0058b2.chunk.css.map",
+    "static/js/2.5fe414a8.chunk.js.LICENSE.txt": "/make-in-india/static/js/2.5fe414a8.chunk.js.LICENSE.txt",
     "static/media/image1.jpg": "/make-in-india/static/media/image1.996ff928.jpg",
     "static/media/image2.jpg": "/make-in-india/static/media/image2.5eaff8f6.jpg",
     "static/media/image3.jpg": "/make-in-india/static/media/image3.7607d049.jpg",
@@ -20,8 +20,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.d6189ffa.js",
-    "static/js/2.2cbea55e.chunk.js",
-    "static/css/main.5c741cde.chunk.css",
-    "static/js/main.1fb009cb.chunk.js"
+    "static/js/2.5fe414a8.chunk.js",
+    "static/css/main.5e0058b2.chunk.css",
+    "static/js/main.083ae399.chunk.js"
   ]
 }
