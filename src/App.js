@@ -1,6 +1,6 @@
 import React from "react";
 import { Page } from "@material-ui/core";
-import { TopBar, Appbar, NavBar, Slider } from "./components";
+import { TopBar, Appbar, NavBar, Slider, ProductSlider } from "./components";
 import styles from "./App.module.css";
 
 const App = () => {
@@ -17,6 +17,9 @@ const App = () => {
       </div>
       <div className={styles.slider}>
         <Slider />
+      </div>
+      <div>
+        <ProductSlider />
       </div>
     </div>
   );
