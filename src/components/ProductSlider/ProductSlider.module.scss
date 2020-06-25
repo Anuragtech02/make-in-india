@@ -2,4 +2,59 @@
   width: var(--fixedWidth);
   display: flex;
   justify-content: center;
+  margin: auto;
+  overflow: hidden;
+  align-items: center;
+}
+.slider {
+  display: flex;
+  justify-content: space-between;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px;
+  padding: 20px;
+}
+.thumbnail {
+  width: 50px;
+  height: 50px;
+}
+.priceLike {
+  display: flex;
+}
+.name {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.menu-item {
+  padding: 0 40px;
+  margin: 5px 10px;
+  user-select: none;
+  cursor: pointer;
+  border: none;
+}
+.menu-item-wrapper.active {
+  border: 1px blue solid;
+}
+.menu-item.active {
+  border: 1px green solid;
+}
+.arrow-prev {
+  i {
+    color: black;
+  }
+}
+.scroll-menu-arrow {
+  padding: 20px;
+  cursor: pointer;
+}
+.scrollMenu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: black;
 }

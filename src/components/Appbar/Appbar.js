@@ -39,7 +39,7 @@ const Appbar = () => {
         <List component="div">
           <ListItem button onClick={() => setOpen(!open)}>
             <ListItemIcon>
-              <i class="fas fa-user"></i>
+              <i className="fas fa-user"></i>
             </ListItemIcon>
             <ListItemText primary="ACCOUNT" className={styles.itemText} />
             {open ? <ExpandLess /> : <ExpandMore />}
