@@ -5,6 +5,7 @@
   margin: auto;
   overflow: hidden;
   align-items: center;
+  padding: 50px 0;
 }
 .slider {
   display: flex;
@@ -17,30 +18,48 @@
   align-items: center;
   margin: 0 10px;
   padding: 20px;
+  width: 250px !important;
 }
 .thumbnail {
-  width: 50px;
-  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 180px;
+  align-items: center;
+  img {
+    width: 150px;
+  }
 }
 .priceLike {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 .name {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  .company {
+    font-weight: 600;
+  }
+  .category {
+    color: var(--greyFont);
+    text-transform: capitalize;
+  }
 }
-.menu-item {
+.menuItem {
   padding: 0 40px;
   margin: 5px 10px;
   user-select: none;
   cursor: pointer;
   border: none;
 }
-.menu-item-wrapper.active {
+.menuItemWrapper.active {
   border: 1px blue solid;
 }
-.menu-item.active {
+.menuItem.active {
   border: 1px green solid;
 }
 .arrow-prev {
@@ -57,4 +76,22 @@
   justify-content: space-between;
   align-items: center;
   background: black;
+}
+.likeIcon {
+  i {
+    font-size: 1 rem !important;
+  }
+}
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  .amazonBtn {
+    background: var(--amazonBG);
+  }
+  .flipkartBtn {
+    background: var(--flipkartBG);
+  }
+}
+.iconActive {
+  color: var(--primaryColor) !important;
 }

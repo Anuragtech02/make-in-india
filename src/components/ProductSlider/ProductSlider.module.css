@@ -11,6 +11,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  padding: 50px 0;
 }
 
 .slider {
@@ -38,17 +39,41 @@
           align-items: center;
   margin: 0 10px;
   padding: 20px;
+  width: 250px !important;
 }
 
 .thumbnail {
-  width: 50px;
-  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 180px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.thumbnail img {
+  width: 150px;
 }
 
 .priceLike {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
 }
 
 .name {
@@ -62,9 +87,21 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.menu-item {
+.name .company {
+  font-weight: 600;
+}
+
+.name .category {
+  color: var(--greyFont);
+  text-transform: capitalize;
+}
+
+.menuItem {
   padding: 0 40px;
   margin: 5px 10px;
   -webkit-user-select: none;
@@ -75,11 +112,11 @@
   border: none;
 }
 
-.menu-item-wrapper.active {
+.menuItemWrapper.active {
   border: 1px blue solid;
 }
 
-.menu-item.active {
+.menuItem.active {
   border: 1px green solid;
 }
 
@@ -103,5 +140,30 @@
       -ms-flex-align: center;
           align-items: center;
   background: black;
+}
+
+.likeIcon i {
+  font-size: 1 rem !important;
+}
+
+.buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.buttons .amazonBtn {
+  background: var(--amazonBG);
+}
+
+.buttons .flipkartBtn {
+  background: var(--flipkartBG);
+}
+
+.iconActive {
+  color: var(--primaryColor) !important;
 }
 /*# sourceMappingURL=ProductSlider.module.css.map */
