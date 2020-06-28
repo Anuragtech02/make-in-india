@@ -24,6 +24,7 @@
           align-items: center;
   padding: 20px;
   margin: 0 20px;
+  cursor: pointer;
 }
 
 .thumbnail {
@@ -58,6 +59,10 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   width: 100%;
+}
+
+.priceLike h4 {
+  color: var(--orangeTint);
 }
 
 .name {
@@ -101,10 +106,13 @@
 
 .buttons .amazonBtn {
   background: var(--amazonBG);
+  text-transform: lowercase;
+  margin: 0 5px;
 }
 
 .buttons .flipkartBtn {
   background: var(--flipkartBG);
+  margin: 0 5px;
 }
 
 .grid {

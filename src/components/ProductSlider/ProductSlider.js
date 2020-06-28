@@ -1,21 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { Card, Typography, IconButton, Button, Grid } from "@material-ui/core";
+import {
+  Card,
+  Typography,
+  IconButton,
+  Button,
+  Grid,
+  Tooltip,
+} from "@material-ui/core";
 import styles from "./ProductSlider.module.css";
 import products from "../../assets/products.json";
 import classNames from "classnames";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import amazon from "../../icons/amazon-brands.png";
+import flipkart from "../../icons/flipkart.png";
+import { SnackbarProvider, useSnackbar } from "notistack";
 
 const ProductSlider = () => {
-  const iconColor = "var(--primaryColor)";
-
-  const onClickHeart = (productID) => {
-    let change = document
-      .getElementById(productID)
-      .style.setProperty("color", iconColor, "important");
-  };
-
   useEffect(() => {
     document.querySelectorAll(".slick-arrow").forEach((item) => {
       item.style.background = "white";
@@ -40,6 +42,31 @@ const ProductSlider = () => {
       "color: black !important"
     );
   }, []);
+
+  return (
+    <SnackbarProvider maxSnack={3} preventDuplicate>
+      <PSlider />
+    </SnackbarProvider>
+  );
+};
+
+export default ProductSlider;
+
+const PSlider = () => {
+  const iconColor = "var(--primaryColor)";
+
+  const { enqueueSnackbar } = useSnackbar();
+
+  const handleClickVariant = (variant, company, productID) => () => {
+    enqueueSnackbar(`Successfully added ${company} to favourites`, { variant });
+    onClickHeart(productID);
+  };
+
+  const onClickHeart = (productID) => {
+    let change = document
+      .getElementById(productID)
+      .style.setProperty("color", iconColor, "important");
+  };
 
   const settings = {
     className: "center",
@@ -78,19 +105,37 @@ const ProductSlider = () => {
                   </div>
                   <div className={styles.priceLike}>
                     <h4>₹{product.price}</h4>
-                    <IconButton
-                      onClick={() => onClickHeart(product.productId)}
-                      className={styles.likeIcon}
-                    >
-                      <i
-                        id={product.productId}
-                        className={classNames("fas fa-heart")}
-                      />
-                    </IconButton>
+                    <Tooltip title="Add to favourites" placement="top">
+                      <IconButton
+                        onClick={handleClickVariant(
+                          "success",
+                          product.company,
+                          product.productId
+                        )}
+                        className={styles.likeIcon}
+                      >
+                        <i
+                          id={product.productId}
+                          className={classNames("fas fa-heart")}
+                        />
+                      </IconButton>
+                    </Tooltip>
                   </div>
                   <div className={styles.buttons}>
-                    <Button className={styles.amazonBtn}>Amazon</Button>
-                    <Button className={styles.flipkartBtn}>Flipkart</Button>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      className={styles.amazonBtn}
+                    >
+                      <img src={amazon} alt="amazon-link" /> amazon.in
+                    </Button>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      className={styles.flipkartBtn}
+                    >
+                      <img src={flipkart} alt="flipkart-link" />
+                    </Button>
                   </div>
                 </Card>
               </Grid>
@@ -101,5 +146,3 @@ const ProductSlider = () => {
     </div>
   );
 };
-
-export default ProductSlider;

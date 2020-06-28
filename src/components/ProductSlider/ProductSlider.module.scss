@@ -6,8 +6,6 @@
   overflow: hidden;
   align-items: center;
   padding: 50px 50px;
-  i {
-  }
 }
 
 .card {
@@ -17,6 +15,7 @@
   align-items: center;
   padding: 20px;
   margin: 0 20px;
+  cursor: pointer;
 }
 .thumbnail {
   display: flex;
@@ -33,6 +32,9 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  h4 {
+    color: var(--orangeTint);
+  }
 }
 .name {
   display: flex;
@@ -60,9 +62,12 @@
   width: 100%;
   .amazonBtn {
     background: var(--amazonBG);
+    text-transform: lowercase;
+    margin: 0 5px;
   }
   .flipkartBtn {
     background: var(--flipkartBG);
+    margin: 0 5px;
   }
 }
 .grid {
