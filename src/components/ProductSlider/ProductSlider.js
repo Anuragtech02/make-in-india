@@ -16,6 +16,7 @@ import "slick-carousel/slick/slick-theme.css";
 import amazon from "../../icons/amazon-brands.png";
 import flipkart from "../../icons/flipkart.png";
 import { SnackbarProvider, useSnackbar } from "notistack";
+import { Link } from "react-router-dom";
 
 const ProductSlider = () => {
   useEffect(() => {
@@ -66,6 +67,13 @@ const PSlider = () => {
     let change = document
       .getElementById(productID)
       .style.setProperty("color", iconColor, "important");
+  };
+
+  const gotoURL = (location) => {
+    let a = document.createElement("a");
+    a.target = "_blank";
+    a.href = location;
+    a.click();
   };
 
   const settings = {
@@ -126,6 +134,7 @@ const PSlider = () => {
                       variant="contained"
                       color="primary"
                       className={styles.amazonBtn}
+                      onClick={() => gotoURL(product.amazonLink)}
                     >
                       <img src={amazon} alt="amazon-link" /> amazon.in
                     </Button>
@@ -133,6 +142,7 @@ const PSlider = () => {
                       variant="contained"
                       color="primary"
                       className={styles.flipkartBtn}
+                      onClick={() => gotoURL(product.flipkartLink)}
                     >
                       <img src={flipkart} alt="flipkart-link" />
                     </Button>

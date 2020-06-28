@@ -118,4 +118,8 @@
 .grid {
   padding-bottom: 20px;
 }
+
+.noDecoration {
+  text-decoration: none !important;
+}
 /*# sourceMappingURL=ProductSlider.module.css.map */
