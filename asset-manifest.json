@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/make-in-india/static/css/main.e35c8b33.chunk.css",
-    "main.js": "/make-in-india/static/js/main.b66107f6.chunk.js",
-    "main.js.map": "/make-in-india/static/js/main.b66107f6.chunk.js.map",
+    "main.css": "/make-in-india/static/css/main.7729ed55.chunk.css",
+    "main.js": "/make-in-india/static/js/main.09a0eddd.chunk.js",
+    "main.js.map": "/make-in-india/static/js/main.09a0eddd.chunk.js.map",
     "runtime-main.js": "/make-in-india/static/js/runtime-main.d6189ffa.js",
     "runtime-main.js.map": "/make-in-india/static/js/runtime-main.d6189ffa.js.map",
     "static/css/2.63e2240d.chunk.css": "/make-in-india/static/css/2.63e2240d.chunk.css",
-    "static/js/2.5968df2c.chunk.js": "/make-in-india/static/js/2.5968df2c.chunk.js",
-    "static/js/2.5968df2c.chunk.js.map": "/make-in-india/static/js/2.5968df2c.chunk.js.map",
+    "static/js/2.6e2df7a7.chunk.js": "/make-in-india/static/js/2.6e2df7a7.chunk.js",
+    "static/js/2.6e2df7a7.chunk.js.map": "/make-in-india/static/js/2.6e2df7a7.chunk.js.map",
     "index.html": "/make-in-india/index.html",
-    "precache-manifest.ee0badb136dca680e560f08cee5411c9.js": "/make-in-india/precache-manifest.ee0badb136dca680e560f08cee5411c9.js",
+    "precache-manifest.e49ede3f943842b244f3bada30647c8a.js": "/make-in-india/precache-manifest.e49ede3f943842b244f3bada30647c8a.js",
     "service-worker.js": "/make-in-india/service-worker.js",
     "static/css/2.63e2240d.chunk.css.map": "/make-in-india/static/css/2.63e2240d.chunk.css.map",
-    "static/css/main.e35c8b33.chunk.css.map": "/make-in-india/static/css/main.e35c8b33.chunk.css.map",
-    "static/js/2.5968df2c.chunk.js.LICENSE.txt": "/make-in-india/static/js/2.5968df2c.chunk.js.LICENSE.txt",
+    "static/css/main.7729ed55.chunk.css.map": "/make-in-india/static/css/main.7729ed55.chunk.css.map",
+    "static/js/2.6e2df7a7.chunk.js.LICENSE.txt": "/make-in-india/static/js/2.6e2df7a7.chunk.js.LICENSE.txt",
     "static/media/image1.jpg": "/make-in-india/static/media/image1.996ff928.jpg",
     "static/media/image2.jpg": "/make-in-india/static/media/image2.5eaff8f6.jpg",
     "static/media/image3.jpg": "/make-in-india/static/media/image3.7607d049.jpg",
@@ -24,8 +24,8 @@
   "entrypoints": [
     "static/js/runtime-main.d6189ffa.js",
     "static/css/2.63e2240d.chunk.css",
-    "static/js/2.5968df2c.chunk.js",
-    "static/css/main.e35c8b33.chunk.css",
-    "static/js/main.b66107f6.chunk.js"
+    "static/js/2.6e2df7a7.chunk.js",
+    "static/css/main.7729ed55.chunk.css",
+    "static/js/main.09a0eddd.chunk.js"
   ]
 }
