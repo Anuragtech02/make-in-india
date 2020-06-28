@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Card, Typography, IconButton, Button, Grid } from "@material-ui/core";
 import styles from "./ProductSlider.module.css";
-import axios from "axios";
-import ImageSlide from "../ImageSlide/ImageSlide";
 import products from "../../assets/products.json";
-import ScrollMenu from "react-horizontal-scrolling-menu";
 import classNames from "classnames";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 const ProductSlider = () => {
-  const [iconColor, setIconColor] = useState("var(--greyIcon)");
+  const iconColor = "var(--primaryColor)";
 
-  const onClickHeart = () => {
-    setIconColor("var(--primaryColor)");
+  const onClickHeart = (productID) => {
+    let change = document
+      .getElementById(productID)
+      .style.setProperty("color", iconColor, "important");
   };
 
   useEffect(() => {
@@ -28,7 +27,6 @@ const ProductSlider = () => {
     });
     document.querySelectorAll(".slick-next").forEach((item) => {
       item.style.right = "30px";
-      item.style.color = "black !important";
     });
     document.querySelectorAll(".slick-prev").forEach((item) => {
       item.style.left = "30px";
@@ -81,19 +79,11 @@ const ProductSlider = () => {
                   <div className={styles.priceLike}>
                     <h4>₹{product.price}</h4>
                     <IconButton
-                      onClick={onClickHeart}
+                      onClick={() => onClickHeart(product.productId)}
                       className={styles.likeIcon}
                     >
                       <i
-                        ref={(el) => {
-                          if (el) {
-                            el.style.setProperty(
-                              "color",
-                              iconColor,
-                              "important"
-                            );
-                          }
-                        }}
+                        id={product.productId}
                         className={classNames("fas fa-heart")}
                       />
                     </IconButton>
