@@ -18,20 +18,36 @@ const ProductSlider = () => {
   };
 
   useEffect(() => {
-    // let left = document.getElementsByClassName("slick-prev");
-    // let right = document.getElementsByClassName("slick-next");
-    // left.style.color = "red";
+    document.querySelectorAll(".slick-arrow").forEach((item) => {
+      item.style.background = "white";
+      item.style.width = "35px";
+      item.style.height = "35px";
+      item.style.borderRadius = "100px";
+      item.style.zIndex = "1000";
+      item.style.boxShadow = "2px 2px 10px rgba(0,0,0,0.2)";
+    });
+    document.querySelectorAll(".slick-next").forEach((item) => {
+      item.style.right = "30px";
+      item.style.color = "black !important";
+    });
+    document.querySelectorAll(".slick-prev").forEach((item) => {
+      item.style.left = "30px";
+    });
+    document.styleSheets[0].addRule(
+      ".slick-next:before",
+      "color: black !important;"
+    );
+    document.styleSheets[0].addRule(
+      ".slick-prev:before",
+      "color: black !important"
+    );
   }, []);
-
-  const arrowColor = () => {
-    return <div style={{ display: "block", color: "black" }} />;
-  };
 
   const settings = {
     className: "center",
     infinite: false,
     centerPadding: "60px",
-    accebility: true,
+    accessibility: true,
     dots: true,
     lazyload: true,
     slidesToShow: 4,
@@ -48,7 +64,7 @@ const ProductSlider = () => {
       <Slider {...settings} className={styles.slider}>
         {products.map((product) => {
           return (
-            <>
+            <div key={product.productId}>
               <Grid item xs={12} className={styles.grid}>
                 <Card key={product.productId} className={styles.card}>
                   <div className={styles.thumbnail}>
@@ -88,7 +104,7 @@ const ProductSlider = () => {
                   </div>
                 </Card>
               </Grid>
-            </>
+            </div>
           );
         })}
       </Slider>
