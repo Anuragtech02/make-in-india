@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "3a7f0f5a1ef29da952fa1fc537cd0b74",
+    "revision": "4c88e6b1d17a9758c55ed3d251749eef",
     "url": "/make-in-india/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/make-in-india/static/css/2.63e2240d.chunk.css"
   },
   {
-    "revision": "254a06d569087b2b4aee",
+    "revision": "e978f601c70176f9cd7b",
     "url": "/make-in-india/static/css/main.7729ed55.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/make-in-india/static/js/2.6e2df7a7.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "254a06d569087b2b4aee",
-    "url": "/make-in-india/static/js/main.09a0eddd.chunk.js"
+    "revision": "e978f601c70176f9cd7b",
+    "url": "/make-in-india/static/js/main.2ee4ac42.chunk.js"
   },
   {
     "revision": "e9dbb38c1f7adce9e8e5",
