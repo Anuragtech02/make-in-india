@@ -1,23 +1,22 @@
 .container {
-  width: var(--fixedWidth);
+  width: calc((var(--fixedWidth) + 100px));
   // display: flex;
   // justify-content: center;
   margin: auto;
   overflow: hidden;
   align-items: center;
-  padding: 50px 0;
+  padding: 50px 50px;
+  i {
+  }
 }
-.slider {
-  display: flex;
-  justify-content: space-between;
-}
+
 .card {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0 10px;
   padding: 20px;
+  margin: 0 10px;
 }
 .thumbnail {
   display: flex;
@@ -26,7 +25,7 @@
   height: 180px;
   align-items: center;
   img {
-    width: 150px;
+    width: 200px;
   }
 }
 .priceLike {
@@ -48,42 +47,16 @@
     text-transform: capitalize;
   }
 }
-.menuItem {
-  padding: 0 40px;
-  margin: 5px 10px;
-  user-select: none;
-  cursor: pointer;
-  border: none;
-}
-.menuItemWrapper.active {
-  border: 1px blue solid;
-}
-.menuItem.active {
-  border: 1px green solid;
-}
-.arrow-prev {
-  i {
-    color: black;
-  }
-}
-.scroll-menu-arrow {
-  padding: 20px;
-  cursor: pointer;
-}
-.scrollMenu {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: black;
-}
+
 .likeIcon {
   i {
-    font-size: 1 rem !important;
   }
 }
+
 .buttons {
   display: flex;
   justify-content: space-between;
+  width: 100%;
   .amazonBtn {
     background: var(--amazonBG);
   }
@@ -91,6 +64,6 @@
     background: var(--flipkartBG);
   }
 }
-.iconActive {
-  color: var(--primaryColor) !important;
+.grid {
+  padding-bottom: 20px;
 }

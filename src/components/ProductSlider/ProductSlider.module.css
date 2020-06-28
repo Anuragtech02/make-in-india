@@ -1,20 +1,11 @@
 .container {
-  width: var(--fixedWidth);
+  width: calc((var(--fixedWidth) + 100px));
   margin: auto;
   overflow: hidden;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 50px 0;
-}
-
-.slider {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  padding: 50px 50px;
 }
 
 .card {
@@ -31,8 +22,8 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin: 0 10px;
   padding: 20px;
+  margin: 0 10px;
 }
 
 .thumbnail {
@@ -53,7 +44,7 @@
 }
 
 .thumbnail img {
-  width: 150px;
+  width: 200px;
 }
 
 .priceLike {
@@ -94,51 +85,6 @@
   text-transform: capitalize;
 }
 
-.menuItem {
-  padding: 0 40px;
-  margin: 5px 10px;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  cursor: pointer;
-  border: none;
-}
-
-.menuItemWrapper.active {
-  border: 1px blue solid;
-}
-
-.menuItem.active {
-  border: 1px green solid;
-}
-
-.arrow-prev i {
-  color: black;
-}
-
-.scroll-menu-arrow {
-  padding: 20px;
-  cursor: pointer;
-}
-
-.scrollMenu {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  background: black;
-}
-
-.likeIcon i {
-  font-size: 1 rem !important;
-}
-
 .buttons {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -146,6 +92,7 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  width: 100%;
 }
 
 .buttons .amazonBtn {
@@ -156,7 +103,7 @@
   background: var(--flipkartBG);
 }
 
-.iconActive {
-  color: var(--primaryColor) !important;
+.grid {
+  padding-bottom: 20px;
 }
 /*# sourceMappingURL=ProductSlider.module.css.map */
