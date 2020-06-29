@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/make-in-india/precache-manifest.85c592f6a6946beab05de6306f90e0fe.js"
+  "/make-in-india/precache-manifest.346deb01076b29b283f8930de6131e93.js"
 );
 
 self.addEventListener('message', (event) => {
