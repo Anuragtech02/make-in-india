@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/make-in-india/static/css/main.4e6f1dfb.chunk.css",
-    "main.js": "/make-in-india/static/js/main.aba3641a.chunk.js",
-    "main.js.map": "/make-in-india/static/js/main.aba3641a.chunk.js.map",
+    "main.js": "/make-in-india/static/js/main.a95f34bb.chunk.js",
+    "main.js.map": "/make-in-india/static/js/main.a95f34bb.chunk.js.map",
     "runtime-main.js": "/make-in-india/static/js/runtime-main.d6189ffa.js",
     "runtime-main.js.map": "/make-in-india/static/js/runtime-main.d6189ffa.js.map",
     "static/css/2.63e2240d.chunk.css": "/make-in-india/static/css/2.63e2240d.chunk.css",
     "static/js/2.0a126df6.chunk.js": "/make-in-india/static/js/2.0a126df6.chunk.js",
     "static/js/2.0a126df6.chunk.js.map": "/make-in-india/static/js/2.0a126df6.chunk.js.map",
     "index.html": "/make-in-india/index.html",
-    "precache-manifest.066ffa40c55b00642043c786d875ba5e.js": "/make-in-india/precache-manifest.066ffa40c55b00642043c786d875ba5e.js",
+    "precache-manifest.5d910331f9b29468f05f057bfb4a377b.js": "/make-in-india/precache-manifest.5d910331f9b29468f05f057bfb4a377b.js",
     "service-worker.js": "/make-in-india/service-worker.js",
     "static/css/2.63e2240d.chunk.css.map": "/make-in-india/static/css/2.63e2240d.chunk.css.map",
     "static/css/main.4e6f1dfb.chunk.css.map": "/make-in-india/static/css/main.4e6f1dfb.chunk.css.map",
@@ -26,6 +26,6 @@
     "static/css/2.63e2240d.chunk.css",
     "static/js/2.0a126df6.chunk.js",
     "static/css/main.4e6f1dfb.chunk.css",
-    "static/js/main.aba3641a.chunk.js"
+    "static/js/main.a95f34bb.chunk.js"
   ]
 }
