@@ -57,6 +57,18 @@ const PSlider = () => {
   const iconColor = "var(--primaryColor)";
   const [visibleSlides, setVisibleSlides] = useState(4);
 
+  useEffect(() => {
+    function updateSize() {
+      if (window.innerWidth > 1600) setVisibleSlides(4);
+      else if (window.innerWidth <= 1600 && window.innerWidth > 1100)
+        setVisibleSlides(3);
+      else if (window.innerWidth <= 1100 && window.innerWidth > 800)
+        setVisibleSlides(2);
+      else if (window.innerWidth <= 800) setVisibleSlides(1);
+    }
+    window.addEventListener("resize", updateSize);
+  }, []);
+
   useLayoutEffect(() => {
     function updateSize() {
       if (window.innerWidth > 1600) setVisibleSlides(4);
