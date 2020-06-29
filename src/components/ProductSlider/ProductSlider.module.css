@@ -108,11 +108,13 @@
   background: var(--amazonBG);
   text-transform: lowercase;
   margin: 0 5px;
+  padding: 10px;
 }
 
 .buttons .flipkartBtn {
   background: var(--flipkartBG);
   margin: 0 5px;
+  padding: 10px;
 }
 
 .grid {
