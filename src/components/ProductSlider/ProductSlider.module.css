@@ -126,6 +126,7 @@
 @media screen and (max-width: 1200px) {
   .container {
     width: var(--fixedWidth);
+    padding: 50px 10px;
   }
 }
 /*# sourceMappingURL=ProductSlider.module.css.map */
