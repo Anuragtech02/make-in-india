@@ -28,6 +28,7 @@ const App = () => {
         </div>
         <Switch>
           <Route path="/" exact component={Home} />
+          <Route path="/make-in-india" component={Home} />
           <Route
             path="/category/electronics"
             component={() => <CategoryPage category="electronics" />}
