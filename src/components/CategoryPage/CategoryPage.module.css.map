@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,UAAU,CAAC;EACT,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,MAAM;EACvB,UAAU,EAAE,IAAI;EAChB,WAAW,EAAE,MAAM;CACpB",
+    "sources": [
+        "CategoryPage.module.scss"
+    ],
+    "names": [],
+    "file": "CategoryPage.module.css"
+}

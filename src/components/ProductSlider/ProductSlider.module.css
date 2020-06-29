@@ -122,4 +122,10 @@
 .noDecoration {
   text-decoration: none !important;
 }
+
+@media screen and (max-width: 1200px) {
+  .container {
+    width: var(--fixedWidth);
+  }
+}
 /*# sourceMappingURL=ProductSlider.module.css.map */

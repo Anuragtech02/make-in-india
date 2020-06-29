@@ -4,3 +4,6 @@ export { default as NavBar } from "./NavBar/NavBar";
 export { default as Slider } from "./Slider/Slider";
 export { default as ImageSlide } from "./ImageSlide/ImageSlide";
 export { default as ProductSlider } from "./ProductSlider/ProductSlider";
+export { default as CategoryPage } from "./CategoryPage/CateogryPage";
+export { default as Contact } from "./Contact/Contact";
+export { default as About } from "./About/About";

@@ -63,6 +63,8 @@
 
 .leftClick i {
   color: var(--primaryColor) !important;
+  background: white;
+  border-radius: 50%;
 }
 
 .rightClick {
@@ -77,6 +79,8 @@
 
 .rightClick i {
   color: var(--primaryColor) !important;
+  background: white;
+  border-radius: 50%;
 }
 
 .buyBtn {

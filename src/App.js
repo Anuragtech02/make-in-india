@@ -1,6 +1,15 @@
 import React from "react";
 import { Page } from "@material-ui/core";
-import { TopBar, Appbar, NavBar, Slider, ProductSlider } from "./components";
+import {
+  TopBar,
+  Appbar,
+  NavBar,
+  Slider,
+  ProductSlider,
+  CategoryPage,
+  Contact,
+  About,
+} from "./components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import styles from "./App.module.css";
 
@@ -18,7 +27,25 @@ const App = () => {
           <NavBar />
         </div>
         <Switch>
-          <Route path="/" component={Home} />
+          <Route path="/" exact component={Home} />
+          <Route
+            path="/category/electronics"
+            component={() => <CategoryPage category="electronics" />}
+          />
+          <Route
+            path="/category/fashion"
+            component={() => <CategoryPage category="fashion" />}
+          />
+          <Route
+            path="/category/personal-hygiene"
+            component={() => <CategoryPage category="personal-hygiene" />}
+          />
+          <Route
+            path="/category/sports"
+            component={() => <CategoryPage category="sports" />}
+          />
+          <Route path="/about" component={About} />
+          <Route path="/contacts" component={Contact} />
         </Switch>
       </div>
     </Router>

@@ -33,4 +33,10 @@ body {
 .slider {
   margin-top: 50px;
 }
+
+@media screen and (max-width: 800px) {
+  :root {
+    --fixedWidth: 90% !important;
+  }
+}
 /*# sourceMappingURL=App.module.css.map */

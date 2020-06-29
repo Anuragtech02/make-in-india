@@ -1,22 +1,25 @@
 import React from "react";
 import styles from "./NavBar.module.css";
 import { Paper } from "@material-ui/core";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+
 const NavBar = () => {
   return (
-    <div className={styles.container}>
+    <motion.div className={styles.container}>
       <Paper className={styles.navContainer}>
         <div className={styles.nav}>
-          <a href="#">Home</a>
-          <a href="#">Electronics</a>
-          <a href="#">Fashion</a>
-          <a href="#">Personal Hygiene</a>
-          <a href="#">Sports</a>
-          <a href="#">About Us</a>
-          <a href="#">Blog</a>
-          <a href="#">Contact</a>
+          <Link to="/">Home</Link>
+          <Link to="/category/electronics">Electronics</Link>
+          <Link to="/category/fashion">Fashion</Link>
+          <Link to="/category/personal-hygiene">Personal Hygiene</Link>
+          <Link to="/category/sports">Sports</Link>
+          <Link to="/about">About Us</Link>
+          <Link to="/blog">Blog</Link>
+          <Link to="/contacts">Contact</Link>
         </div>
       </Paper>
-    </div>
+    </motion.div>
   );
 };
 
