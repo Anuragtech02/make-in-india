@@ -15,7 +15,7 @@ const NavBar = () => {
           <Link to="/category/personal-hygiene">Personal Hygiene</Link>
           <Link to="/category/sports">Sports</Link>
           <Link to="/about">About Us</Link>
-          <Link to="/blog">Blog</Link>
+          <a href="https://amorlamps.in/blog/">Blog</a>
           <Link to="/contacts">Contact</Link>
         </div>
       </Paper>
