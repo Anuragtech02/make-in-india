@@ -51,6 +51,7 @@
 }
 
 .likeIcon {
+  z-index: 1000 !important;
   i {
     color: var(--greyIcon) !important;
   }

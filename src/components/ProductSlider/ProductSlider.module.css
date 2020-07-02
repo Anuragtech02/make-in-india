@@ -90,6 +90,10 @@
   text-transform: capitalize;
 }
 
+.likeIcon {
+  z-index: 1000 !important;
+}
+
 .likeIcon i {
   color: var(--greyIcon) !important;
 }
