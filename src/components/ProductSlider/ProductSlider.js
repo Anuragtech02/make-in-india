@@ -124,55 +124,66 @@ const PSlider = () => {
           return (
             <div key={product.productId}>
               <Grid item xs={12} className={styles.grid}>
-                <Card key={product.productId} className={styles.card}>
-                  <div className={styles.thumbnail}>
-                    <img src={product.imageUrls[0]} alt={product.company} />
-                  </div>
-                  <div className={styles.name}>
-                    <Typography className={styles.category} variant="subtitle2">
-                      {product.category}
-                    </Typography>
-                    <Typography className={styles.company} variant="subtitle1">
-                      {product.company}
-                    </Typography>
-                  </div>
-                  <div className={styles.priceLike}>
-                    <h4>₹{product.price}</h4>
-                    <Tooltip title="Add to favourites" placement="top">
-                      <IconButton
-                        onClick={handleClickVariant(
-                          "success",
-                          product.company,
-                          product.productId
-                        )}
-                        className={styles.likeIcon}
+                <Link
+                  to={`/product/${product.productId}`}
+                  className={styles.noDecoration}
+                >
+                  <Card key={product.productId} className={styles.card}>
+                    <div className={styles.thumbnail}>
+                      <img src={product.imageUrls[0]} alt={product.company} />
+                    </div>
+                    <div className={styles.name}>
+                      <Typography
+                        className={styles.category}
+                        variant="subtitle2"
                       >
-                        <i
-                          id={product.productId}
-                          className={classNames("fas fa-heart")}
-                        />
-                      </IconButton>
-                    </Tooltip>
-                  </div>
-                  <div className={styles.buttons}>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      className={styles.amazonBtn}
-                      onClick={() => gotoURL(product.amazonLink)}
-                    >
-                      <img src={amazon} alt="amazon-link" /> amazon.in
-                    </Button>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      className={styles.flipkartBtn}
-                      onClick={() => gotoURL(product.flipkartLink)}
-                    >
-                      <img src={flipkart} alt="flipkart-link" />
-                    </Button>
-                  </div>
-                </Card>
+                        {product.category}
+                      </Typography>
+                      <Typography
+                        className={styles.company}
+                        variant="subtitle1"
+                      >
+                        {product.company}
+                      </Typography>
+                    </div>
+                    <div className={styles.priceLike}>
+                      <h4>₹{product.price}</h4>
+                      <Tooltip title="Add to favourites" placement="top">
+                        <IconButton
+                          onClick={handleClickVariant(
+                            "success",
+                            product.company,
+                            product.productId
+                          )}
+                          className={styles.likeIcon}
+                        >
+                          <i
+                            id={product.productId}
+                            className={classNames("fas fa-heart")}
+                          />
+                        </IconButton>
+                      </Tooltip>
+                    </div>
+                    <div className={styles.buttons}>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        className={styles.amazonBtn}
+                        onClick={() => gotoURL(product.amazonLink)}
+                      >
+                        <img src={amazon} alt="amazon-link" /> amazon.in
+                      </Button>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        className={styles.flipkartBtn}
+                        onClick={() => gotoURL(product.flipkartLink)}
+                      >
+                        <img src={flipkart} alt="flipkart-link" />
+                      </Button>
+                    </div>
+                  </Card>
+                </Link>
               </Grid>
             </div>
           );

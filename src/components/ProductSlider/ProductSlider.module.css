@@ -94,6 +94,10 @@
   color: var(--greyIcon) !important;
 }
 
+.noDecoration {
+  text-decoration: none !important;
+}
+
 .buttons {
   display: -webkit-box;
   display: -ms-flexbox;

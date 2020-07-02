@@ -7,3 +7,4 @@ export { default as ProductSlider } from "./ProductSlider/ProductSlider";
 export { default as CategoryPage } from "./CategoryPage/CateogryPage";
 export { default as Contact } from "./Contact/Contact";
 export { default as About } from "./About/About";
+export { default as Product } from "./Product/Product";

@@ -9,8 +9,10 @@ import {
   CategoryPage,
   Contact,
   About,
+  Product,
 } from "./components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import products from "./assets/products.json";
 import styles from "./App.module.css";
 
 const App = () => {
@@ -45,8 +47,18 @@ const App = () => {
             path="/category/sports"
             component={() => <CategoryPage category="sports" />}
           />
-          <Route path="/about" component={About} />
-          <Route path="/contacts" component={Contact} />
+          <Route path="/about" exact component={About} />
+          <Route path="/contacts" exact component={Contact} />
+
+          {products.map((product) => {
+            return (
+              <Route
+                key={product.productId}
+                path={`/product/${product.productId}`}
+                component={() => <Product product={product} />}
+              />
+            );
+          })}
         </Switch>
       </div>
     </Router>
