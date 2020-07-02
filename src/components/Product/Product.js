@@ -26,6 +26,7 @@ const MyProduct = ({ product }) => {
     amazonLink,
     flipkartLink,
     productId,
+    heading,
   } = product;
   const iconColor = "var(--primaryColor)";
 
@@ -88,7 +89,7 @@ const MyProduct = ({ product }) => {
       </motion.div>
       <motion.div className={styles.descSection}>
         <motion.div className={styles.heading}>
-          <h2>{company}</h2>
+          <h2>{heading}</h2>
           <h4>{`Category : ${category}`}</h4>
           <h5>In Stock</h5>
           <div className={styles.underLine}></div>
@@ -127,6 +128,9 @@ const MyProduct = ({ product }) => {
               <img src={flipkart} alt="flipkart-link" />
             </Button>
           </motion.div>
+        </motion.div>
+        <motion.div className={styles.paraDescription}>
+          <p>{}</p>
         </motion.div>
       </motion.div>
     </motion.div>
