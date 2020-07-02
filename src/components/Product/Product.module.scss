@@ -6,6 +6,11 @@
   margin: auto;
   margin-top: 5vh;
 }
+.imageSection {
+  background: white;
+  border-radius: 5px;
+  height: fit-content;
+}
 .imageContainer {
   align-items: center;
   display: flex;
@@ -35,6 +40,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  padding: 30px;
 }
 .underLine {
   border-top: 1px solid rgba(0, 0, 0, 0.8);
@@ -42,6 +48,14 @@
 }
 .pricing {
   justify-content: flex-start;
+  h1 {
+    font-weight: 600;
+    color: var(--orangeTint);
+  }
+  h6 {
+    font-weight: 300;
+    color: rgba(0, 0, 0, 0.6);
+  }
 }
 .affiliateButtons {
   display: flex;
@@ -59,6 +73,13 @@
     padding: 10px;
   }
 }
+//Like Icon
+.likeIcon {
+  z-index: 1000 !important;
+  i {
+    color: var(--greyIcon) !important;
+  }
+}
 
 //Styles for heading section
 .heading {
@@ -66,20 +87,22 @@
   h2 {
     font-weight: 700;
     font-size: 1.2rem;
+    margin: 10px 0;
   }
   //Category
   h4 {
     font-weight: 400;
     font-size: 1rem;
     color: rgba(0, 0, 0, 0.6);
-    margin: 5px 0;
+    margin-top: 10px;
   }
   //In Stock
   h5 {
     font-weight: 300;
     font-size: 1rem;
     color: var(--primaryColor);
-    margin: 5px 0;
+    margin: 10px 0;
+    margin-top: 5px;
   }
 }
 
@@ -87,4 +110,24 @@
 .middleContainer {
   display: flex;
   margin: 20px 0;
+}
+
+//Description Para
+.paraDescription {
+  font-weight: 300;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 1.2rem;
+}
+
+//Vertical Line
+.verticalLine {
+  border-right: 1px solid rgba(0, 0, 0, 0.6);
+  opacity: 0.4;
+}
+
+//Brands
+.brands {
+  width: 200px;
+  height: 80vh;
+  background: rgba(0, 0, 0, 0.2);
 }

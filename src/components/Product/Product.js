@@ -27,6 +27,7 @@ const MyProduct = ({ product }) => {
     flipkartLink,
     productId,
     heading,
+    description,
   } = product;
   const iconColor = "var(--primaryColor)";
 
@@ -101,15 +102,17 @@ const MyProduct = ({ product }) => {
           </motion.div>
           <motion.div className={styles.affiliateButtons}>
             <Tooltip title="Add to favourites" placement="top">
-              <IconButton
-                onClick={handleClickVariant("success", company, productId)}
-                className={styles.likeIcon}
-              >
-                <i
-                  id={product.productId}
-                  className={classNames("fas fa-heart")}
-                />
-              </IconButton>
+              <div>
+                <IconButton
+                  onClick={handleClickVariant("success", company, productId)}
+                  className={styles.likeIcon}
+                >
+                  <i
+                    id={product.productId}
+                    className={classNames("fas fa-heart")}
+                  />
+                </IconButton>
+              </div>
             </Tooltip>
             <Button
               variant="contained"
@@ -130,9 +133,11 @@ const MyProduct = ({ product }) => {
           </motion.div>
         </motion.div>
         <motion.div className={styles.paraDescription}>
-          <p>{}</p>
+          <p>{description}</p>
         </motion.div>
       </motion.div>
+      <motion.div className={styles.verticalLine}></motion.div>
+      <motion.div className={styles.brands}></motion.div>
     </motion.div>
   );
 };

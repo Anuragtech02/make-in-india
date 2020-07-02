@@ -13,6 +13,14 @@
   margin-top: 5vh;
 }
 
+.imageSection {
+  background: white;
+  border-radius: 5px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
 .imageContainer {
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -65,6 +73,7 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  padding: 30px;
 }
 
 .underLine {
@@ -76,6 +85,16 @@
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
+}
+
+.pricing h1 {
+  font-weight: 600;
+  color: var(--orangeTint);
+}
+
+.pricing h6 {
+  font-weight: 300;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .affiliateButtons {
@@ -101,23 +120,33 @@
   padding: 10px;
 }
 
+.likeIcon {
+  z-index: 1000 !important;
+}
+
+.likeIcon i {
+  color: var(--greyIcon) !important;
+}
+
 .heading h2 {
   font-weight: 700;
   font-size: 1.2rem;
+  margin: 10px 0;
 }
 
 .heading h4 {
   font-weight: 400;
   font-size: 1rem;
   color: rgba(0, 0, 0, 0.6);
-  margin: 5px 0;
+  margin-top: 10px;
 }
 
 .heading h5 {
   font-weight: 300;
   font-size: 1rem;
   color: var(--primaryColor);
-  margin: 5px 0;
+  margin: 10px 0;
+  margin-top: 5px;
 }
 
 .middleContainer {
@@ -125,5 +154,22 @@
   display: -ms-flexbox;
   display: flex;
   margin: 20px 0;
+}
+
+.paraDescription {
+  font-weight: 300;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 1.2rem;
+}
+
+.verticalLine {
+  border-right: 1px solid rgba(0, 0, 0, 0.6);
+  opacity: 0.4;
+}
+
+.brands {
+  width: 200px;
+  height: 80vh;
+  background: rgba(0, 0, 0, 0.2);
 }
 /*# sourceMappingURL=Product.module.css.map */
