@@ -33,6 +33,7 @@
           justify-content: center;
   width: 350px;
   height: 300px;
+  margin: auto;
 }
 
 .imageContainer img {
@@ -171,5 +172,20 @@
   width: 200px;
   height: 80vh;
   background: rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (max-width: 800px) {
+  .container {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .middleContainer {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
 }
 /*# sourceMappingURL=Product.module.css.map */

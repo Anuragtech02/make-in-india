@@ -17,6 +17,7 @@
   justify-content: center;
   width: 350px;
   height: 300px;
+  margin: auto;
   img {
     width: 300px;
     margin: auto;
@@ -130,4 +131,13 @@
   width: 200px;
   height: 80vh;
   background: rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (max-width: 800px) {
+  .container {
+    flex-direction: column;
+  }
+  .middleContainer {
+    flex-direction: column;
+  }
 }
