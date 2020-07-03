@@ -45,6 +45,12 @@ body {
   width: var(--fixedWidth);
   margin: auto;
 }
+//Styles for side color panel
+.colorPanel {
+  position: fixed;
+  left: 0;
+  top: 50%;
+}
 
 @media screen and (max-width: 800px) {
   :root {

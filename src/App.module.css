@@ -57,6 +57,12 @@ body {
   margin: auto;
 }
 
+.colorPanel {
+  position: fixed;
+  left: 0;
+  top: 50%;
+}
+
 @media screen and (max-width: 800px) {
   :root {
     --fixedWidth: 90% !important;

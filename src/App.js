@@ -14,9 +14,17 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import products from "./assets/products.json";
 import styles from "./App.module.css";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { Paper } from "@material-ui/core";
+import { BlockPicker } from "react-color";
 
 const App = () => {
   const categories = ["electronics", "fashion", "personal-hygiene", "sports"];
+
+  const [color, setColor] = useState(
+    getComputedStyle(document.documentElement).getPropertyValue(
+      "--primaryColor"
+    )
+  );
 
   return (
     <Router>
@@ -29,6 +37,14 @@ const App = () => {
         </div>
         <div className={styles.navbar}>
           <NavBar />
+        </div>
+        <div className={styles.colorPanel}>
+          <Paper>
+            <BlockPicker
+              color={color}
+              onChangeComplete={(e) => setColor(e.hex)}
+            />
+          </Paper>
         </div>
         <Switch>
           <Route path="/" exact component={Home} />
