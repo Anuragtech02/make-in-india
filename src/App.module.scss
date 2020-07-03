@@ -49,11 +49,32 @@ body {
 .colorPanel {
   position: fixed;
   left: 0;
-  top: 50%;
+  top: 25%;
+  transition: all 0.3s ease-in-out;
+  .pickerContainer {
+    padding: 20px;
+    h5 {
+      margin: auto;
+      margin: 10px 0;
+      font-weight: 600;
+    }
+  }
+}
+.closeBtn {
+  i {
+    color: black !important;
+  }
+}
+
+.closeColor {
+  transform: translateX(-100%);
 }
 
 @media screen and (max-width: 800px) {
   :root {
     --fixedWidth: 90% !important;
+  }
+  .colorPanel {
+    display: none;
   }
 }

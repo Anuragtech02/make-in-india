@@ -14,17 +14,38 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import products from "./assets/products.json";
 import styles from "./App.module.css";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { Paper } from "@material-ui/core";
-import { BlockPicker } from "react-color";
+import { Paper, IconButton, Button } from "@material-ui/core";
+import { BlockPicker, ChromePicker } from "react-color";
+import classNames from "classnames";
 
 const App = () => {
   const categories = ["electronics", "fashion", "personal-hygiene", "sports"];
 
-  const [color, setColor] = useState(
+  const [temp, setTemp] = useState(styles.noStyle);
+  const [open, setOpen] = useState(false);
+
+  const [colorPrimary, setColorPrimary] = useState(
     getComputedStyle(document.documentElement).getPropertyValue(
       "--primaryColor"
     )
   );
+  const [colorAccent, setColorAccent] = useState(
+    getComputedStyle(document.documentElement).getPropertyValue("--orangeTint")
+  );
+
+  const changePrimaryColor = (e) => {
+    setColorPrimary(e.hex);
+    document.documentElement.style.setProperty("--primaryColor", e.hex);
+  };
+
+  const changeAccentColor = (e) => {
+    setColorAccent(e.hex);
+    document.documentElement.style.setProperty("--orangeTint", e.hex);
+  };
+
+  const closeColor = () => {
+    setTemp(styles.closeColor);
+  };
 
   return (
     <Router>
@@ -38,12 +59,36 @@ const App = () => {
         <div className={styles.navbar}>
           <NavBar />
         </div>
-        <div className={styles.colorPanel}>
-          <Paper>
-            <BlockPicker
-              color={color}
-              onChangeComplete={(e) => setColor(e.hex)}
+        <div className={classNames(styles.colorPanel, temp)}>
+          <Paper className={styles.pickerContainer}>
+            {open} ? (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              <h5>Primary Color</h5>
+              <IconButton className={styles.closeBtn} onClick={closeColor}>
+                {temp === styles.noStyle ? (
+                  <i className="fas fa-times-circle"></i>
+                ) : (
+                  <i className="fas fa-open"></i>
+                )}
+              </IconButton>
+            </div>
+            <ChromePicker
+              color={colorPrimary}
+              onChange={(e) => changePrimaryColor(e)}
             />
+            <h5>Accent Color</h5>
+            <ChromePicker
+              color={colorAccent}
+              onChange={(e) => changeAccentColor(e)}
+            />
+            ) : (<Button>Change Theme</Button>
+            );
           </Paper>
         </div>
         <Switch>
