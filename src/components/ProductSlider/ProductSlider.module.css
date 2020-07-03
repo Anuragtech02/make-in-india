@@ -1,11 +1,10 @@
 .container {
-  width: calc((var(--fixedWidth) + 100px));
   margin: auto;
   overflow: hidden;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 50px 50px;
+  padding: 50px 20px;
 }
 
 .card {
@@ -24,7 +23,6 @@
           align-items: center;
   padding: 20px;
   margin: 0 20px;
-  cursor: pointer;
 }
 
 .thumbnail {
@@ -86,7 +84,7 @@
 }
 
 .name .category {
-  color: var(--greyFont);
+  color: var(--greyFont) !important;
   text-transform: capitalize;
 }
 
@@ -119,10 +117,18 @@
   padding: 10px;
 }
 
+.buttons .amazonBtn:hover {
+  background: var(--primaryColor) !important;
+}
+
 .buttons .flipkartBtn {
   background: var(--flipkartBG);
   margin: 0 5px;
   padding: 10px;
+}
+
+.buttons .flipkartBtn:hover {
+  background: var(--primaryColor) !important;
 }
 
 .grid {
@@ -131,11 +137,17 @@
 
 .noDecoration {
   text-decoration: none !important;
+  color: var(--greyFont) !important;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.noDecoration:hover {
+  color: var(--primaryColor) !important;
 }
 
 @media screen and (max-width: 1200px) {
   .container {
-    width: var(--fixedWidth);
     padding: 50px 10px;
   }
 }

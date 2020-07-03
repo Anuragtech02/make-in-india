@@ -19,8 +19,9 @@
   height: 300px;
   margin: auto;
   img {
-    width: 300px;
+    max-width: 300px;
     margin: auto;
+    max-height: 300px;
     // filter: drop-shadow(2px 5px 5px rgba(0, 0, 0, 0.4));
   }
 }
@@ -42,6 +43,7 @@
   display: flex;
   flex-direction: column;
   padding: 30px;
+  padding-top: 0;
 }
 .underLine {
   border-top: 1px solid rgba(0, 0, 0, 0.8);
@@ -67,11 +69,17 @@
     text-transform: lowercase;
     margin: 0 5px;
     padding: 10px;
+    &:hover {
+      background: var(--primaryColor) !important;
+    }
   }
   .flipkartBtn {
     background: var(--flipkartBG);
     margin: 0 5px;
     padding: 10px;
+    &:hover {
+      background: var(--primaryColor) !important;
+    }
   }
 }
 //Like Icon
@@ -124,13 +132,30 @@
 .verticalLine {
   border-right: 1px solid rgba(0, 0, 0, 0.6);
   opacity: 0.4;
+  margin-right: 20px;
 }
 
 //Brands
 .brands {
   width: 200px;
-  height: 80vh;
   background: rgba(0, 0, 0, 0.2);
+}
+
+//Brand Slider
+.brandSlider {
+  height: 100%;
+  .brandContainer {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    align-items: center;
+    padding: 20px;
+    .brandImage {
+      max-width: 120px;
+      max-height: 100px;
+      margin: auto;
+    }
+  }
 }
 
 @media screen and (max-width: 800px) {

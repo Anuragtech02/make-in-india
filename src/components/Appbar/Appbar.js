@@ -28,7 +28,6 @@ const Appbar = () => {
         />
         <IconButton
           type="submit"
-          className={styles.iconButton}
           aria-label="search"
           className={styles.searchIcon}
         >

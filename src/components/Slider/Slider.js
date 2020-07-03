@@ -6,7 +6,7 @@ import image2 from "../../images/image2.webp";
 import image3 from "../../images/image3.webp";
 import image4 from "../../images/image4.webp";
 import image5 from "../../images/image5.webp";
-import { ImageSlide } from "../../components";
+// import { ImageSlide } from "../../components";
 
 const Slider = () => {
   let arr = [image1, image2, image3, image4, image5];

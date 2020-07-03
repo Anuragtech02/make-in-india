@@ -5,7 +5,7 @@ const ImageSlide = (src) => {
     width: 100 + "%",
   };
 
-  return <img src={src} alt="slider-image" style={styling}></img>;
+  return <img src={src} alt="slider" style={styling}></img>;
 };
 
 export default ImageSlide;

@@ -1,11 +1,10 @@
 .container {
-  width: calc((var(--fixedWidth) + 100px));
   // display: flex;
   // justify-content: center;
   margin: auto;
   overflow: hidden;
   align-items: center;
-  padding: 50px 50px;
+  padding: 50px 20px;
 }
 
 .card {
@@ -15,7 +14,6 @@
   align-items: center;
   padding: 20px;
   margin: 0 20px;
-  cursor: pointer;
 }
 .thumbnail {
   display: flex;
@@ -45,7 +43,7 @@
     font-weight: 600;
   }
   .category {
-    color: var(--greyFont);
+    color: var(--greyFont) !important;
     text-transform: capitalize;
   }
 }
@@ -70,11 +68,17 @@
     text-transform: lowercase;
     margin: 0 5px;
     padding: 10px;
+    &:hover {
+      background: var(--primaryColor) !important;
+    }
   }
   .flipkartBtn {
     background: var(--flipkartBG);
     margin: 0 5px;
     padding: 10px;
+    &:hover {
+      background: var(--primaryColor) !important;
+    }
   }
 }
 
@@ -83,10 +87,14 @@
 }
 .noDecoration {
   text-decoration: none !important;
+  color: var(--greyFont) !important;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    color: var(--primaryColor) !important;
+  }
 }
 @media screen and (max-width: 1200px) {
   .container {
-    width: var(--fixedWidth);
     padding: 50px 10px;
   }
 }

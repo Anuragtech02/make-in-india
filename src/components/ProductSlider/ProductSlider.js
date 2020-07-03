@@ -57,6 +57,7 @@ const PSlider = () => {
   const iconColor = "var(--primaryColor)";
   const [visibleSlides, setVisibleSlides] = useState(4);
 
+  //Used to check width of the device
   useEffect(() => {
     function updateSize() {
       if (window.innerWidth > 1600) setVisibleSlides(4);
@@ -69,6 +70,7 @@ const PSlider = () => {
     window.addEventListener("resize", updateSize);
   }, []);
 
+  //Used to detect layout changes
   useLayoutEffect(() => {
     function updateSize() {
       if (window.innerWidth > 1600) setVisibleSlides(4);
@@ -89,7 +91,7 @@ const PSlider = () => {
   };
 
   const onClickHeart = (productID) => {
-    let change = document
+    document
       .getElementById(productID)
       .style.setProperty("color", iconColor, "important");
   };
@@ -110,11 +112,6 @@ const PSlider = () => {
     lazyload: true,
     slidesToShow: visibleSlides,
     swipeToSlide: true,
-    afterChange: function (index) {
-      console.log(
-        `Slider Changed to: ${index + 1}, background: #222; color: #bada55`
-      );
-    },
   };
 
   return (
@@ -124,66 +121,68 @@ const PSlider = () => {
           return (
             <div key={product.productId}>
               <Grid item xs={12} className={styles.grid}>
-                <Link
-                  to={`/product/${product.productId}`}
-                  className={styles.noDecoration}
-                >
-                  <Card key={product.productId} className={styles.card}>
+                <Card key={product.productId} className={styles.card}>
+                  <Link
+                    to={`/product/${product.productId}`}
+                    className={styles.noDecoration}
+                  >
                     <div className={styles.thumbnail}>
                       <img src={product.imageUrls[0]} alt={product.company} />
                     </div>
-                    <div className={styles.name}>
-                      <Typography
-                        className={styles.category}
-                        variant="subtitle2"
-                      >
-                        {product.category}
-                      </Typography>
+                  </Link>
+                  <div className={styles.name}>
+                    <Typography className={styles.category} variant="subtitle2">
+                      {product.category}
+                    </Typography>
+                    <Link
+                      to={`/product/${product.productId}`}
+                      className={styles.noDecoration}
+                    >
                       <Typography
                         className={styles.company}
                         variant="subtitle1"
                       >
                         {product.company}
                       </Typography>
-                    </div>
-                    <div className={styles.priceLike}>
-                      <h4>₹{product.price}</h4>
-                      <Tooltip title="Add to favourites" placement="top">
-                        <IconButton
-                          onClick={handleClickVariant(
-                            "success",
-                            product.company,
-                            product.productId
-                          )}
-                          className={styles.likeIcon}
-                        >
-                          <i
-                            id={product.productId}
-                            className={classNames("fas fa-heart")}
-                          />
-                        </IconButton>
-                      </Tooltip>
-                    </div>
-                    <div className={styles.buttons}>
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        className={styles.amazonBtn}
-                        onClick={() => gotoURL(product.amazonLink)}
+                    </Link>
+                  </div>
+                  <div className={styles.priceLike}>
+                    <h4>₹{product.price}</h4>
+                    <Tooltip title="Add to favourites" placement="top">
+                      <IconButton
+                        onClick={handleClickVariant(
+                          "success",
+                          product.company,
+                          product.productId
+                        )}
+                        className={styles.likeIcon}
                       >
-                        <img src={amazon} alt="amazon-link" /> amazon.in
-                      </Button>
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        className={styles.flipkartBtn}
-                        onClick={() => gotoURL(product.flipkartLink)}
-                      >
-                        <img src={flipkart} alt="flipkart-link" />
-                      </Button>
-                    </div>
-                  </Card>
-                </Link>
+                        <i
+                          id={product.productId}
+                          className={classNames("fas fa-heart")}
+                        />
+                      </IconButton>
+                    </Tooltip>
+                  </div>
+                  <div className={styles.buttons}>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      className={styles.amazonBtn}
+                      onClick={() => gotoURL(product.amazonLink)}
+                    >
+                      <img src={amazon} alt="amazon-link" /> amazon.in
+                    </Button>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      className={styles.flipkartBtn}
+                      onClick={() => gotoURL(product.flipkartLink)}
+                    >
+                      <img src={flipkart} alt="flipkart-link" />
+                    </Button>
+                  </div>
+                </Card>
               </Grid>
             </div>
           );

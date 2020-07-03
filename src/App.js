@@ -1,5 +1,4 @@
-import React from "react";
-import { Page } from "@material-ui/core";
+import React, { useState, useEffect } from "react";
 import {
   TopBar,
   Appbar,
@@ -14,8 +13,11 @@ import {
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import products from "./assets/products.json";
 import styles from "./App.module.css";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const App = () => {
+  const categories = ["electronics", "fashion", "personal-hygiene", "sports"];
+
   return (
     <Router>
       <div className={styles.outerContainer}>
@@ -31,22 +33,14 @@ const App = () => {
         <Switch>
           <Route path="/" exact component={Home} />
           {/* <Route path="/make-in-india" component={Home} /> */}
-          <Route
-            path="/category/electronics"
-            component={() => <CategoryPage category="electronics" />}
-          />
-          <Route
-            path="/category/fashion"
-            component={() => <CategoryPage category="fashion" />}
-          />
-          <Route
-            path="/category/personal-hygiene"
-            component={() => <CategoryPage category="personal-hygiene" />}
-          />
-          <Route
-            path="/category/sports"
-            component={() => <CategoryPage category="sports" />}
-          />
+          {categories.map((category) => {
+            return (
+              <Route
+                path={`/category/${category}`}
+                component={() => <DisplayCategoryPage category={category} />}
+              />
+            );
+          })}
           <Route path="/about" exact component={About} />
           <Route path="/contacts" exact component={Contact} />
 
@@ -55,7 +49,7 @@ const App = () => {
               <Route
                 key={product.productId}
                 path={`/product/${product.productId}`}
-                component={() => <Product product={product} />}
+                component={() => <DisplayProduct product={product} />}
               />
             );
           })}
@@ -73,9 +67,45 @@ const Home = () => {
       <div className={styles.slider}>
         <Slider />
       </div>
-      <div>
+      <div className={styles.productSlider}>
         <ProductSlider />
       </div>
     </>
+  );
+};
+
+const DisplayCategoryPage = ({ category }) => {
+  const [display, setDisplay] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setDisplay(false);
+    }, 800); //Time out for loading screen
+  });
+
+  return display ? (
+    <div className={styles.loading}>
+      <CircularProgress />
+    </div>
+  ) : (
+    <CategoryPage category={category} />
+  );
+};
+
+const DisplayProduct = ({ product }) => {
+  const [display, setDisplay] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setDisplay(false);
+    }, 800); //Time out for loading screen
+  });
+
+  return display ? (
+    <div className={styles.loading}>
+      <CircularProgress />
+    </div>
+  ) : (
+    <Product product={product} />
   );
 };
