@@ -22,7 +22,6 @@ const App = () => {
   const categories = ["electronics", "fashion", "personal-hygiene", "sports"];
 
   const [temp, setTemp] = useState(styles.noStyle);
-  const [open, setOpen] = useState(false);
 
   const [colorPrimary, setColorPrimary] = useState(
     getComputedStyle(document.documentElement).getPropertyValue(
@@ -61,7 +60,6 @@ const App = () => {
         </div>
         <div className={classNames(styles.colorPanel, temp)}>
           <Paper className={styles.pickerContainer}>
-            {open} ? (
             <div
               style={{
                 display: "flex",
@@ -71,11 +69,7 @@ const App = () => {
             >
               <h5>Primary Color</h5>
               <IconButton className={styles.closeBtn} onClick={closeColor}>
-                {temp === styles.noStyle ? (
-                  <i className="fas fa-times-circle"></i>
-                ) : (
-                  <i className="fas fa-open"></i>
-                )}
+                <i className="fas fa-times-circle"></i>
               </IconButton>
             </div>
             <ChromePicker
@@ -87,8 +81,6 @@ const App = () => {
               color={colorAccent}
               onChange={(e) => changeAccentColor(e)}
             />
-            ) : (<Button>Change Theme</Button>
-            );
           </Paper>
         </div>
         <Switch>
