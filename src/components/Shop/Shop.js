@@ -4,6 +4,8 @@ import { Grid } from "@material-ui/core";
 import image from "../../images/image3.webp";
 import { motion } from "framer-motion";
 import userImage from "../../images/user-image.webp";
+import { Product } from "../../components";
+import products from "../../assets/products.json";
 
 const Shop = ({ company }) => {
   return (
@@ -51,7 +53,21 @@ const Shop = ({ company }) => {
           <h3>Products</h3>
         </div>
         <div className={styles.products}>
-          <Grid container>{}</Grid>
+          <Grid container>
+            {products.map((product) => {
+              return (
+                <Grid
+                  item
+                  md={3}
+                  key={product.productId}
+                  xs={12}
+                  className={styles.singleProduct}
+                >
+                  <Product product={product} />
+                </Grid>
+              );
+            })}
+          </Grid>
         </div>
       </div>
     </div>

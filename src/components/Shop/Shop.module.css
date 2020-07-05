@@ -144,6 +144,10 @@
   margin: 0 5px;
 }
 
+.singleProduct {
+  margin: 10px 0 !important;
+}
+
 @media screen and (max-width: 800px) {
   .contactDetails {
     margin: auto !important;

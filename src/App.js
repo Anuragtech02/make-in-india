@@ -22,7 +22,7 @@ import classNames from "classnames";
 const App = () => {
   const categories = ["electronics", "fashion", "personal-hygiene", "sports"];
 
-  const companies = ["cinthol", "asian-paints", "boroline", "amul", "bata"];
+  const companies = ["cinthol", "asian paints", "boroline", "amul", "bata"];
 
   const [temp, setTemp] = useState(styles.noStyle);
 
