@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./Shop.module.css";
 import { Grid } from "@material-ui/core";
-import image from "../../images/image3.webp";
+import image3 from "../../images/image3.webp";
 import { motion } from "framer-motion";
-import userImage from "../../images/user-image.webp";
+import userImage from "../../images/userImage.webp";
 import { Product } from "../../components";
 import products from "../../assets/products.json";
 
@@ -12,7 +12,7 @@ const Shop = ({ company }) => {
     <div className={styles.container}>
       <motion.div
         className={styles.banner}
-        style={{ backgroundImage: `url(${image})` }}
+        style={{ backgroundImage: `url(${image3})` }}
       >
         <div className={styles.darkOverlay}>
           <h1>{company}</h1>

@@ -92,6 +92,7 @@ const App = () => {
           {categories.map((category) => {
             return (
               <Route
+                exact
                 path={`/category/${category}`}
                 component={() => <DisplayCategoryPage category={category} />}
               />
@@ -103,6 +104,7 @@ const App = () => {
           {products.map((product) => {
             return (
               <Route
+                exact
                 key={product.productId}
                 path={`/product/${product.productId}`}
                 component={() => <DisplayProduct product={product} />}
@@ -113,6 +115,7 @@ const App = () => {
           {companies.map((company) => {
             return (
               <Route
+                exact
                 key={company}
                 path={`/shop/${company}`}
                 component={() => <DisplayCompanyPage company={company} />}
