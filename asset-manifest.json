@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "./static/css/main.90deafba.chunk.css",
-    "main.js": "./static/js/main.0f2fcb65.chunk.js",
-    "main.js.map": "./static/js/main.0f2fcb65.chunk.js.map",
+    "main.css": "./static/css/main.23f0a4fa.chunk.css",
+    "main.js": "./static/js/main.e358272b.chunk.js",
+    "main.js.map": "./static/js/main.e358272b.chunk.js.map",
     "runtime-main.js": "./static/js/runtime-main.8b5cf835.js",
     "runtime-main.js.map": "./static/js/runtime-main.8b5cf835.js.map",
     "static/css/2.ab84ab19.chunk.css": "./static/css/2.ab84ab19.chunk.css",
-    "static/js/2.c213ddd6.chunk.js": "./static/js/2.c213ddd6.chunk.js",
-    "static/js/2.c213ddd6.chunk.js.map": "./static/js/2.c213ddd6.chunk.js.map",
+    "static/js/2.447c3ecc.chunk.js": "./static/js/2.447c3ecc.chunk.js",
+    "static/js/2.447c3ecc.chunk.js.map": "./static/js/2.447c3ecc.chunk.js.map",
     "index.html": "./index.html",
-    "precache-manifest.95b8b951756020383dd01b848407d090.js": "./precache-manifest.95b8b951756020383dd01b848407d090.js",
+    "precache-manifest.aecee28d9fdd874095bc557383cac2d0.js": "./precache-manifest.aecee28d9fdd874095bc557383cac2d0.js",
     "service-worker.js": "./service-worker.js",
     "static/css/2.ab84ab19.chunk.css.map": "./static/css/2.ab84ab19.chunk.css.map",
-    "static/css/main.90deafba.chunk.css.map": "./static/css/main.90deafba.chunk.css.map",
-    "static/js/2.c213ddd6.chunk.js.LICENSE.txt": "./static/js/2.c213ddd6.chunk.js.LICENSE.txt",
+    "static/css/main.23f0a4fa.chunk.css.map": "./static/css/main.23f0a4fa.chunk.css.map",
+    "static/js/2.447c3ecc.chunk.js.LICENSE.txt": "./static/js/2.447c3ecc.chunk.js.LICENSE.txt",
     "static/media/dabur-logo.png": "./static/media/dabur-logo.fe44dc68.png",
     "static/media/image1.webp": "./static/media/image1.8ffb8124.webp",
     "static/media/image2.webp": "./static/media/image2.d841c168.webp",
@@ -21,13 +21,14 @@
     "static/media/image4.webp": "./static/media/image4.6cdc173b.webp",
     "static/media/image5.webp": "./static/media/image5.4c4c3361.webp",
     "static/media/patanjali-logo.png": "./static/media/patanjali-logo.2a929301.png",
-    "static/media/slick-theme.css": "./static/media/slick.f97e3bbf.svg"
+    "static/media/slick-theme.css": "./static/media/slick.f97e3bbf.svg",
+    "static/media/user-image.webp": "./static/media/user-image.01a03d27.webp"
   },
   "entrypoints": [
     "static/js/runtime-main.8b5cf835.js",
     "static/css/2.ab84ab19.chunk.css",
-    "static/js/2.c213ddd6.chunk.js",
-    "static/css/main.90deafba.chunk.css",
-    "static/js/main.0f2fcb65.chunk.js"
+    "static/js/2.447c3ecc.chunk.js",
+    "static/css/main.23f0a4fa.chunk.css",
+    "static/js/main.e358272b.chunk.js"
   ]
 }
