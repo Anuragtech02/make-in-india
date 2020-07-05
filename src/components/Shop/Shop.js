@@ -10,14 +10,14 @@ import products from "../../assets/products.json";
 const Shop = ({ company }) => {
   return (
     <div className={styles.container}>
-      <motion.div
+      <div
         className={styles.banner}
         style={{ backgroundImage: `url(${image3})` }}
       >
         <div className={styles.darkOverlay}>
           <h1>{company}</h1>
         </div>
-      </motion.div>
+      </div>
       <motion.div className={styles.infobar}>
         <div
           className={styles.imageContainer}
