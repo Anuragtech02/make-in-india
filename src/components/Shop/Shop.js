@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Shop.module.css";
+import { Grid } from "@material-ui/core";
 import image from "../../images/image3.webp";
 import { motion } from "framer-motion";
 import userImage from "../../images/user-image.webp";
@@ -24,11 +25,15 @@ const Shop = ({ company }) => {
           <div className={styles.contactWrapper}>
             <div className={styles.call}>
               <i className="fas fa-phone-alt" />
-              <h4>+91 987654321</h4>
+              <h4>987654321</h4>
             </div>
             <div className={styles.mail}>
               <i className="fas fa-envelope" />
               <h4>email@example.com</h4>
+            </div>
+            <div className={styles.blog}>
+              <i className="fas fa-rss-square"></i>
+              <h4>Visit My Blog</h4>
             </div>
           </div>
           <div className={styles.para}>
@@ -41,7 +46,14 @@ const Shop = ({ company }) => {
           </div>
         </div>
       </motion.div>
-      <div className={styles.innerContainer}></div>
+      <div className={styles.innerContainer}>
+        <div className={styles.heading}>
+          <h3>Products</h3>
+        </div>
+        <div className={styles.products}>
+          <Grid container>{}</Grid>
+        </div>
+      </div>
     </div>
   );
 };

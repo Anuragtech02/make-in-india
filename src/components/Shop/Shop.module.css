@@ -43,6 +43,19 @@
 
 .innerContainer {
   width: var(--fixedWidth);
+  margin: auto;
+}
+
+.innerContainer .heading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 20px 0;
+  color: grey;
+}
+
+.innerContainer .heading h3 {
+  font-weight: 600;
 }
 
 .infobar {
@@ -82,10 +95,16 @@
       -ms-flex-align: center;
           align-items: center;
   width: 100%;
-  margin: 10px 20%;
+  margin: 20px 20%;
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
+}
+
+.infobar .contactDetails p {
+  color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  width: 80%;
 }
 
 .infobar .contactDetails .contactWrapper {
@@ -98,27 +117,41 @@
   width: 100%;
 }
 
-.infobar .contactDetails .call,
-.infobar .contactDetails .mail {
+.infobar .contactDetails .contactWrapper .call,
+.infobar .contactDetails .contactWrapper .mail,
+.infobar .contactDetails .contactWrapper .blog {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin: 0 10px;
+  margin: 10px 10px;
 }
 
-.infobar .contactDetails .call i,
-.infobar .contactDetails .mail i {
+.infobar .contactDetails .contactWrapper .call i,
+.infobar .contactDetails .contactWrapper .mail i,
+.infobar .contactDetails .contactWrapper .blog i {
   color: var(--orangeTint) !important;
   margin: 0 5px;
 }
 
-.infobar .contactDetails .call h4,
-.infobar .contactDetails .mail h4 {
+.infobar .contactDetails .contactWrapper .call h4,
+.infobar .contactDetails .contactWrapper .mail h4,
+.infobar .contactDetails .contactWrapper .blog h4 {
   font-weight: 600;
   color: white;
   margin: 0 5px;
+}
+
+@media screen and (max-width: 800px) {
+  .contactDetails {
+    margin: auto !important;
+    text-align: center;
+    font-size: 0.9rem;
+  }
+  .contactDetails p {
+    margin: auto;
+  }
 }
 /*# sourceMappingURL=Shop.module.css.map */
