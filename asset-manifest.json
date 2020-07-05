@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "./static/css/main.23f0a4fa.chunk.css",
-    "main.js": "./static/js/main.e358272b.chunk.js",
-    "main.js.map": "./static/js/main.e358272b.chunk.js.map",
+    "main.css": "./static/css/main.181ec054.chunk.css",
+    "main.js": "./static/js/main.967f7220.chunk.js",
+    "main.js.map": "./static/js/main.967f7220.chunk.js.map",
     "runtime-main.js": "./static/js/runtime-main.8b5cf835.js",
     "runtime-main.js.map": "./static/js/runtime-main.8b5cf835.js.map",
     "static/css/2.ab84ab19.chunk.css": "./static/css/2.ab84ab19.chunk.css",
     "static/js/2.447c3ecc.chunk.js": "./static/js/2.447c3ecc.chunk.js",
     "static/js/2.447c3ecc.chunk.js.map": "./static/js/2.447c3ecc.chunk.js.map",
     "index.html": "./index.html",
-    "precache-manifest.aecee28d9fdd874095bc557383cac2d0.js": "./precache-manifest.aecee28d9fdd874095bc557383cac2d0.js",
+    "precache-manifest.29a26fdb9410b2c985918b490f3565ce.js": "./precache-manifest.29a26fdb9410b2c985918b490f3565ce.js",
     "service-worker.js": "./service-worker.js",
     "static/css/2.ab84ab19.chunk.css.map": "./static/css/2.ab84ab19.chunk.css.map",
-    "static/css/main.23f0a4fa.chunk.css.map": "./static/css/main.23f0a4fa.chunk.css.map",
+    "static/css/main.181ec054.chunk.css.map": "./static/css/main.181ec054.chunk.css.map",
     "static/js/2.447c3ecc.chunk.js.LICENSE.txt": "./static/js/2.447c3ecc.chunk.js.LICENSE.txt",
     "static/media/dabur-logo.png": "./static/media/dabur-logo.fe44dc68.png",
     "static/media/image1.webp": "./static/media/image1.8ffb8124.webp",
@@ -22,13 +22,13 @@
     "static/media/image5.webp": "./static/media/image5.4c4c3361.webp",
     "static/media/patanjali-logo.png": "./static/media/patanjali-logo.2a929301.png",
     "static/media/slick-theme.css": "./static/media/slick.f97e3bbf.svg",
-    "static/media/user-image.webp": "./static/media/user-image.01a03d27.webp"
+    "static/media/userImage.webp": "./static/media/userImage.01a03d27.webp"
   },
   "entrypoints": [
     "static/js/runtime-main.8b5cf835.js",
     "static/css/2.ab84ab19.chunk.css",
     "static/js/2.447c3ecc.chunk.js",
-    "static/css/main.23f0a4fa.chunk.css",
-    "static/js/main.e358272b.chunk.js"
+    "static/css/main.181ec054.chunk.css",
+    "static/js/main.967f7220.chunk.js"
   ]
 }
