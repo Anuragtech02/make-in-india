@@ -14,8 +14,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import products from "./assets/products.json";
 import styles from "./App.module.css";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { Paper, IconButton, Button } from "@material-ui/core";
-import { BlockPicker, ChromePicker } from "react-color";
+import { Paper, IconButton } from "@material-ui/core";
+import { ChromePicker } from "react-color";
 import classNames from "classnames";
 
 const App = () => {

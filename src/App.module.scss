@@ -51,6 +51,7 @@ body {
   left: 0;
   top: 25%;
   transition: all 0.3s ease-in-out;
+  z-index: 10000;
   .pickerContainer {
     padding: 20px;
     h5 {

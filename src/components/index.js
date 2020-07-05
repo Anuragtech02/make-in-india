@@ -8,3 +8,4 @@ export { default as CategoryPage } from "./CategoryPage/CateogryPage";
 export { default as Contact } from "./Contact/Contact";
 export { default as About } from "./About/About";
 export { default as ProductPage } from "./ProductPage/ProductPage";
+export { default as Product } from "./Product/Product";

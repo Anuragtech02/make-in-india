@@ -63,6 +63,7 @@ body {
   top: 25%;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+  z-index: 10000;
 }
 
 .colorPanel .pickerContainer {
