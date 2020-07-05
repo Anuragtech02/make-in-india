@@ -8,7 +8,7 @@ import {
   CategoryPage,
   Contact,
   About,
-  Product,
+  ProductPage,
 } from "./components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import products from "./assets/products.json";
@@ -159,6 +159,6 @@ const DisplayProduct = ({ product }) => {
       <CircularProgress />
     </div>
   ) : (
-    <Product product={product} />
+    <ProductPage product={product} />
   );
 };

@@ -1,0 +1,168 @@
+.container {
+  width: var(--fixedWidth);
+  align-items: top;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  margin-top: 5vh;
+}
+.imageSection {
+  background: white;
+  border-radius: 5px;
+  height: fit-content;
+}
+.imageContainer {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 350px;
+  height: 300px;
+  margin: auto;
+  img {
+    max-width: 300px;
+    margin: auto;
+    max-height: 300px;
+    // filter: drop-shadow(2px 5px 5px rgba(0, 0, 0, 0.4));
+  }
+}
+.otherImages {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  img {
+    width: 80px;
+    cursor: pointer;
+  }
+  .imageBack {
+    padding: 15px;
+  }
+}
+.descSection {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  padding-top: 0;
+}
+.underLine {
+  border-top: 1px solid rgba(0, 0, 0, 0.8);
+  opacity: 0.4;
+}
+.pricing {
+  justify-content: flex-start;
+  h1 {
+    font-weight: 600;
+    color: var(--orangeTint);
+  }
+  h6 {
+    font-weight: 300;
+    color: rgba(0, 0, 0, 0.6);
+  }
+}
+.affiliateButtons {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  .amazonBtn {
+    background: var(--amazonBG);
+    text-transform: lowercase;
+    margin: 0 5px;
+    padding: 10px;
+    &:hover {
+      background: var(--primaryColor) !important;
+    }
+  }
+  .flipkartBtn {
+    background: var(--flipkartBG);
+    margin: 0 5px;
+    padding: 10px;
+    &:hover {
+      background: var(--primaryColor) !important;
+    }
+  }
+}
+//Like Icon
+.likeIcon {
+  z-index: 1000 !important;
+  i {
+    color: var(--greyIcon) !important;
+  }
+}
+
+//Styles for heading section
+.heading {
+  //Title
+  h2 {
+    font-weight: 700;
+    font-size: 1.2rem;
+    margin: 10px 0;
+  }
+  //Category
+  h4 {
+    font-weight: 400;
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.6);
+    margin-top: 10px;
+  }
+  //In Stock
+  h5 {
+    font-weight: 300;
+    font-size: 1rem;
+    color: var(--primaryColor);
+    margin: 10px 0;
+    margin-top: 5px;
+  }
+}
+
+//Middle Container
+.middleContainer {
+  display: flex;
+  margin: 20px 0;
+}
+
+//Description Para
+.paraDescription {
+  font-weight: 300;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 1.2rem;
+}
+
+//Vertical Line
+.verticalLine {
+  border-right: 1px solid rgba(0, 0, 0, 0.6);
+  opacity: 0.4;
+  margin-right: 20px;
+}
+
+//Brands
+.brands {
+  width: 200px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+//Brand Slider
+.brandSlider {
+  height: 100%;
+  .brandContainer {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    align-items: center;
+    padding: 20px;
+    .brandImage {
+      max-width: 120px;
+      max-height: 100px;
+      margin: auto;
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .container {
+    flex-direction: column;
+  }
+  .middleContainer {
+    flex-direction: column;
+  }
+}
