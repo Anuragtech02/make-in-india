@@ -9,6 +9,7 @@ import {
   Contact,
   About,
   ProductPage,
+  Shop,
 } from "./components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import products from "./assets/products.json";
@@ -20,6 +21,8 @@ import classNames from "classnames";
 
 const App = () => {
   const categories = ["electronics", "fashion", "personal-hygiene", "sports"];
+
+  const companies = ["cinthol", "asian-paints", "boroline", "amul", "bata"];
 
   const [temp, setTemp] = useState(styles.noStyle);
 
@@ -106,6 +109,16 @@ const App = () => {
               />
             );
           })}
+
+          {companies.map((company) => {
+            return (
+              <Route
+                key={company}
+                path={`/shop/${company}`}
+                component={() => <DisplayCompanyPage company={company} />}
+              />
+            );
+          })}
         </Switch>
       </div>
     </Router>
@@ -160,5 +173,23 @@ const DisplayProduct = ({ product }) => {
     </div>
   ) : (
     <ProductPage product={product} />
+  );
+};
+
+const DisplayCompanyPage = ({ company }) => {
+  const [display, setDisplay] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setDisplay(false);
+    }, 800); //Time out for loading screen
+  });
+
+  return display ? (
+    <div className={styles.loading}>
+      <CircularProgress />
+    </div>
+  ) : (
+    <Shop company={company} />
   );
 };

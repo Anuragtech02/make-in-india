@@ -17,6 +17,7 @@ import { SnackbarProvider, useSnackbar } from "notistack";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { Link } from "react-router-dom";
 
 import {
   amul,
@@ -140,6 +141,12 @@ const MyProduct = ({ product }) => {
               <h2>{heading}</h2>
               <h4>{`Category : ${category}`}</h4>
               <h5>In Stock</h5>
+              <Link
+                to={`/shop/${company.toLowerCase()}`}
+                className={styles.noDecoration}
+              >
+                <h6>by {company}</h6>
+              </Link>
               <div className={styles.underLine}></div>
             </motion.div>
             <motion.div

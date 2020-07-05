@@ -1,0 +1,135 @@
+.card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 20px;
+  margin: 0 20px;
+}
+
+.thumbnail {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 180px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.thumbnail img {
+  width: 200px;
+}
+
+.priceLike {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+}
+
+.priceLike h4 {
+  color: var(--orangeTint);
+}
+
+.name {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.name .company {
+  font-weight: 600;
+}
+
+.name .category {
+  color: var(--greyFont) !important;
+  text-transform: capitalize;
+}
+
+.likeIcon {
+  z-index: 1000 !important;
+}
+
+.likeIcon i {
+  color: var(--greyIcon) !important;
+}
+
+.noDecoration {
+  text-decoration: none !important;
+}
+
+.buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+}
+
+.buttons .amazonBtn {
+  background: var(--amazonBG);
+  text-transform: lowercase;
+  margin: 0 5px;
+  padding: 10px;
+}
+
+.buttons .amazonBtn:hover {
+  background: var(--primaryColor) !important;
+}
+
+.buttons .flipkartBtn {
+  background: var(--flipkartBG);
+  margin: 0 5px;
+  padding: 10px;
+}
+
+.buttons .flipkartBtn:hover {
+  background: var(--primaryColor) !important;
+}
+
+.noDecoration {
+  text-decoration: none !important;
+  color: var(--greyFont) !important;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.noDecoration:hover {
+  color: var(--primaryColor) !important;
+}
+/*# sourceMappingURL=Product.module.css.map */

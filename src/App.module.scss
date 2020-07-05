@@ -26,6 +26,11 @@ body {
 .topBar {
   background: var(--primaryColor);
 }
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 999999;
+}
 .slider {
   margin-top: 50px;
 }

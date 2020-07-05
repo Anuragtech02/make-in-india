@@ -1,0 +1,124 @@
+.container {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-height: 60vh;
+  width: 100%;
+  margin: auto;
+}
+
+.banner {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  margin: auto;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+
+.darkOverlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-height: 25vh;
+}
+
+.darkOverlay h1 {
+  color: white;
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 10px;
+  font-size: 4rem;
+}
+
+.innerContainer {
+  width: var(--fixedWidth);
+}
+
+.infobar {
+  min-height: 130px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.infobar .imageContainer {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  background-size: cover;
+  position: absolute;
+  background-repeat: no-repeat;
+  top: 50%;
+  left: calc((100% - var(--fixedWidth)) / 2);
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  border: 5px solid var(--orangeTint);
+}
+
+.infobar .contactDetails {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  margin: 10px 20%;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.infobar .contactDetails .contactWrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  width: 100%;
+}
+
+.infobar .contactDetails .call,
+.infobar .contactDetails .mail {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0 10px;
+}
+
+.infobar .contactDetails .call i,
+.infobar .contactDetails .mail i {
+  color: var(--orangeTint) !important;
+  margin: 0 5px;
+}
+
+.infobar .contactDetails .call h4,
+.infobar .contactDetails .mail h4 {
+  font-weight: 600;
+  color: white;
+  margin: 0 5px;
+}
+/*# sourceMappingURL=Shop.module.css.map */

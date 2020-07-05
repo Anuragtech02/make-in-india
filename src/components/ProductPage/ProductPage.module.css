@@ -13,6 +13,11 @@
   margin-top: 5vh;
 }
 
+.noDecoration {
+  list-style: none !important;
+  text-decoration: none !important;
+}
+
 .imageSection {
   background: white;
   border-radius: 5px;
@@ -156,8 +161,20 @@
   font-weight: 300;
   font-size: 1rem;
   color: var(--primaryColor);
-  margin: 10px 0;
-  margin-top: 5px;
+  margin: 5px 0;
+}
+
+.heading h6 {
+  font-weight: 400;
+  font-style: italic;
+  margin-bottom: 10px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  color: #0c0c0c;
+}
+
+.heading h6:hover {
+  color: var(--orangeTint) !important;
 }
 
 .middleContainer {
