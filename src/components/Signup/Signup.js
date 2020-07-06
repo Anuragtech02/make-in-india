@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./Signup.module.css";
+import Firebase from "../Firebase";
 
 export const Signup = () => {
   return (

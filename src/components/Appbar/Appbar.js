@@ -46,12 +46,20 @@ const Appbar = () => {
           </ListItem>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              <Link to="/login" className={styles.noDecoration}>
+              <Link
+                to="/login"
+                className={styles.noDecoration}
+                onClick={() => setOpen(!open)}
+              >
                 <ListItem button className={styles.nested}>
                   <ListItemText primary="Login" />
                 </ListItem>
               </Link>
-              <Link to="/signup" className={styles.noDecoration}>
+              <Link
+                to="/signup"
+                className={styles.noDecoration}
+                onClick={() => setOpen(!open)}
+              >
                 <ListItem button className={styles.nested}>
                   <ListItemText primary="Signup" />
                 </ListItem>
