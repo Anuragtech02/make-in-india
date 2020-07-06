@@ -49,6 +49,8 @@ const App = () => {
     setTemp(styles.closeColor);
   };
 
+  // const history = createBrowserHistory();
+
   return (
     <Router>
       <div className={styles.outerContainer}>
