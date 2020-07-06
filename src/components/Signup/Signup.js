@@ -29,13 +29,14 @@ export const Signup = () => {
       <div className={styles.cardWrapper}>
         <Card className={styles.card}>
           <div className={styles.heading}>
-            <h2>Create an Account</h2>
+            <h2>Create Account</h2>
           </div>
           <form className={styles.form}>
             <div className={styles.textFields}>
               <div className={styles.nameMail}>
                 <TextField
                   className={styles.textField}
+                  required
                   label="Your Name"
                   type="email"
                   variant="outlined"
@@ -46,6 +47,7 @@ export const Signup = () => {
                   onChange={(e) => setName(e.target.value)}
                 />
                 <TextField
+                  required
                   className={styles.textField}
                   variant="outlined"
                   type="email"
@@ -71,6 +73,7 @@ export const Signup = () => {
               </div>
               <div className={styles.passwords}>
                 <TextField
+                  required
                   className={styles.textField}
                   variant="outlined"
                   type="password"
@@ -81,6 +84,7 @@ export const Signup = () => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <TextField
+                  required
                   className={styles.textField}
                   variant="outlined"
                   type="password"
@@ -104,7 +108,14 @@ export const Signup = () => {
                 label="I am a seller"
               />
 
-              <Button variant="contained" type="submit">
+              <Button
+                variant="contained"
+                style={{
+                  opacity: !checked ? "1" : "0",
+                  pointerEvents: !checked ? "" : "none",
+                }}
+                type="submit"
+              >
                 Signup
               </Button>
             </div>
@@ -114,6 +125,7 @@ export const Signup = () => {
               >
                 <div className={styles.industryWrapper}>
                   <TextField
+                    required
                     variant="outlined"
                     className={classNames(styles.textField, styles.industry)}
                     size="small"
@@ -124,11 +136,12 @@ export const Signup = () => {
                 </div>
                 <div className={styles.emailMobile}>
                   <TextField
+                    required
                     variant="outlined"
                     className={styles.textField}
                     size="small"
                     value={email2}
-                    label="Email 2"
+                    label="Recovery Email"
                     onChange={(e) => setEmail2(e.target.value)}
                   />
                   <TextField
@@ -136,7 +149,7 @@ export const Signup = () => {
                     className={styles.textField}
                     size="small"
                     value={mobile2}
-                    label="Mobile 2 (Optional)"
+                    label="Secondary Mobile"
                     onChange={(e) => setMobile2(e.target.value)}
                   />
                 </div>
@@ -170,6 +183,13 @@ export const Signup = () => {
                     label="Instagram"
                     onChange={(e) => setInsta(e.target.value)}
                   />
+                </div>
+                <div
+                  className={classNames(styles.signupBtn, styles.sellerSubmit)}
+                >
+                  <Button variant="contained" type="submit">
+                    Signup
+                  </Button>
                 </div>
               </div>
             ) : (

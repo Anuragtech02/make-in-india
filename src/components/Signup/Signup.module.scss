@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 50px;
+  padding: 50px 0;
 }
 
 .card {
@@ -19,7 +19,7 @@
     text-align: left;
 
     h2 {
-      font-weight: 900;
+      font-weight: 700;
       color: var(--primaryColor);
       font-size: 2rem;
     }
@@ -120,6 +120,9 @@
       .website {
         width: 100%;
       }
+    }
+    .sellerSubmit {
+      justify-content: flex-end;
     }
   }
 }

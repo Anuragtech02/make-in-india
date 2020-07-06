@@ -8,7 +8,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-top: 50px;
+  padding: 50px 0;
 }
 
 .card {
@@ -38,7 +38,7 @@
 }
 
 .card .heading h2 {
-  font-weight: 900;
+  font-weight: 700;
   color: var(--primaryColor);
   font-size: 2rem;
 }
@@ -176,5 +176,11 @@
 .card .sellerFields .websiteWrapper .industry,
 .card .sellerFields .websiteWrapper .website {
   width: 100%;
+}
+
+.card .sellerFields .sellerSubmit {
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
 /*# sourceMappingURL=Signup.module.css.map */
