@@ -26,6 +26,7 @@ export const Login = () => {
             <form className={styles.form} onSubmit={login}>
               <div className={styles.textFields}>
                 <TextField
+                  required
                   className={styles.textField}
                   label="Username"
                   type="email"
@@ -37,6 +38,7 @@ export const Login = () => {
                   onChange={(e) => setUsername(e.target.value)}
                 />
                 <TextField
+                  required
                   className={styles.textField}
                   label="Password"
                   type="password"

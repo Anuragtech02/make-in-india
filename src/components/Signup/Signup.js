@@ -38,7 +38,7 @@ export const Signup = () => {
                   className={styles.textField}
                   required
                   label="Your Name"
-                  type="email"
+                  type="text"
                   variant="outlined"
                   size="small"
                   autoComplete="off"
