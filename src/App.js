@@ -10,6 +10,8 @@ import {
   About,
   ProductPage,
   Shop,
+  Login,
+  Signup,
 } from "./components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import products from "./assets/products.json";
@@ -18,6 +20,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { Paper, IconButton } from "@material-ui/core";
 import { ChromePicker } from "react-color";
 import classNames from "classnames";
+import NotFound from "./404";
 
 const App = () => {
   const categories = ["electronics", "fashion", "personal-hygiene", "sports"];
@@ -90,6 +93,9 @@ const App = () => {
         </div>
         <Switch>
           <Route path="/" exact component={Home} />
+          <Route path="/login" exact component={Login} />
+          <Route path="/signup" exact component={Signup} />
+
           {/* <Route path="/make-in-india" component={Home} /> */}
           {categories.map((category) => {
             return (
@@ -124,6 +130,7 @@ const App = () => {
               />
             );
           })}
+          <Route component={NotFound} />
         </Switch>
       </div>
     </Router>

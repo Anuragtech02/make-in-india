@@ -10,6 +10,7 @@ import {
   ListItemText,
   ListItemIcon,
 } from "@material-ui/core";
+import { Link } from "react-router-dom";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import styles from "./AppBar.module.css";
@@ -45,12 +46,16 @@ const Appbar = () => {
           </ListItem>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              <ListItem button className={styles.nested}>
-                <ListItemText primary="Login" />
-              </ListItem>
-              <ListItem button className={styles.nested}>
-                <ListItemText primary="Signup" />
-              </ListItem>
+              <Link to="/login" className={styles.noDecoration}>
+                <ListItem button className={styles.nested}>
+                  <ListItemText primary="Login" />
+                </ListItem>
+              </Link>
+              <Link to="/signup" className={styles.noDecoration}>
+                <ListItem button className={styles.nested}>
+                  <ListItemText primary="Signup" />
+                </ListItem>
+              </Link>
             </List>
           </Collapse>
         </List>

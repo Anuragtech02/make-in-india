@@ -53,6 +53,12 @@
   color: var(--greyIcon) !important;
 }
 
+.noDecoration {
+  text-decoration: none !important;
+  list-style: none !important;
+  color: white !important;
+}
+
 @media screen and (max-width: 800px) {
   .container {
     -webkit-box-orient: vertical;
