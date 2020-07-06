@@ -57,13 +57,13 @@ export const Login = () => {
                   Login
                 </Button>
               </div>
-              <div className={styles.newHere}>
-                <h5>New here?</h5>
-              </div>
-              <div className={styles.createAccount}>
-                <Button variant="contained">Create a free account</Button>
-              </div>
             </form>
+            <div className={styles.newHere}>
+              <h5>New here?</h5>
+            </div>
+            <div className={styles.createAccount}>
+              <Button variant="contained">Create a free account</Button>
+            </div>
           </div>
         </Card>
       </div>

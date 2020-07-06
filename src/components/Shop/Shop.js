@@ -12,7 +12,7 @@ const Shop = ({ company }) => {
     <div className={styles.container}>
       <div
         className={styles.banner}
-        style={{ backgroundImage: `url(${image3})` }}
+        style={{ backgroundImage: `url('${image3}')` }}
       >
         <div className={styles.darkOverlay}>
           <h1>{company}</h1>

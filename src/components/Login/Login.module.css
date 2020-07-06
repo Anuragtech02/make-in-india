@@ -105,7 +105,7 @@
   font-weight: 600;
 }
 
-.card .form .newHere {
+.card .newHere {
   display: block;
   position: relative;
   width: 100%;
@@ -118,7 +118,7 @@
   margin: 20px 0;
 }
 
-.card .form .newHere h5 {
+.card .newHere h5 {
   font-weight: 300;
   margin: 0 5px;
   width: -webkit-fit-content;
@@ -133,7 +133,7 @@
   padding: 0 8px 0 8px;
 }
 
-.card .form .newHere:after {
+.card .newHere:after {
   content: "";
   position: absolute;
   display: block;
@@ -145,11 +145,11 @@
   z-index: 0;
 }
 
-.card .form .createAccount {
+.card .createAccount {
   width: 100%;
 }
 
-.card .form .createAccount Button {
+.card .createAccount Button {
   width: 100%;
 }
 /*# sourceMappingURL=Login.module.css.map */
