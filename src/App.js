@@ -14,6 +14,7 @@ import {
   Signup,
 } from "./components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { useParams } from "react-router";
 import products from "./assets/products.json";
 import styles from "./App.module.css";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -97,7 +98,7 @@ const App = () => {
           <Route path="/signup" exact component={Signup} />
 
           {/* <Route path="/make-in-india" component={Home} /> */}
-          {categories.map((category) => {
+          {/* {categories.map((category) => {
             return (
               <Route
                 exact
@@ -105,9 +106,14 @@ const App = () => {
                 component={() => <DisplayCategoryPage category={category} />}
               />
             );
-          })}
+          })} */}
           <Route path="/about" exact component={About} />
           <Route path="/contacts" exact component={Contact} />
+          <Route
+            path="/category/:category"
+            exact
+            component={() => <DisplayCategoryPage category={useParams} />}
+          />
 
           {products.map((product) => {
             return (
