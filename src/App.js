@@ -96,46 +96,11 @@ const App = () => {
           <Route path="/" exact component={Home} />
           <Route path="/login" exact component={Login} />
           <Route path="/signup" exact component={Signup} />
-
-          {/* <Route path="/make-in-india" component={Home} /> */}
-          {/* {categories.map((category) => {
-            return (
-              <Route
-                exact
-                path={`/category/${category}`}
-                component={() => <DisplayCategoryPage category={category} />}
-              />
-            );
-          })} */}
           <Route path="/about" exact component={About} />
           <Route path="/contacts" exact component={Contact} />
-          <Route
-            path="/category/:category"
-            exact
-            component={() => <DisplayCategoryPage category={useParams} />}
-          />
-
-          {products.map((product) => {
-            return (
-              <Route
-                exact
-                key={product.productId}
-                path={`/product/${product.productId}`}
-                component={() => <DisplayProduct product={product} />}
-              />
-            );
-          })}
-
-          {companies.map((company) => {
-            return (
-              <Route
-                exact
-                key={company}
-                path={`/shop/${company}`}
-                component={() => <DisplayCompanyPage company={company} />}
-              />
-            );
-          })}
+          <Route path="/category/:category" exact component={CategoryPage} />
+          <Route path="/product/:productId" exact component={ProductPage} />
+          <Route path="/shop/:company" exact component={Shop} />
           <Route component={NotFound} />
         </Switch>
       </div>
@@ -155,59 +120,5 @@ const Home = () => {
         <ProductSlider />
       </div>
     </>
-  );
-};
-
-const DisplayCategoryPage = ({ category }) => {
-  const [display, setDisplay] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setDisplay(false);
-    }, 800); //Time out for loading screen
-  });
-
-  return display ? (
-    <div className={styles.loading}>
-      <CircularProgress />
-    </div>
-  ) : (
-    <CategoryPage category={category} />
-  );
-};
-
-const DisplayProduct = ({ product }) => {
-  const [display, setDisplay] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setDisplay(false);
-    }, 800); //Time out for loading screen
-  });
-
-  return display ? (
-    <div className={styles.loading}>
-      <CircularProgress />
-    </div>
-  ) : (
-    <ProductPage product={product} />
-  );
-};
-
-const DisplayCompanyPage = ({ company }) => {
-  const [display, setDisplay] = useState(true);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setDisplay(false);
-    }, 800); //Time out for loading screen
-  });
-
-  return display ? (
-    <div className={styles.loading}>
-      <CircularProgress />
-    </div>
-  ) : (
-    <Shop company={company} />
   );
 };

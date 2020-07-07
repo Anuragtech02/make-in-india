@@ -1,13 +1,35 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Shop.module.css";
-import { Grid } from "@material-ui/core";
+import { Grid, CircularProgress } from "@material-ui/core";
 import image3 from "../../images/image3.webp";
 import { motion } from "framer-motion";
 import userImage from "../../images/userImage.webp";
 import { Product } from "../../components";
 import products from "../../assets/products.json";
+import { useParams } from "react-router";
 
-const Shop = ({ company }) => {
+const Shop = () => {
+  const { company } = useParams();
+  const [display, setDisplay] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setDisplay(true);
+    }, 800);
+  }, []);
+
+  return !display ? (
+    <div className={styles.loading}>
+      <CircularProgress />
+    </div>
+  ) : (
+    <CompanyComponent company={company} />
+  );
+};
+
+export default Shop;
+
+const CompanyComponent = ({ company }) => {
   return (
     <div className={styles.container}>
       <div
@@ -73,5 +95,3 @@ const Shop = ({ company }) => {
     </div>
   );
 };
-
-export default Shop;

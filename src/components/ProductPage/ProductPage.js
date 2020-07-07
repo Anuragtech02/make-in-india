@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./ProductPage.module.css";
 import { motion } from "framer-motion";
 import {
@@ -18,6 +18,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router";
+import products from "../../assets/products.json";
 
 import {
   amul,
@@ -29,12 +31,28 @@ import {
   patanjali,
 } from "../../icons";
 
-const ProductPage = ({ product }) => {
-  return !product ? (
-    <CircularProgress />
+const ProductPage = () => {
+  const { productId } = useParams();
+
+  const product = products.filter((item) => {
+    return item.productId === productId;
+  });
+
+  const [display, setDisplay] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setDisplay(true);
+    }, 800);
+  }, []);
+
+  return !display ? (
+    <div className={styles.loading}>
+      <CircularProgress />
+    </div>
   ) : (
     <SnackbarProvider maxSnack={3} preventDuplicate>
-      <MyProduct product={product} />
+      <MyProduct product={product[0]} />
     </SnackbarProvider>
   );
 };

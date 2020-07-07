@@ -102,6 +102,18 @@
   }
 }
 
+//Circular loading container
+.loading {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  svg {
+    color: var(--orangeTint) !important;
+  }
+}
+
 .singleProduct {
   margin: 10px 0 !important;
 }
