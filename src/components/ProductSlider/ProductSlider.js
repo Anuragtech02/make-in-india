@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useLayoutEffect } from "react";
 import { Grid } from "@material-ui/core";
 import styles from "./ProductSlider.module.css";
-import products from "../../assets/products.json";
+// import products from "../../assets/products.json";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Product } from "../../components";
+import firebase from "../Firebase";
 
 const ProductSlider = () => {
   useEffect(() => {
@@ -31,6 +32,14 @@ const ProductSlider = () => {
       ".slick-prev:before",
       "color: black !important"
     );
+
+    function updateSize() {
+      if (window.innerWidth > 1600) setVisibleSlides(4);
+      else if (widthBetween(1100, 1600)) setVisibleSlides(3);
+      else if (widthBetween(800, 1100)) setVisibleSlides(2);
+      else if (window.innerWidth <= 800) setVisibleSlides(1);
+    }
+    window.addEventListener("resize", updateSize);
   }, []);
 
   const [visibleSlides, setVisibleSlides] = useState(4);
@@ -44,15 +53,22 @@ const ProductSlider = () => {
     }
   };
 
+  const [products, setProducts] = useState([]);
+
   //Used to check width of the device
   useEffect(() => {
-    function updateSize() {
-      if (window.innerWidth > 1600) setVisibleSlides(4);
-      else if (widthBetween(1100, 1600)) setVisibleSlides(3);
-      else if (widthBetween(800, 1100)) setVisibleSlides(2);
-      else if (window.innerWidth <= 800) setVisibleSlides(1);
-    }
-    window.addEventListener("resize", updateSize);
+    const unsubscribe = firebase
+      .firestore()
+      .collection("products")
+      .onSnapshot((snapshot) => {
+        const newProduct = snapshot.docs.map((doc) => ({
+          ...doc.data(),
+        }));
+
+        setProducts(newProduct);
+      });
+
+    return () => unsubscribe();
   }, []);
 
   //Used to detect layout changes
@@ -82,9 +98,9 @@ const ProductSlider = () => {
       <Slider {...settings} className={styles.slider}>
         {products.map((product) => {
           return (
-            <div key={product.productId}>
+            <div key={product.id}>
               <Grid item xs={12} className={styles.grid}>
-                <Product key={product.productId} product={product} />
+                <Product product={product} />
               </Grid>
             </div>
           );

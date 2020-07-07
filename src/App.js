@@ -12,6 +12,7 @@ import {
   Shop,
   Login,
   Signup,
+  AddProduct,
 } from "./components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { useParams } from "react-router";
@@ -24,10 +25,6 @@ import classNames from "classnames";
 import NotFound from "./404";
 
 const App = () => {
-  const categories = ["electronics", "fashion", "personal-hygiene", "sports"];
-
-  const companies = ["cinthol", "asian paints", "boroline", "amul", "bata"];
-
   const [temp, setTemp] = useState(styles.noStyle);
 
   const [colorPrimary, setColorPrimary] = useState(
@@ -99,8 +96,9 @@ const App = () => {
           <Route path="/about" exact component={About} />
           <Route path="/contacts" exact component={Contact} />
           <Route path="/category/:category" exact component={CategoryPage} />
-          <Route path="/product/:productId" exact component={ProductPage} />
+          <Route path="/product/:id" exact component={ProductPage} />
           <Route path="/shop/:company" exact component={Shop} />
+          <Route path="/add-product" exact component={AddProduct} />
           <Route component={NotFound} />
         </Switch>
       </div>

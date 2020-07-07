@@ -7,7 +7,7 @@ import {
   TextField,
   FormControlLabel,
 } from "@material-ui/core";
-import Firebase from "../Firebase";
+import firebase from "../Firebase";
 import classNames from "classnames";
 
 export const Signup = () => {

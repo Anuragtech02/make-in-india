@@ -12,3 +12,4 @@ export { default as Product } from "./Product/Product";
 export { default as Shop } from "./Shop/Shop";
 export { default as Login } from "./Login/Login";
 export { default as Signup } from "./Signup/Signup";
+export { default as AddProduct } from "./AddProduct/AddProduct";

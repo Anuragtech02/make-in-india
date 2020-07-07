@@ -1,6 +1,6 @@
-import app from "firebase/app";
+import firebase from "firebase/app";
 import "firebase/auth";
-import "firebase/firebase-firestore";
+import "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC7K_LTUdYHUCkV4DZMd-6mfu8VwAI3ehc",
@@ -13,28 +13,7 @@ const firebaseConfig = {
   measurementId: "G-64W86WDQNC",
 };
 
-class Firebase {
-  constructor() {
-    // Initialize Firebase
-    app.initializeApp(firebaseConfig);
-    this.auth = app.auth();
-    this.db = app.firestore();
-  }
+//Initialize Firebase
+firebase.initializeApp(firebaseConfig);
 
-  login(email, password) {
-    return this.auth.signInWithEmailAndPassword(email, password);
-  }
-
-  logout() {
-    return this.auth.signOut();
-  }
-
-  async register(name, email, password) {
-    await this.auth.createUserWithEmailAndPassword(email, password);
-    return this.auth.currentUser.updateProfile({
-      displayName: name,
-    });
-  }
-}
-
-export default new Firebase();
+export default firebase;

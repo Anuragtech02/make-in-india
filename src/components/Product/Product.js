@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Card,
   Typography,
@@ -25,13 +25,14 @@ export default Product;
 
 const ProductCard = ({ product }) => {
   const {
-    productId,
+    id,
     imageUrls,
-    company,
+    storeName,
     category,
     price,
     amazonLink,
     flipkartLink,
+    title,
   } = product;
 
   const iconColor = "var(--primaryColor)";
@@ -43,33 +44,35 @@ const ProductCard = ({ product }) => {
     a.click();
   };
 
-  const handleClickVariant = (variant, company, productId) => () => {
-    enqueueSnackbar(`Successfully added ${company} to favourites`, { variant });
-    onClickHeart(productId);
+  const handleClickVariant = (variant, storeName, id) => () => {
+    enqueueSnackbar(`Successfully added ${storeName} to favourites`, {
+      variant,
+    });
+    onClickHeart(id);
   };
 
-  const onClickHeart = (productID) => {
+  const onClickHeart = (id) => {
     document
-      .getElementById(productID)
+      .getElementById(id)
       .style.setProperty("color", iconColor, "important");
   };
 
   const { enqueueSnackbar } = useSnackbar();
 
   return (
-    <Card key={productId} className={styles.card}>
-      <Link to={`/product/${productId}`} className={styles.noDecoration}>
+    <Card key={id} className={styles.card}>
+      <Link to={`/product/${id}`} className={styles.noDecoration}>
         <div className={styles.thumbnail}>
-          <img src={imageUrls[0]} alt={product.company} />
+          <img src={imageUrls[0]} alt={title} />
         </div>
       </Link>
       <div className={styles.name}>
         <Typography className={styles.category} variant="subtitle2">
           {category}
         </Typography>
-        <Link to={`/product/${productId}`} className={styles.noDecoration}>
+        <Link to={`/product/${id}`} className={styles.noDecoration}>
           <Typography className={styles.company} variant="subtitle1">
-            {company}
+            {storeName}
           </Typography>
         </Link>
       </div>
@@ -77,10 +80,10 @@ const ProductCard = ({ product }) => {
         <h4>₹{price}</h4>
         <Tooltip title="Add to favourites" placement="top">
           <IconButton
-            onClick={handleClickVariant("success", company, productId)}
+            onClick={handleClickVariant("success", storeName, id)}
             className={styles.likeIcon}
           >
-            <i id={productId} className={classNames("fas fa-heart")} />
+            <i id={id} className={classNames("fas fa-heart")} />
           </IconButton>
         </Tooltip>
       </div>

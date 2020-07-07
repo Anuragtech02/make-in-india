@@ -19,7 +19,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router";
-import products from "../../assets/products.json";
+import firebase from "../Firebase";
 
 import {
   amul,
@@ -32,11 +32,13 @@ import {
 } from "../../icons";
 
 const ProductPage = () => {
-  const { productId } = useParams();
+  const { id } = useParams();
 
-  const product = products.filter((item) => {
-    return item.productId === productId;
-  });
+  const [product, setProduct] = useState([]);
+
+  // const product = products.filter((item) => {
+  //   return item.id === id;
+  // });
 
   const [display, setDisplay] = useState(false);
 
@@ -44,7 +46,26 @@ const ProductPage = () => {
     setTimeout(() => {
       setDisplay(true);
     }, 800);
-  }, []);
+
+    const unsubscribe = firebase
+      .firestore()
+      .collection("products")
+      .onSnapshot((snapshot) => {
+        const newProduct = snapshot.docs.filter((doc) => {
+          return doc.id === id;
+        });
+
+        setProduct(newProduct);
+      });
+
+    return () => unsubscribe();
+  }, [id]);
+
+  // console.log(products);
+
+  // const product = products.filter((item) => {
+  //   return item.id === id;
+  // });
 
   return !display ? (
     <div className={styles.loading}>
@@ -52,7 +73,7 @@ const ProductPage = () => {
     </div>
   ) : (
     <SnackbarProvider maxSnack={3} preventDuplicate>
-      <MyProduct product={product[0]} />
+      <MyProduct product={product} />
     </SnackbarProvider>
   );
 };
@@ -63,10 +84,10 @@ const MyProduct = ({ product }) => {
   const {
     price,
     category,
-    company,
+    storeName,
     amazonLink,
     flipkartLink,
-    productId,
+    id,
     heading,
     description,
   } = product;
@@ -96,14 +117,16 @@ const MyProduct = ({ product }) => {
     a.click();
   };
 
-  const handleClickVariant = (variant, company, productId) => () => {
-    enqueueSnackbar(`Successfully added ${company} to favourites`, { variant });
-    onClickHeart(productId);
+  const handleClickVariant = (variant, storeName, id) => () => {
+    enqueueSnackbar(`Successfully added ${storeName} to favourites`, {
+      variant,
+    });
+    onClickHeart(id);
   };
 
-  const onClickHeart = (productID) => {
+  const onClickHeart = (id) => {
     document
-      .getElementById(productID)
+      .getElementById(id)
       .style.setProperty("color", iconColor, "important");
   };
 
@@ -122,7 +145,7 @@ const MyProduct = ({ product }) => {
                 duration: 1,
               }}
             >
-              <img src={mainImage} alt={`product-${company}`}></img>
+              <img src={mainImage} alt={`product-${storeName}`}></img>
             </motion.div>
             <Paper className={styles.otherImages}>
               {product.imageUrls.map((image, index) => {
@@ -133,7 +156,7 @@ const MyProduct = ({ product }) => {
                       className={styles.imageBack}
                       onClick={() => setMainImage(image)}
                     >
-                      <img src={image} alt={`product-${company}`}></img>
+                      <img src={image} alt={`product-${storeName}`}></img>
                     </motion.div>
                   );
                 }
@@ -160,10 +183,10 @@ const MyProduct = ({ product }) => {
               <h4>{`Category : ${category}`}</h4>
               <h5>In Stock</h5>
               <Link
-                to={`/shop/${company.toLowerCase()}`}
+                to={`/shop/${storeName.toLowerCase()}`}
                 className={styles.noDecoration}
               >
-                <h6>by {company}</h6>
+                <h6>by {storeName}</h6>
               </Link>
               <div className={styles.underLine}></div>
             </motion.div>
@@ -188,15 +211,11 @@ const MyProduct = ({ product }) => {
                 <Tooltip title="Add to favourites" placement="top">
                   <div>
                     <IconButton
-                      onClick={handleClickVariant(
-                        "success",
-                        company,
-                        productId
-                      )}
+                      onClick={handleClickVariant("success", storeName, id)}
                       className={styles.likeIcon}
                     >
                       <i
-                        id={product.productId}
+                        id={product.id}
                         className={classNames("fas fa-heart")}
                       />
                     </IconButton>
