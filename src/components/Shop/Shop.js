@@ -7,29 +7,54 @@ import userImage from "../../images/userImage.webp";
 import { Product } from "../../components";
 import products from "../../assets/products.json";
 import { useParams } from "react-router";
+import firebase from "../Firebase";
 
 const Shop = () => {
-  const { company } = useParams();
+  const { storeName } = useParams();
+  const [products, setProducts] = useState([]);
+
+  const [product, setProduct] = useState();
+
   const [display, setDisplay] = useState(false);
 
   useEffect(() => {
     setTimeout(() => {
       setDisplay(true);
     }, 800);
-  }, []);
+
+    const unsubscribe = firebase
+      .firestore()
+      .collection("products")
+      .onSnapshot((snapshot) => {
+        const newProduct = snapshot.docs.map((doc) => ({
+          ...doc.data(),
+        }));
+
+        setProducts(newProduct);
+      });
+
+    const filteredProduct = products.filter((product) => {
+      return product.storeName.trim() === storeName;
+    });
+    setProduct(filteredProduct[0]);
+
+    return () => unsubscribe();
+  }, [storeName, products]);
 
   return !display ? (
     <div className={styles.loading}>
       <CircularProgress />
     </div>
   ) : (
-    <CompanyComponent company={company} />
+    <CompanyComponent product={product} />
   );
 };
 
 export default Shop;
 
-const CompanyComponent = ({ company }) => {
+const CompanyComponent = ({ product }) => {
+  const { storeName } = product;
+
   return (
     <div className={styles.container}>
       <div
@@ -37,7 +62,7 @@ const CompanyComponent = ({ company }) => {
         style={{ backgroundImage: `url('${image3}')` }}
       >
         <div className={styles.darkOverlay}>
-          <h1>{company}</h1>
+          <h1>{storeName}</h1>
         </div>
       </div>
       <motion.div className={styles.infobar}>

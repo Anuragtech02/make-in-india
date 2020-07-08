@@ -97,7 +97,7 @@ const App = () => {
           <Route path="/contacts" exact component={Contact} />
           <Route path="/category/:category" exact component={CategoryPage} />
           <Route path="/product/:id" exact component={ProductPage} />
-          <Route path="/shop/:company" exact component={Shop} />
+          <Route path="/store/:storeName" exact component={Shop} />
           <Route path="/add-product" exact component={AddProduct} />
           <Route component={NotFound} />
         </Switch>

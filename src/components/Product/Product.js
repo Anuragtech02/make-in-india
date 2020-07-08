@@ -61,7 +61,7 @@ const ProductCard = ({ product }) => {
 
   return (
     <Card key={id} className={styles.card}>
-      <Link to={`/product/${id}`} className={styles.noDecoration}>
+      <Link to={`/product/${id.trim()}`} className={styles.noDecoration}>
         <div className={styles.thumbnail}>
           <img src={imageUrls[0]} alt={title} />
         </div>
@@ -70,7 +70,7 @@ const ProductCard = ({ product }) => {
         <Typography className={styles.category} variant="subtitle2">
           {category}
         </Typography>
-        <Link to={`/product/${id}`} className={styles.noDecoration}>
+        <Link to={`/product/${id.trim()}`} className={styles.noDecoration}>
           <Typography className={styles.company} variant="subtitle1">
             {storeName}
           </Typography>

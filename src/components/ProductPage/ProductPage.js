@@ -33,12 +33,14 @@ import {
 
 const ProductPage = () => {
   const { id } = useParams();
+  // console.log(id);
 
-  const [product, setProduct] = useState([]);
+  const [products, setProducts] = useState([]);
 
   // const product = products.filter((item) => {
   //   return item.id === id;
   // });
+  const [product, setProduct] = useState();
 
   const [display, setDisplay] = useState(false);
 
@@ -51,15 +53,20 @@ const ProductPage = () => {
       .firestore()
       .collection("products")
       .onSnapshot((snapshot) => {
-        const newProduct = snapshot.docs.filter((doc) => {
-          return doc.id === id;
-        });
+        const newProduct = snapshot.docs.map((doc) => ({
+          ...doc.data(),
+        }));
 
-        setProduct(newProduct);
+        setProducts(newProduct);
       });
 
+    const filteredProduct = products.filter((product) => {
+      return product.id.trim() === id;
+    });
+    setProduct(filteredProduct[0]);
+
     return () => unsubscribe();
-  }, [id]);
+  }, [id, products]);
 
   // console.log(products);
 
@@ -182,10 +189,7 @@ const MyProduct = ({ product }) => {
               <h2>{heading}</h2>
               <h4>{`Category : ${category}`}</h4>
               <h5>In Stock</h5>
-              <Link
-                to={`/shop/${storeName.toLowerCase()}`}
-                className={styles.noDecoration}
-              >
+              <Link to={`/shop/${storeName}`} className={styles.noDecoration}>
                 <h6>by {storeName}</h6>
               </Link>
               <div className={styles.underLine}></div>
