@@ -33,13 +33,7 @@ import {
 
 const ProductPage = () => {
   const { id } = useParams();
-  // console.log(id);
 
-  const [products, setProducts] = useState([]);
-
-  // const product = products.filter((item) => {
-  //   return item.id === id;
-  // });
   const [product, setProduct] = useState();
 
   const [display, setDisplay] = useState(false);
@@ -49,24 +43,21 @@ const ProductPage = () => {
       setDisplay(true);
     }, 800);
 
-    const unsubscribe = firebase
-      .firestore()
-      .collection("products")
-      .onSnapshot((snapshot) => {
-        const newProduct = snapshot.docs.map((doc) => ({
-          ...doc.data(),
-        }));
-
-        setProducts(newProduct);
-      });
-
-    const filteredProduct = products.filter((product) => {
-      return product.id.trim() === id;
-    });
-    setProduct(filteredProduct[0]);
-
-    return () => unsubscribe();
-  }, [id, products]);
+    const fetchData = async () => {
+      const db = firebase.firestore();
+      const data = db.collection("products");
+      const snapshot = await data.where("id", "==", id).get();
+      if (snapshot.empty) {
+        console.log("Nothing found");
+        return;
+      } else {
+        snapshot.forEach((doc) => {
+          console.log(doc.data());
+        });
+      }
+    };
+    fetchData();
+  }, [id]);
 
   // console.log(products);
 
@@ -78,10 +69,12 @@ const ProductPage = () => {
     <div className={styles.loading}>
       <CircularProgress />
     </div>
-  ) : (
+  ) : product ? (
     <SnackbarProvider maxSnack={3} preventDuplicate>
       <MyProduct product={product} />
     </SnackbarProvider>
+  ) : (
+    <div>Loading...</div>
   );
 };
 

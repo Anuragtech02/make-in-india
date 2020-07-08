@@ -29,7 +29,6 @@ const Shop = () => {
         const newProduct = snapshot.docs.map((doc) => ({
           ...doc.data(),
         }));
-
         setProducts(newProduct);
       });
 
