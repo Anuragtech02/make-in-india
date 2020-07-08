@@ -13,7 +13,7 @@ const Shop = () => {
   const { storeName } = useParams();
   const [products, setProducts] = useState([]);
 
-  const [product, setProduct] = useState();
+  const [store, setStore] = useState({});
 
   const [display, setDisplay] = useState(false);
 
@@ -22,37 +22,34 @@ const Shop = () => {
       setDisplay(true);
     }, 800);
 
-    const unsubscribe = firebase
-      .firestore()
-      .collection("products")
-      .onSnapshot((snapshot) => {
-        const newProduct = snapshot.docs.map((doc) => ({
-          ...doc.data(),
-        }));
-        setProducts(newProduct);
-      });
-
-    const filteredProduct = products.filter((product) => {
-      return product.storeName.trim() === storeName;
-    });
-    setProduct(filteredProduct[0]);
-
-    return () => unsubscribe();
-  }, [storeName, products]);
+    const fetchData = async () => {
+      const db = firebase().firestore();
+      const storeRef = db.collection("stores");
+      await storeRef
+        .where("name", "==", storeName)
+        .get()
+        .then((snap) => {
+          setStore(snap.data());
+        })
+        .catch((error) => {
+          console.log("Error occured : " + error);
+        });
+    };
+  }, [storeName]);
 
   return !display ? (
     <div className={styles.loading}>
       <CircularProgress />
     </div>
   ) : (
-    <CompanyComponent product={product} />
+    <CompanyComponent store={store} />
   );
 };
 
 export default Shop;
 
-const CompanyComponent = ({ product }) => {
-  const { storeName } = product;
+const CompanyComponent = ({ store }) => {
+  const { storeName } = store;
 
   return (
     <div className={styles.container}>

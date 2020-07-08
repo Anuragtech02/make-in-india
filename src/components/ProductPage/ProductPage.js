@@ -45,25 +45,16 @@ const ProductPage = () => {
 
     const fetchData = async () => {
       const db = firebase.firestore();
-      const data = db.collection("products");
-      const snapshot = await data.where("id", "==", id).get();
-      if (snapshot.empty) {
-        console.log("Nothing found");
-        return;
-      } else {
-        snapshot.forEach((doc) => {
-          console.log(doc.data());
+      await db
+        .collection("products")
+        .doc(id)
+        .get()
+        .then((doc) => {
+          setProduct(doc.data());
         });
-      }
     };
     fetchData();
   }, [id]);
-
-  // console.log(products);
-
-  // const product = products.filter((item) => {
-  //   return item.id === id;
-  // });
 
   return !display ? (
     <div className={styles.loading}>

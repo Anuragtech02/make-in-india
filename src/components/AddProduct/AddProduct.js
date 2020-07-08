@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./AddProduct.module.css";
 import { TextField, Button, Card } from "@material-ui/core";
@@ -21,44 +21,89 @@ const AddProduct = () => {
   const [image2, setImage2] = useState("");
   const [image3, setImage3] = useState("");
   const [asin, setAsin] = useState(0);
+  const [storeId, setStoreId] = useState("");
+  const [send, setSend] = useState(false);
+
+  const getStore = async () => {
+    const db = firebase.firestore();
+    await db
+      .collection("stores")
+      .where("name", "==", storeName)
+      .get()
+      .then((doc) => {
+        doc.forEach((item) => {
+          setStoreId(item.id);
+        });
+      });
+  };
+
+  const handleStoreName = (e) => {
+    setStoreName(e.target.value);
+    setTimeout(() => {
+      getStore();
+      setSend(true);
+      console.log(storeId);
+    }, 1000);
+  };
 
   const onSubmit = (e) => {
     e.preventDefault();
-    firebase
-      .firestore()
-      .collection("products")
-      .add({
-        title,
-        storeName,
-        price: parseFloat(price),
-        headline,
-        amazonLink,
-        flipkartLink,
-        website,
-        category,
-        description,
-        tags,
-        imageUrls: [mainImage, image1, image2, image3],
-        asin: parseInt(asin),
-      })
-      .then(() => {
-        setTitle("");
-        setStoreName("");
-        setPrice(0);
-        setHeadline("");
-        setAmazonLink("");
-        setFlipkartLink("");
-        setWebsite("");
-        setCategory("");
-        setDescription("");
-        setTags("");
-        setMainImage("");
-        setImage1("");
-        setImage2("");
-        setImage3("");
-        setAsin("");
-        alert("Successfully added");
-      });
+    // firebase
+    //   .firestore()
+    //   .collection("products")
+    //   .add({
+    //     title,
+    //     storeName,
+    //     price: parseFloat(price),
+    //     headline,
+    //     amazonLink,
+    //     flipkartLink,    console.log()
+
+    //     website,
+    //     category,(e) => setStoreName(e.target.value)
+    //     asin: parseInt(asin),
+    //   })
+    //   .then(() => {
+    //     setTitle("");
+    //     setStoreName("");
+    //     setPrice(0);
+    //     setHeadline("");
+    //     setAmazonLink("");
+    //     setFlipkartLink("");
+    //     setWebsite("");
+    //     setCategory("");
+    //     setDescription("");
+    //     setTags("");
+    //     setMainImage("");
+    //     setImage1("");
+    //     setImage2("");
+    //     setImage3("");
+    //     setAsin("");
+    //     alert("Successfully added");
+    //   });
+    console.log(storeId);
+
+    if (send) {
+      firebase
+        .firestore()
+        .collection("stores")
+        .doc(storeId)
+        .collction("products")
+        .add({
+          title,
+          storeName,
+          price: parseFloat(price),
+          headline,
+          amazonLink,
+          flipkartLink,
+          website,
+          category,
+          description,
+          tags,
+          imageUrls: [mainImage, image1, image2, image3],
+          asin: parseInt(asin),
+        });
+    }
   };
 
   return (
@@ -81,7 +126,7 @@ const AddProduct = () => {
               className={styles.textField}
               variant="outlined"
               value={storeName}
-              onChange={(e) => setStoreName(e.target.value)}
+              onChange={handleStoreName}
               autoFocus
               autoComplete="off"
               size="small"
