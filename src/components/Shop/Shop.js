@@ -22,7 +22,7 @@ const Shop = () => {
       setDisplay(true);
     }, 800);
 
-    const fetchData = async () => {
+    const fetchStore = async () => {
       const db = firebase().firestore();
       const storeRef = db.collection("stores");
       await storeRef
@@ -35,6 +35,13 @@ const Shop = () => {
           console.log("Error occured : " + error);
         });
     };
+
+    fetchStore();
+
+    const fetchProducts = async () => {
+      const db = firebase().firestore();
+      const ref = db.collection("stores").doc();
+    };
   }, [storeName]);
 
   return !display ? (
@@ -42,13 +49,13 @@ const Shop = () => {
       <CircularProgress />
     </div>
   ) : (
-    <CompanyComponent store={store} />
+    <CompanyComponent store={store} products={products} />
   );
 };
 
 export default Shop;
 
-const CompanyComponent = ({ store }) => {
+const CompanyComponent = ({ store, products }) => {
   const { storeName } = store;
 
   return (
