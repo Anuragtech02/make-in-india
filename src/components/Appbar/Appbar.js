@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   IconButton,
   Typography,
@@ -14,9 +14,31 @@ import { Link } from "react-router-dom";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import styles from "./AppBar.module.css";
+import { AuthContext } from "../Auth";
+import firebase from '../Firebase'
 
 const Appbar = () => {
   const [open, setOpen] = useState(false);
+  const [account, setAccount] = useState("Account");
+
+  const {currentUser} = useContext(AuthContext);
+
+  useEffect(() => {
+    const getCurrentUser = async () =>{
+      currentUser ? (
+        try {
+          const db = firebase.firestore();
+          const ref = db.collection("users")
+        } catch (error) {
+          alert("Error : " + error)
+        }
+      ) : (
+        setAccount("Account")
+      );
+    }
+    
+  });
+
   return (
     <div className={styles.container}>
       <Typography variant="h4" className={styles.logo}>

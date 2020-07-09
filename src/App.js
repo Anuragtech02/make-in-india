@@ -23,6 +23,7 @@ import { Paper, IconButton } from "@material-ui/core";
 import { ChromePicker } from "react-color";
 import classNames from "classnames";
 import NotFound from "./404";
+import { AuthProvider } from "./components/Auth";
 
 const App = () => {
   const [temp, setTemp] = useState(styles.noStyle);
@@ -53,56 +54,58 @@ const App = () => {
   // const history = createBrowserHistory();
 
   return (
-    <Router>
-      <div className={styles.outerContainer}>
-        <div className={styles.topBar}>
-          <TopBar />
+    <AuthProvider>
+      <Router>
+        <div className={styles.outerContainer}>
+          <div className={styles.topBar}>
+            <TopBar />
+          </div>
+          <div className={styles.appBarContainer}>
+            <Appbar />
+          </div>
+          <div className={styles.navbar}>
+            <NavBar />
+          </div>
+          <div className={classNames(styles.colorPanel, temp)}>
+            <Paper className={styles.pickerContainer}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
+                <h5>Primary Color</h5>
+                <IconButton className={styles.closeBtn} onClick={closeColor}>
+                  <i className="fas fa-times-circle"></i>
+                </IconButton>
+              </div>
+              <ChromePicker
+                color={colorPrimary}
+                onChange={(e) => changePrimaryColor(e)}
+              />
+              <h5>Accent Color</h5>
+              <ChromePicker
+                color={colorAccent}
+                onChange={(e) => changeAccentColor(e)}
+              />
+            </Paper>
+          </div>
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/login" exact component={Login} />
+            <Route path="/signup" exact component={Signup} />
+            <Route path="/about" exact component={About} />
+            <Route path="/contacts" exact component={Contact} />
+            <Route path="/category/:category" exact component={CategoryPage} />
+            <Route path="/product/:id" exact component={ProductPage} />
+            <Route path="/store/:storeName" exact component={Shop} />
+            <Route path="/add-product" exact component={AddProduct} />
+            <Route component={NotFound} />
+          </Switch>
         </div>
-        <div className={styles.appBarContainer}>
-          <Appbar />
-        </div>
-        <div className={styles.navbar}>
-          <NavBar />
-        </div>
-        <div className={classNames(styles.colorPanel, temp)}>
-          <Paper className={styles.pickerContainer}>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}
-            >
-              <h5>Primary Color</h5>
-              <IconButton className={styles.closeBtn} onClick={closeColor}>
-                <i className="fas fa-times-circle"></i>
-              </IconButton>
-            </div>
-            <ChromePicker
-              color={colorPrimary}
-              onChange={(e) => changePrimaryColor(e)}
-            />
-            <h5>Accent Color</h5>
-            <ChromePicker
-              color={colorAccent}
-              onChange={(e) => changeAccentColor(e)}
-            />
-          </Paper>
-        </div>
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/login" exact component={Login} />
-          <Route path="/signup" exact component={Signup} />
-          <Route path="/about" exact component={About} />
-          <Route path="/contacts" exact component={Contact} />
-          <Route path="/category/:category" exact component={CategoryPage} />
-          <Route path="/product/:id" exact component={ProductPage} />
-          <Route path="/store/:storeName" exact component={Shop} />
-          <Route path="/add-product" exact component={AddProduct} />
-          <Route component={NotFound} />
-        </Switch>
-      </div>
-    </Router>
+      </Router>
+    </AuthProvider>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import styles from "./Signup.module.css";
 import {
   Card,
@@ -8,9 +8,10 @@ import {
   FormControlLabel,
 } from "@material-ui/core";
 import firebase from "../Firebase";
+import { withRouter } from "react-router-dom";
 import classNames from "classnames";
 
-export const Signup = () => {
+export const Signup = ({ history }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [mobile, setMobile] = useState();
@@ -23,6 +24,69 @@ export const Signup = () => {
   const [mobile2, setMobile2] = useState("");
   const [facebook, setFacebook] = useState("");
   const [insta, setInsta] = useState("");
+  const [errorNotSame, setErrorNotSame] = useState(false);
+  const [helperText, setHelperText] = useState("");
+
+  const handleSignup = async (e) => {
+    e.preventDefault();
+    if (!checked) {
+      try {
+        const db = firebase.firestore();
+        const ref = db.collection("users");
+        await firebase.auth().createUserWithEmailAndPassword(email, password);
+        await ref
+          .add({
+            name,
+            email,
+            mobile,
+          })
+          .then(() => {
+            history.push("/");
+          });
+      } catch (error) {
+        alert("Error : " + error);
+      }
+    } else {
+      try {
+        const db = firebase.firestore();
+        const ref = db.collection("users");
+        await firebase.auth().createUserWithEmailAndPassword(email, password);
+        await ref
+          .add({
+            name,
+            email,
+            mobile,
+            secondary_mobile: mobile2,
+            recovery_email: email2,
+            industry,
+            facebook,
+            insta,
+            website,
+          })
+          .then(() => {
+            history.push("/");
+          });
+      } catch (error) {
+        alert("Error : " + error);
+      }
+    }
+  };
+
+  const matchPassword = (e) => {
+    setConfirmPass(e.target.value);
+    const temp = e.target.value;
+    setErrorNotSame(false);
+    setHelperText("");
+    setTimeout(() => {
+      if (temp !== password) {
+        setHelperText("Password does not match!");
+        setErrorNotSame(true);
+      } else {
+        setErrorNotSame(false);
+        setHelperText("");
+      }
+    }, 1000);
+  };
 
   return (
     <div className={styles.container}>
@@ -31,7 +95,7 @@ export const Signup = () => {
           <div className={styles.heading}>
             <h2>Create Account</h2>
           </div>
-          <form className={styles.form}>
+          <form className={styles.form} onSubmit={handleSignup}>
             <div className={styles.textFields}>
               <div className={styles.nameMail}>
                 <TextField
@@ -74,6 +138,7 @@ export const Signup = () => {
               <div className={styles.passwords}>
                 <TextField
                   required
+                  error={errorNotSame}
                   className={styles.textField}
                   variant="outlined"
                   type="password"
@@ -85,6 +150,7 @@ export const Signup = () => {
                 />
                 <TextField
                   required
+                  error={errorNotSame}
                   className={styles.textField}
                   variant="outlined"
                   type="password"
@@ -92,7 +158,8 @@ export const Signup = () => {
                   size="small"
                   autoComplete="off"
                   value={confirmPass}
-                  onChange={(e) => setConfirmPass(e.target.value)}
+                  helperText={helperText}
+                  onChange={(e) => matchPassword(e)}
                 />
               </div>
             </div>
@@ -202,4 +269,4 @@ export const Signup = () => {
   );
 };
 
-export default Signup;
+export default withRouter(Signup);
