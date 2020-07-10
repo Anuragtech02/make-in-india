@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import styles from "./AddProduct.module.css";
 import { TextField, Button, Card } from "@material-ui/core";
 import firebase from "../Firebase";
+import { withRouter, Redirect } from "react-router-dom";
 import { AuthContext } from "../Auth";
 
 const AddProduct = () => {
@@ -33,43 +34,31 @@ const AddProduct = () => {
       const rf = db.collection("users").where("email", "==", currentUser.email);
       const snapshot = await rf.get();
       snapshot.forEach((doc) => {
-        setStoreId(doc.data().storeId);
+        if (doc.data().isSeller) {
+          setStoreId(doc.data().storeId);
+        } else {
+          return <Redirect to="/404" />;
+        }
       });
     };
 
     getId();
   }, [currentUser.email]);
 
-  // const getStore = async () => {
-  //   const db = firebase.firestore();
-  //   await db
-  //     .collection("stores")
-  //     .where("name", "==", storeName)
-  //     .get()
-  //     .then((doc) => {
-  //       doc.forEach((item) => {
-  //         setStoreId(item.id);
-  //       });
-  //     });
-  // };
-
-  // const handleStoreName = (e) => {
-  //   setStoreName(e.target.value);
-  //   setTimeout(() => {
-  //     getStore();
-  //     setSend(true);
-  //     console.log(storeId);
-  //   }, 1000);
-  // };
-
   const onSubmit = async (e) => {
     e.preventDefault();
-    await firebase
-      .firestore()
-      .collection("products")
+    const db = firebase.firestore();
+    const productRef = db.collection("products");
+    const storeRef = await db
+      .collection("stores")
+      .where("storeId", "==", storeId);
+    const storeSnap = await storeRef.get();
+    const tempId = productRef.id;
+    await productRef
       .add({
         title,
         storeName,
+        id: tempId,
         price: parseFloat(price),
         headline,
         amazonLink,
@@ -79,49 +68,43 @@ const AddProduct = () => {
         storeId,
         asin: parseInt(asin),
       })
-      .then(() => {
-        setSend(true);
-        setTitle("");
-        setStoreName("");
-        setPrice(0);
-        setHeadline("");
-        setAmazonLink("");
-        setFlipkartLink("");
-        setWebsite("");
-        setCategory("");
-        setDescription("");
-        setTags("");
-        setMainImage("");
-        setImage1("");
-        setImage2("");
-        setImage3("");
-        setAsin("");
-        alert("Successfully added");
+      .then(async () => {
+        await storeRef
+          .add({
+            title,
+            storeName,
+            id: tempId,
+            price: parseFloat(price),
+            headline,
+            amazonLink,
+            flipkartLink,
+            website,
+            category,
+            description,
+            tags,
+            imageUrls: [mainImage, image1, image2, image3],
+            storeId,
+            asin: parseInt(asin),
+          })
+          .then(() => {
+            setTitle("");
+            setStoreName("");
+            setPrice(0);
+            setHeadline("");
+            setAmazonLink("");
+            setFlipkartLink("");
+            setWebsite("");
+            setCategory("");
+            setDescription("");
+            setTags("");
+            setMainImage("");
+            setImage1("");
+            setImage2("");
+            setImage3("");
+            setAsin("");
+            alert("Successfully added");
+          });
       });
-    console.log(storeId);
-
-    if (send) {
-      await firebase
-        .firestore()
-        .collection("stores")
-        .doc(storeId)
-        .collction("products")
-        .add({
-          title,
-          storeName,
-          price: parseFloat(price),
-          headline,
-          amazonLink,
-          flipkartLink,
-          website,
-          category,
-          description,
-          tags,
-          imageUrls: [mainImage, image1, image2, image3],
-          storeId,
-          asin: parseInt(asin),
-        });
-    }
   };
 
   return (
@@ -295,4 +278,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default withRouter(AddProduct);
