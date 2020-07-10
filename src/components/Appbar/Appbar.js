@@ -88,10 +88,7 @@ const Appbar = ({ history }) => {
             <ListItemIcon>
               <i className="fas fa-user"></i>
             </ListItemIcon>
-            <ListItemText
-              primary={account.split(" ").slice(0, -1).join(" ")}
-              className={styles.itemText}
-            />
+            <ListItemText primary={account} className={styles.itemText} />
             {open ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
           <Collapse in={open} timeout="auto" unmountOnExit>

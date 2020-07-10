@@ -5,7 +5,7 @@ import firebase from "../Firebase";
 import { withRouter, Redirect } from "react-router-dom";
 import { AuthContext } from "../Auth";
 
-const AddProduct = () => {
+const AddProduct = ({ history }) => {
   const [title, setTitle] = useState("");
   const [storeName, setStoreName] = useState("");
   const [price, setPrice] = useState(0);
@@ -23,8 +23,6 @@ const AddProduct = () => {
   const [image3, setImage3] = useState("");
   const [asin, setAsin] = useState(0);
   const [storeId, setStoreId] = useState("");
-  const [send, setSend] = useState(false);
-  const [isSeller, setIsSeller] = useState(false);
 
   const { currentUser } = useContext(AuthContext);
 
@@ -37,13 +35,15 @@ const AddProduct = () => {
         if (doc.data().isSeller) {
           setStoreId(doc.data().storeId);
         } else {
-          return <Redirect to="/404" />;
+          alert("You're not a seller");
+          history.push("/");
+          return <Redirect to="/" />;
         }
       });
     };
 
     getId();
-  }, [currentUser.email]);
+  }, [currentUser.email, history]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -52,7 +52,6 @@ const AddProduct = () => {
     const storeRef = await db
       .collection("stores")
       .where("storeId", "==", storeId);
-    const storeSnap = await storeRef.get();
     const tempId = productRef.id;
     await productRef
       .add({
@@ -128,7 +127,6 @@ const AddProduct = () => {
               variant="outlined"
               value={storeName}
               onChange={(e) => setStoreName(e.target.value)}
-              autoFocus
               autoComplete="off"
               size="small"
               label="Store Name"
@@ -138,7 +136,6 @@ const AddProduct = () => {
               variant="outlined"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
-              autoFocus
               autoComplete="off"
               size="small"
               label="Price"
@@ -148,7 +145,6 @@ const AddProduct = () => {
               variant="outlined"
               value={headline}
               onChange={(e) => setHeadline(e.target.value)}
-              autoFocus
               autoComplete="off"
               size="small"
               label="Headline"
@@ -158,7 +154,6 @@ const AddProduct = () => {
               variant="outlined"
               value={amazonLink}
               onChange={(e) => setAmazonLink(e.target.value)}
-              autoFocus
               autoComplete="off"
               size="small"
               label="Amazon Link"
@@ -168,7 +163,6 @@ const AddProduct = () => {
               variant="outlined"
               value={flipkartLink}
               onChange={(e) => setFlipkartLink(e.target.value)}
-              autoFocus
               autoComplete="off"
               size="small"
               label="Flipkart Link"
@@ -178,7 +172,6 @@ const AddProduct = () => {
               variant="outlined"
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              autoFocus
               autoComplete="off"
               size="small"
               label="Category"
@@ -188,7 +181,6 @@ const AddProduct = () => {
               variant="outlined"
               value={website}
               onChange={(e) => setWebsite(e.target.value)}
-              autoFocus
               autoComplete="off"
               size="small"
               label="Website Link"
@@ -198,7 +190,6 @@ const AddProduct = () => {
               variant="outlined"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              autoFocus
               autoComplete="off"
               size="small"
               label="Description"
@@ -208,7 +199,6 @@ const AddProduct = () => {
               variant="outlined"
               value={mainImage}
               onChange={(e) => setMainImage(e.target.value)}
-              autoFocus
               autoComplete="off"
               size="small"
               label="Image 1 (Main Image)"
@@ -218,7 +208,6 @@ const AddProduct = () => {
               variant="outlined"
               value={image1}
               onChange={(e) => setImage1(e.target.value)}
-              autoFocus
               autoComplete="off"
               size="small"
               label="Image 2"
@@ -228,7 +217,6 @@ const AddProduct = () => {
               variant="outlined"
               value={image2}
               onChange={(e) => setImage2(e.target.value)}
-              autoFocus
               autoComplete="off"
               size="small"
               label="Image 3"
@@ -238,7 +226,6 @@ const AddProduct = () => {
               variant="outlined"
               value={image3}
               onChange={(e) => setImage3(e.target.value)}
-              autoFocus
               autoComplete="off"
               size="small"
               label="Image 4"
@@ -248,7 +235,6 @@ const AddProduct = () => {
               variant="outlined"
               value={tags}
               onChange={(e) => setTags(e.target.value)}
-              autoFocus
               autoComplete="off"
               size="small"
               label="Tags"
@@ -258,7 +244,6 @@ const AddProduct = () => {
               variant="outlined"
               value={asin}
               onChange={(e) => setAsin(e.target.value)}
-              autoFocus
               autoComplete="off"
               size="small"
               label="ASIN"
