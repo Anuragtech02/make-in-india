@@ -1,19 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useContext } from "react";
 import styles from "./Login.module.css";
+import { withRouter, Redirect } from "react-router-dom";
 import { Card, TextField, Button } from "@material-ui/core";
-import Firebase from "../Firebase";
+import firebase from "../Firebase";
+import { AuthContext } from "../Auth";
 
-export const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+export const Login = ({ history }) => {
+  // const [username, setUsername] = useState("");
+  // const [password, setPassword] = useState("");
 
-  const login = async () => {
-    try {
-      await Firebase.login(username, password);
-    } catch (error) {
-      alert(error.message);
-    }
-  };
+  const handleLogin = useCallback(
+    async (event) => {
+      event.preventDefault();
+      const { email, password } = event.target.elements;
+      try {
+        await firebase
+          .auth()
+          .signInWithEmailAndPassword(email.value, password.value);
+        history.push("/");
+      } catch (error) {
+        alert(error);
+      }
+    },
+    [history]
+  );
+
+  const { currentUser } = useContext(AuthContext);
+
+  if (currentUser) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <div className={styles.container}>
@@ -23,30 +39,32 @@ export const Login = () => {
             <h2>Login</h2>
           </div>
           <div className={styles.formWrapper}>
-            <form className={styles.form} onSubmit={login}>
+            <form className={styles.form} onSubmit={handleLogin}>
               <div className={styles.textFields}>
                 <TextField
                   required
                   className={styles.textField}
                   label="Username"
+                  name="email"
                   type="email"
                   variant="outlined"
                   size="small"
                   autoComplete="off"
-                  value={username}
+                  // value={username}signup
                   autoFocus
-                  onChange={(e) => setUsername(e.target.value)}
+                  // onChange={(e) => setUsername(e.target.value)}
                 />
                 <TextField
                   required
                   className={styles.textField}
                   label="Password"
+                  name="password"
                   type="password"
                   variant="outlined"
                   size="small"
-                  value={password}
+                  // value={password}
                   autoComplete="off"
-                  onChange={(e) => setPassword(e.target.value)}
+                  // onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
               <div className={styles.submitWrapper}>
@@ -64,7 +82,12 @@ export const Login = () => {
               <h5>New here?</h5>
             </div>
             <div className={styles.createAccount}>
-              <Button variant="contained">Create a free account</Button>
+              <Button
+                onClick={() => history.push("/signup")}
+                variant="contained"
+              >
+                Create a free account
+              </Button>
             </div>
           </div>
         </Card>
@@ -73,4 +96,4 @@ export const Login = () => {
   );
 };
 
-export default Login;
+export default withRouter(Login);

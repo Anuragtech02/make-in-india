@@ -36,9 +36,17 @@ export const Signup = ({ history }) => {
         await firebase.auth().createUserWithEmailAndPassword(email, password);
         await ref
           .add({
-            name,
+            displayName: name,
             email,
             mobile,
+            isSeller: false,
+            secondary_mobile: null,
+            recovery_email: null,
+            industry: null,
+            facebook: null,
+            insta: null,
+            website: null,
+            storeId: null,
           })
           .then(() => {
             history.push("/");
@@ -50,18 +58,34 @@ export const Signup = ({ history }) => {
       try {
         const db = firebase.firestore();
         const ref = db.collection("users");
+        const refStore = db.collection("stores");
         await firebase.auth().createUserWithEmailAndPassword(email, password);
+        await refStore.add({
+          displayName: name,
+          email,
+          mobile,
+          isSeller: true,
+          secondary_mobile: mobile2,
+          recovery_email: email2,
+          industry,
+          facebook,
+          insta,
+          website,
+          storeId: `user-${email}-${new Date()}`,
+        });
         await ref
           .add({
-            name,
+            displayName: name,
             email,
             mobile,
+            isSeller: true,
             secondary_mobile: mobile2,
             recovery_email: email2,
             industry,
             facebook,
             insta,
             website,
+            storeId: `user-${email}-${new Date()}`,
           })
           .then(() => {
             history.push("/");

@@ -10,34 +10,59 @@ import {
   ListItemText,
   ListItemIcon,
 } from "@material-ui/core";
-import { Link } from "react-router-dom";
+import { Link, withRouter, Redirect } from "react-router-dom";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import styles from "./AppBar.module.css";
 import { AuthContext } from "../Auth";
-import firebase from '../Firebase'
+import firebase from "../Firebase";
+import { auth } from "firebase";
 
-const Appbar = () => {
+const Appbar = ({ history }) => {
   const [open, setOpen] = useState(false);
   const [account, setAccount] = useState("Account");
-
-  const {currentUser} = useContext(AuthContext);
+  const [item1, setItem1] = useState("Login");
+  const [item1Route, setItem1Route] = useState("/login");
+  const [item2, setItem2] = useState("Signup");
+  const [item2Route, setItem2Route] = useState("/signup");
+  const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
-    const getCurrentUser = async () =>{
-      currentUser ? (
+    const getCurrentUser = async () => {
+      if (currentUser) {
+        setItem1("Profile");
+        setItem2("Logout");
         try {
           const db = firebase.firestore();
-          const ref = db.collection("users")
+          const ref = db.collection("users");
+          const snapshot = await ref
+            .where("email", "==", currentUser.email)
+            .get();
+          snapshot.forEach((doc) => {
+            setAccount(doc.data().displayName);
+            setItem1Route(`/profile/${doc.id}`);
+            setItem2Route("/login");
+          });
         } catch (error) {
-          alert("Error : " + error)
+          alert("Error : " + error);
         }
-      ) : (
-        setAccount("Account")
-      );
-    }
-    
-  });
+      } else {
+        setAccount("Account");
+        setItem1("Login");
+        setItem2("Signup");
+      }
+    };
+    getCurrentUser();
+  }, [currentUser]);
+
+  const handleLogout = () => {
+    setAccount("Account");
+    auth().signOut();
+    setItem1Route("/login");
+    setItem2Route("/signup");
+    history.push("/login");
+    return <Redirect to="/login" />;
+  };
 
   return (
     <div className={styles.container}>
@@ -63,27 +88,30 @@ const Appbar = () => {
             <ListItemIcon>
               <i className="fas fa-user"></i>
             </ListItemIcon>
-            <ListItemText primary="ACCOUNT" className={styles.itemText} />
+            <ListItemText
+              primary={account.split(" ").slice(0, -1).join(" ")}
+              className={styles.itemText}
+            />
             {open ? <ExpandLess /> : <ExpandMore />}
           </ListItem>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
               <Link
-                to="/login"
+                to={item1Route}
                 className={styles.noDecoration}
                 onClick={() => setOpen(!open)}
               >
                 <ListItem button className={styles.nested}>
-                  <ListItemText primary="Login" />
+                  <ListItemText primary={item1} />
                 </ListItem>
               </Link>
               <Link
-                to="/signup"
+                to={item2Route}
                 className={styles.noDecoration}
-                onClick={() => setOpen(!open)}
+                onClick={() => (currentUser ? handleLogout() : setOpen(!open))}
               >
                 <ListItem button className={styles.nested}>
-                  <ListItemText primary="Signup" />
+                  <ListItemText primary={item2} />
                 </ListItem>
               </Link>
             </List>
@@ -94,4 +122,4 @@ const Appbar = () => {
   );
 };
 
-export default Appbar;
+export default withRouter(Appbar);
