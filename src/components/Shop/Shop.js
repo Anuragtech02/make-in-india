@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styles from "./Shop.module.css";
 import { Grid, CircularProgress } from "@material-ui/core";
 import image3 from "../../images/image3.webp";
@@ -8,14 +8,20 @@ import { Product } from "../../components";
 import products from "../../assets/products.json";
 import { useParams } from "react-router";
 import firebase from "../Firebase";
+import { AuthContext } from "../Auth";
 
 const Shop = () => {
-  const { storeName } = useParams();
+  const { storeId } = useParams();
   const [products, setProducts] = useState([]);
-
-  const [store, setStore] = useState({});
-
+  const [store, setStore] = useState({
+    storeId: "Store",
+    storeName: "Store Name",
+    mobile: "9xxxxxxxxxx",
+    email: "store@indiproducts.com",
+  });
   const [display, setDisplay] = useState(false);
+
+  const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
     setTimeout(() => {
@@ -23,26 +29,32 @@ const Shop = () => {
     }, 800);
 
     const fetchStore = async () => {
-      const db = firebase().firestore();
-      const storeRef = db.collection("stores");
-      await storeRef
-        .where("name", "==", storeName)
-        .get()
-        .then((snap) => {
-          setStore(snap.data());
-        })
-        .catch((error) => {
-          console.log("Error occured : " + error);
+      const db = firebase.firestore();
+      const storeRef = await db
+        .collection("stores")
+        .where("storeId", "==", storeId)
+        .get();
+      storeRef.forEach((doc) => {
+        setStore({
+          storeId: doc.data().storeId,
+          storeName: doc.data().displayName,
+          email: doc.data().email,
+          mobile: doc.data().mobile,
         });
+      });
+      const storeProductRef = await db
+        .collection("stores")
+        .doc(store.storeId)
+        .collection("products")
+        .get();
+      const productsData = storeProductRef.docs.map((doc) => ({
+        ...doc.data(),
+      }));
+      setProducts(productsData);
     };
 
     fetchStore();
-
-    const fetchProducts = async () => {
-      const db = firebase().firestore();
-      const ref = db.collection("stores").doc();
-    };
-  }, [storeName]);
+  }, [storeId, store.storeId]);
 
   return !display ? (
     <div className={styles.loading}>
@@ -56,7 +68,7 @@ const Shop = () => {
 export default Shop;
 
 const CompanyComponent = ({ store, products }) => {
-  const { storeName } = store;
+  const { storeName, email, mobile } = store;
 
   return (
     <div className={styles.container}>
@@ -77,11 +89,11 @@ const CompanyComponent = ({ store, products }) => {
           <div className={styles.contactWrapper}>
             <div className={styles.call}>
               <i className="fas fa-phone-alt" />
-              <h4>987654321</h4>
+              <h4>{mobile}</h4>
             </div>
             <div className={styles.mail}>
               <i className="fas fa-envelope" />
-              <h4>email@example.com</h4>
+              <h4>{email}</h4>
             </div>
             <div className={styles.blog}>
               <i className="fas fa-rss-square"></i>

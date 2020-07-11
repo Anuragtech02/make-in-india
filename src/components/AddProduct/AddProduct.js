@@ -34,6 +34,7 @@ const AddProduct = ({ history }) => {
       snapshot.forEach((doc) => {
         if (doc.data().isSeller) {
           setStoreId(doc.data().storeId);
+          setStoreName(doc.data().displayName);
         } else {
           alert("You're not a seller");
           history.push("/");
@@ -49,16 +50,19 @@ const AddProduct = ({ history }) => {
     e.preventDefault();
     const db = firebase.firestore();
     const productRef = db.collection("products");
-    const storeRef = await db
+    const storeRef = db
       .collection("stores")
-      .where("storeId", "==", storeId);
-    const tempId = productRef.id;
+      .doc(storeId)
+      .collection("products");
+    const tempProductId = productRef.doc().id;
     await productRef
-      .add({
+      .doc(tempProductId)
+      .set({
         title,
         storeName,
-        id: tempId,
+        id: tempProductId,
         price: parseFloat(price),
+        imageUrls: [mainImage, image1, image2, image3],
         headline,
         amazonLink,
         flipkartLink,
@@ -69,10 +73,11 @@ const AddProduct = ({ history }) => {
       })
       .then(async () => {
         await storeRef
-          .add({
+          .doc(tempProductId)
+          .set({
             title,
             storeName,
-            id: tempId,
+            id: tempProductId,
             price: parseFloat(price),
             headline,
             amazonLink,
@@ -113,6 +118,7 @@ const AddProduct = ({ history }) => {
           <Card className={styles.card}>
             <h2>Add Product </h2>
             <TextField
+              required
               className={styles.textField}
               variant="outlined"
               value={title}
@@ -122,7 +128,7 @@ const AddProduct = ({ history }) => {
               size="small"
               label="Title"
             />
-            <TextField
+            {/* <TextField
               className={styles.textField}
               variant="outlined"
               value={storeName}
@@ -130,7 +136,7 @@ const AddProduct = ({ history }) => {
               autoComplete="off"
               size="small"
               label="Store Name"
-            />
+            /> */}
             <TextField
               className={styles.textField}
               variant="outlined"
@@ -195,6 +201,7 @@ const AddProduct = ({ history }) => {
               label="Description"
             />
             <TextField
+              required
               className={styles.textField}
               variant="outlined"
               value={mainImage}

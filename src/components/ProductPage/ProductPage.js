@@ -76,6 +76,7 @@ const MyProduct = ({ product }) => {
     price,
     category,
     storeName,
+    storeId,
     amazonLink,
     flipkartLink,
     id,
@@ -173,7 +174,7 @@ const MyProduct = ({ product }) => {
               <h2>{heading}</h2>
               <h4>{`Category : ${category}`}</h4>
               <h5>In Stock</h5>
-              <Link to={`/shop/${storeName}`} className={styles.noDecoration}>
+              <Link to={`/stores/${storeId}`} className={styles.noDecoration}>
                 <h6>by {storeName}</h6>
               </Link>
               <div className={styles.underLine}></div>

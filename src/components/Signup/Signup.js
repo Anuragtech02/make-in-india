@@ -26,7 +26,6 @@ export const Signup = ({ history }) => {
   const [insta, setInsta] = useState("");
   const [errorNotSame, setErrorNotSame] = useState(false);
   const [helperText, setHelperText] = useState("");
-  const [storeId, setStoreId] = useState("");
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -34,9 +33,12 @@ export const Signup = ({ history }) => {
       try {
         const db = firebase.firestore();
         const ref = db.collection("users");
+        const tempUserId = ref.doc().id;
         await firebase.auth().createUserWithEmailAndPassword(email, password);
         await ref
-          .add({
+          .doc(tempUserId)
+          .set({
+            uid: tempUserId,
             displayName: name,
             email,
             mobile,
@@ -58,11 +60,12 @@ export const Signup = ({ history }) => {
     } else {
       try {
         const db = firebase.firestore();
-        const ref = db.collection("users");
+        const refUser = db.collection("users");
         const refStore = db.collection("stores");
         const tempStoreId = refStore.doc().id;
+        const tempUserId = refUser.doc().id;
         await firebase.auth().createUserWithEmailAndPassword(email, password);
-        await refStore.add({
+        await refStore.doc(tempStoreId).set({
           displayName: name,
           email,
           mobile,
@@ -76,8 +79,10 @@ export const Signup = ({ history }) => {
           storeId: tempStoreId,
         });
 
-        await ref
-          .add({
+        await refUser
+          .doc(tempUserId)
+          .set({
+            uid: tempUserId,
             displayName: name,
             email,
             mobile,
