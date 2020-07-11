@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "./static/css/main.940969e7.chunk.css",
-    "main.js": "./static/js/main.63c406fb.chunk.js",
-    "main.js.map": "./static/js/main.63c406fb.chunk.js.map",
+    "main.js": "./static/js/main.ab4b660d.chunk.js",
+    "main.js.map": "./static/js/main.ab4b660d.chunk.js.map",
     "runtime-main.js": "./static/js/runtime-main.8b5cf835.js",
     "runtime-main.js.map": "./static/js/runtime-main.8b5cf835.js.map",
     "static/css/2.ab84ab19.chunk.css": "./static/css/2.ab84ab19.chunk.css",
-    "static/js/2.f4acac6e.chunk.js": "./static/js/2.f4acac6e.chunk.js",
-    "static/js/2.f4acac6e.chunk.js.map": "./static/js/2.f4acac6e.chunk.js.map",
+    "static/js/2.14527b26.chunk.js": "./static/js/2.14527b26.chunk.js",
+    "static/js/2.14527b26.chunk.js.map": "./static/js/2.14527b26.chunk.js.map",
     "index.html": "./index.html",
-    "precache-manifest.a3a20e75b85b3515c5eed8ec1210a411.js": "./precache-manifest.a3a20e75b85b3515c5eed8ec1210a411.js",
+    "precache-manifest.19e6e85e3e174d881f38ca63fcc929bd.js": "./precache-manifest.19e6e85e3e174d881f38ca63fcc929bd.js",
     "service-worker.js": "./service-worker.js",
     "static/css/2.ab84ab19.chunk.css.map": "./static/css/2.ab84ab19.chunk.css.map",
     "static/css/main.940969e7.chunk.css.map": "./static/css/main.940969e7.chunk.css.map",
-    "static/js/2.f4acac6e.chunk.js.LICENSE.txt": "./static/js/2.f4acac6e.chunk.js.LICENSE.txt",
+    "static/js/2.14527b26.chunk.js.LICENSE.txt": "./static/js/2.14527b26.chunk.js.LICENSE.txt",
     "static/media/404.gif": "./static/media/404.a202e50a.gif",
     "static/media/dabur-logo.png": "./static/media/dabur-logo.fe44dc68.png",
     "static/media/image1.webp": "./static/media/image1.8ffb8124.webp",
@@ -28,8 +28,8 @@
   "entrypoints": [
     "static/js/runtime-main.8b5cf835.js",
     "static/css/2.ab84ab19.chunk.css",
-    "static/js/2.f4acac6e.chunk.js",
+    "static/js/2.14527b26.chunk.js",
     "static/css/main.940969e7.chunk.css",
-    "static/js/main.63c406fb.chunk.js"
+    "static/js/main.ab4b660d.chunk.js"
   ]
 }
