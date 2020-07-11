@@ -64,6 +64,7 @@ const AddProduct = ({ history }) => {
         price: parseFloat(price),
         imageUrls: [mainImage, image1, image2, image3],
         headline,
+        description,
         amazonLink,
         flipkartLink,
         website,

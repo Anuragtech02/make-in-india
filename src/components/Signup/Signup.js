@@ -27,6 +27,10 @@ export const Signup = ({ history }) => {
   const [errorNotSame, setErrorNotSame] = useState(false);
   const [helperText, setHelperText] = useState("");
 
+  useEffect(() => {
+    document.title = "INDIPRODUCTS | Signup";
+  }, []);
+
   const handleSignup = async (e) => {
     e.preventDefault();
     if (!checked) {

@@ -80,9 +80,14 @@ const MyProduct = ({ product }) => {
     amazonLink,
     flipkartLink,
     id,
-    heading,
+    headline,
     description,
   } = product;
+
+  useEffect(() => {
+    document.title = `INDIPRODUCTS | ${headline}`;
+  }, [headline]);
+
   const iconColor = "var(--primaryColor)";
 
   //Settings for the vertical brand slider
@@ -171,7 +176,7 @@ const MyProduct = ({ product }) => {
                 ease: "easeOut",
               }}
             >
-              <h2>{heading}</h2>
+              <h2>{headline}</h2>
               <h4>{`Category : ${category}`}</h4>
               <h5>In Stock</h5>
               <Link to={`/stores/${storeId}`} className={styles.noDecoration}>

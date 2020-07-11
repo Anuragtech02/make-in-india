@@ -70,6 +70,12 @@ export default Shop;
 const CompanyComponent = ({ store, products }) => {
   const { storeName, email, mobile } = store;
 
+  useEffect(() => {
+    document.title = `INDIPRODUCTS | ${
+      storeName[0].toUpperCase() + storeName.slice(1)
+    }`;
+  });
+
   return (
     <div className={styles.container}>
       <div

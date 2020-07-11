@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useContext } from "react";
+import React, { useEffect, useCallback, useContext } from "react";
 import styles from "./Login.module.css";
 import { withRouter, Redirect } from "react-router-dom";
 import { Card, TextField, Button } from "@material-ui/core";
@@ -8,6 +8,10 @@ import { AuthContext } from "../Auth";
 export const Login = ({ history }) => {
   // const [username, setUsername] = useState("");
   // const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    document.title = "INDIPRODUCTS | Login";
+  }, []);
 
   const handleLogin = useCallback(
     async (event) => {

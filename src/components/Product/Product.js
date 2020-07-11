@@ -72,7 +72,7 @@ const ProductCard = ({ product }) => {
         </Typography>
         <Link to={`/products/${id.trim()}`} className={styles.noDecoration}>
           <Typography className={styles.company} variant="subtitle1">
-            {storeName}
+            {title}
           </Typography>
         </Link>
       </div>

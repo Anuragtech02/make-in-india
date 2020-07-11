@@ -25,6 +25,12 @@ const CategoryPage = () => {
 export default CategoryPage;
 
 const PageComponent = ({ category }) => {
+  useEffect(() => {
+    document.title = `INDIPRODUCTS | ${
+      category[0].toUpperCase() + category.slice(1)
+    }`;
+  }, [category]);
+
   return (
     <div>
       <h1>The category is {category} </h1>

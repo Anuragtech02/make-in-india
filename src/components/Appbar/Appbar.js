@@ -25,12 +25,13 @@ const Appbar = ({ history }) => {
   const [item1Route, setItem1Route] = useState("/login");
   const [item2, setItem2] = useState("Signup");
   const [item2Route, setItem2Route] = useState("/signup");
+  const [isSeller, setIsSeller] = useState(false);
   const { currentUser } = useContext(AuthContext);
 
   useEffect(() => {
     const getCurrentUser = async () => {
       if (currentUser) {
-        setItem1("Profile");
+        setItem1("My Profile");
         setItem2("Logout");
         try {
           const db = firebase.firestore();
@@ -42,6 +43,7 @@ const Appbar = ({ history }) => {
             setAccount(doc.data().displayName);
             setItem1Route(`/profile/${doc.id}`);
             setItem2Route("/login");
+            doc.data().isSeller ? setIsSeller(true) : setIsSeller(false);
           });
         } catch (error) {
           alert("Error : " + error);
@@ -60,6 +62,7 @@ const Appbar = ({ history }) => {
     auth().signOut();
     setItem1Route("/login");
     setItem2Route("/signup");
+    setIsSeller(false);
     history.push("/login");
     return <Redirect to="/login" />;
   };
@@ -67,7 +70,9 @@ const Appbar = ({ history }) => {
   return (
     <div className={styles.container}>
       <Typography variant="h4" className={styles.logo}>
-        MADE IN INDIA
+        <Link to="/" className={styles.noDecoration}>
+          INDIPRODUCTS
+        </Link>
       </Typography>
       <Paper className={styles.inputPaper}>
         <InputBase
@@ -102,6 +107,20 @@ const Appbar = ({ history }) => {
                   <ListItemText primary={item1} />
                 </ListItem>
               </Link>
+              {isSeller ? (
+                <Link
+                  to="/add-product"
+                  className={styles.noDecoration}
+                  onClick={() => setOpen(!open)}
+                >
+                  <ListItem button className={styles.nested}>
+                    <ListItemText primary="Add Product" />
+                  </ListItem>
+                </Link>
+              ) : (
+                " "
+              )}
+
               <Link
                 to={item2Route}
                 className={styles.noDecoration}
