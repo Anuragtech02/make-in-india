@@ -34,9 +34,9 @@ const ProductSlider = () => {
     );
 
     function updateSize() {
-      if (window.innerWidth > 1600) setVisibleSlides(4);
-      else if (widthBetween(1100, 1600)) setVisibleSlides(3);
-      else if (widthBetween(800, 1100)) setVisibleSlides(2);
+      if (window.innerWidth > 1700) setVisibleSlides(4);
+      else if (widthBetween(1200, 1700)) setVisibleSlides(3);
+      else if (widthBetween(800, 1200)) setVisibleSlides(2);
       else if (window.innerWidth <= 800) setVisibleSlides(1);
     }
     window.addEventListener("resize", updateSize);
@@ -74,9 +74,9 @@ const ProductSlider = () => {
   //Used to detect layout changes
   useLayoutEffect(() => {
     function updateSize() {
-      if (window.innerWidth > 1600) setVisibleSlides(4);
-      else if (widthBetween(1100, 1600)) setVisibleSlides(3);
-      else if (widthBetween(800, 1100)) setVisibleSlides(2);
+      if (window.innerWidth > 1700) setVisibleSlides(4);
+      else if (widthBetween(1200, 1700)) setVisibleSlides(3);
+      else if (widthBetween(800, 1200)) setVisibleSlides(2);
       else if (window.innerWidth <= 800) setVisibleSlides(1);
     }
     window.addEventListener("resize", updateSize);
