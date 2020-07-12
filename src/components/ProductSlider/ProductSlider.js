@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useLayoutEffect } from "react";
-import { Grid } from "@material-ui/core";
+import { Grid, CircularProgress } from "@material-ui/core";
 import styles from "./ProductSlider.module.css";
 // import products from "../../assets/products.json";
 import Slider from "react-slick";
@@ -93,7 +93,9 @@ const ProductSlider = () => {
     swipeToSlide: true,
   };
 
-  return (
+  return !products ? (
+    <CircularProgress />
+  ) : (
     <div className={styles.container}>
       <Slider {...settings} className={styles.slider}>
         {products.map((product) => {

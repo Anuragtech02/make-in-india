@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "myProfile.module.scss"
+    ],
+    "names": [],
+    "file": "myProfile.module.css"
+}

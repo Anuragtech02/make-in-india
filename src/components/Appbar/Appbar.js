@@ -41,7 +41,7 @@ const Appbar = ({ history }) => {
             .get();
           snapshot.forEach((doc) => {
             setAccount(doc.data().displayName);
-            setItem1Route(`/profile/${doc.id}`);
+            setItem1Route(`/my-profile/${doc.id}`);
             setItem2Route("/login");
             doc.data().isSeller ? setIsSeller(true) : setIsSeller(false);
           });

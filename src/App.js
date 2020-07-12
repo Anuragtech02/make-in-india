@@ -13,6 +13,7 @@ import {
   Login,
   Signup,
   AddProduct,
+  MyProfile,
 } from "./components";
 import PrivateRoute from "./components/PrivateRoute";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -98,6 +99,11 @@ const App = () => {
             <Route path="/products/:id" exact component={ProductPage} />
             <Route path="/stores/:storeId" exact component={Shop} />
             <PrivateRoute exact path="/add-product" component={AddProduct} />
+            <PrivateRoute
+              exact
+              path="/my-profile/:userId"
+              component={MyProfile}
+            />
             <Route component={NotFound} />
           </Switch>
         </div>

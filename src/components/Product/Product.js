@@ -44,8 +44,8 @@ const ProductCard = ({ product }) => {
     a.click();
   };
 
-  const handleClickVariant = (variant, storeName, id) => () => {
-    enqueueSnackbar(`Successfully added ${storeName} to favourites`, {
+  const handleClickVariant = (variant, title, id) => () => {
+    enqueueSnackbar(`Successfully added ${title} to favourites`, {
       variant,
     });
     onClickHeart(id);
@@ -80,7 +80,7 @@ const ProductCard = ({ product }) => {
         <h4>₹{price}</h4>
         <Tooltip title="Add to favourites" placement="top">
           <IconButton
-            onClick={handleClickVariant("success", storeName, id)}
+            onClick={handleClickVariant("success", title, id)}
             className={styles.likeIcon}
           >
             <i id={id} className={classNames("fas fa-heart")} />

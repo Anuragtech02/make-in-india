@@ -1,23 +1,23 @@
 import React, { useState, useEffect, useContext } from "react";
+import { withRouter } from "react-router-dom";
 import styles from "./Shop.module.css";
 import { Grid, CircularProgress } from "@material-ui/core";
 import image3 from "../../images/image3.webp";
 import { motion } from "framer-motion";
 import userImage from "../../images/userImage.webp";
 import { Product } from "../../components";
-import products from "../../assets/products.json";
 import { useParams } from "react-router";
 import firebase from "../Firebase";
 import { AuthContext } from "../Auth";
 
-const Shop = () => {
+const Shop = ({ history }) => {
   const { storeId } = useParams();
   const [products, setProducts] = useState([]);
   const [store, setStore] = useState({
-    storeId: "Store",
-    storeName: "Store Name",
-    mobile: "9xxxxxxxxxx",
-    email: "store@indiproducts.com",
+    storeId: "",
+    storeName: "",
+    mobile: "",
+    email: "",
   });
   const [display, setDisplay] = useState(false);
 
@@ -34,27 +34,32 @@ const Shop = () => {
         .collection("stores")
         .where("storeId", "==", storeId)
         .get();
-      storeRef.forEach((doc) => {
-        setStore({
-          storeId: doc.data().storeId,
-          storeName: doc.data().displayName,
-          email: doc.data().email,
-          mobile: doc.data().mobile,
+
+      if (storeRef.docs.length) {
+        storeRef.forEach((doc) => {
+          setStore({
+            storeId: doc.data().storeId,
+            storeName: doc.data().displayName,
+            email: doc.data().email,
+            mobile: doc.data().mobile,
+          });
         });
-      });
-      const storeProductRef = await db
-        .collection("stores")
-        .doc(store.storeId)
-        .collection("products")
-        .get();
-      const productsData = storeProductRef.docs.map((doc) => ({
-        ...doc.data(),
-      }));
-      setProducts(productsData);
+        const storeProductRef = await db
+          .collection("stores")
+          .doc(store.storeId)
+          .collection("products")
+          .get();
+        const productsData = storeProductRef.docs.map((doc) => ({
+          ...doc.data(),
+        }));
+        setProducts(productsData);
+      } else {
+        history.push("/404");
+      }
     };
 
     fetchStore();
-  }, [storeId, store.storeId]);
+  }, [storeId, store.storeId, history]);
 
   return !display ? (
     <div className={styles.loading}>
@@ -65,7 +70,7 @@ const Shop = () => {
   );
 };
 
-export default Shop;
+export default withRouter(Shop);
 
 const CompanyComponent = ({ store, products }) => {
   const { storeName, email, mobile } = store;

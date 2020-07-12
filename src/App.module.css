@@ -59,6 +59,14 @@ body {
   color: var(--orangeTint) !important;
 }
 
+.linearProgress {
+  width: 100% !important;
+}
+
+.linearProgress svg {
+  color: var(--orangeTint) !important;
+}
+
 .productSlider {
   width: var(--fixedWidth);
   margin: auto;
