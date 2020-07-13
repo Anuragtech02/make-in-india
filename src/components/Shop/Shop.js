@@ -14,7 +14,7 @@ const Shop = ({ history }) => {
   const { storeId } = useParams();
   const [products, setProducts] = useState([]);
   const [store, setStore] = useState({
-    storeId: "",
+    storeId: "StoreId",
     storeName: "",
     mobile: "",
     email: "",
@@ -132,7 +132,7 @@ const CompanyComponent = ({ store, products }) => {
                 <Grid
                   item
                   md={3}
-                  key={product.productId}
+                  key={product.id}
                   xs={12}
                   className={styles.singleProduct}
                 >

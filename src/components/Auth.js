@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect } from "react";
-import { LinearProgress, CircularProgress } from "@material-ui/core";
+import { CircularProgress } from "@material-ui/core";
 import firebase from "./Firebase";
 import styles from "./Auth.module.css";
 

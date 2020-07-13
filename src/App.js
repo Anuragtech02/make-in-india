@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   TopBar,
   Appbar,
@@ -18,7 +18,6 @@ import {
 import PrivateRoute from "./components/PrivateRoute";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import styles from "./App.module.css";
-import CircularProgress from "@material-ui/core/CircularProgress";
 import { Paper, IconButton } from "@material-ui/core";
 import { ChromePicker } from "react-color";
 import classNames from "classnames";
@@ -64,7 +63,7 @@ const App = () => {
           <div className={styles.navbar}>
             <NavBar />
           </div>
-          <div className={classNames(styles.colorPanel, temp)}>
+          {/* <div className={classNames(styles.colorPanel, temp)}>
             <Paper className={styles.pickerContainer}>
               <div
                 style={{
@@ -88,7 +87,7 @@ const App = () => {
                 onChange={(e) => changeAccentColor(e)}
               />
             </Paper>
-          </div>
+          </div> */}
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/login" exact component={Login} />

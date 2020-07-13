@@ -1,0 +1,70 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  margin: auto;
+  width: var(--fixedWidth);
+}
+.profileSection {
+  padding: 50px;
+  margin: 0 10px;
+  position: sticky;
+
+  .profileWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .profile {
+      display: flex;
+      justify-content: center;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      text-align: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      border: 5px solid var(--orangeTint);
+      align-items: center;
+      margin: 0 10px;
+    }
+    .personalDetails {
+      display: flex;
+      flex-direction: column;
+
+      .textField {
+        margin: 5px 0;
+      }
+    }
+  }
+}
+
+.dashboard {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  margin: 0 10px;
+
+  .heading {
+    width: 100%;
+    text-align: left;
+  }
+  .products {
+    .visibility {
+      .eye {
+        i {
+          color: black !important;
+          font-size: 1.2rem;
+        }
+      }
+    }
+    .product {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
