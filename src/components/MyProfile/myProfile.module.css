@@ -5,16 +5,17 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-align: top;
+      -ms-flex-align: top;
+          align-items: top;
   min-height: 50vh;
   margin: auto;
+  margin-top: 50px;
   width: var(--fixedWidth);
 }
 
 .profileSection {
-  padding: 50px;
+  padding: 50px 30px;
   margin: 0 10px;
   position: -webkit-sticky;
   position: sticky;
@@ -66,6 +67,19 @@
           flex-direction: column;
 }
 
+.profileSection .profileWrapper .personalDetails .inputContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.profileSection .profileWrapper .personalDetails .inputContainer h5 {
+  margin-right: 5px;
+}
+
 .profileSection .profileWrapper .personalDetails .textField {
   margin: 5px 0;
 }
@@ -96,9 +110,31 @@
   text-align: left;
 }
 
-.dashboard .products .visibility .eye i {
-  color: black !important;
-  font-size: 1.2rem;
+.dashboard .titleBar {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: left;
+  margin-top: 20px;
+  padding: 10px;
+  background: #d3d3d3;
+}
+
+.dashboard .titleBar h4 {
+  font-weight: 600;
+}
+
+.dashboard .titleBar .editProduct {
+  text-align: right;
+}
+
+.dashboard .products {
+  width: 100%;
+}
+
+.dashboard .products .individualProduct {
+  margin: 5px 0;
 }
 
 .dashboard .products .product {
@@ -108,5 +144,54 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 10px;
+}
+
+.dashboard .products .product .productDetails {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.dashboard .products .product .productDetails h5 {
+  font-weight: 600;
+}
+
+.dashboard .products .product .visibility .eye i {
+  color: black !important;
+  font-size: 1.2rem;
+}
+
+.dashboard .products .product .productName {
+  text-align: left;
+  padding-right: 15px;
+}
+
+.dashboard .products .product .productPrice {
+  margin: auto;
+}
+
+.dashboard .products .product .productImage img {
+  width: 80px;
+}
+
+.dashboard .products .product .editProduct {
+  text-align: right;
+}
+
+.dashboard .products .product .editProduct .iconContainer i {
+  color: var(--primaryColor) !important;
+  text-align: right;
+  font-size: 1.2rem;
+}
+
+.dashboard .products .product .editProduct .deleteProduct i {
+  color: #b60909 !important;
 }
 /*# sourceMappingURL=myProfile.module.css.map */
