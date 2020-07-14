@@ -14,6 +14,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  LinearProgress,
 } from "@material-ui/core";
 import styles from "./myProfile.module.css";
 import firebase from "../Firebase";
@@ -145,7 +146,13 @@ const ProfileComponent = ({ currentUser, history, userId, userDetails }) => {
         </Grid>
         <div className={styles.products}>
           {products.map((product) => {
-            return <HorizontalProduct key={product.title} product={product} />;
+            return (
+              <HorizontalProduct
+                key={product.title}
+                storeId={userDetails.storeId}
+                product={product}
+              />
+            );
           })}
         </div>
       </Paper>
@@ -153,33 +160,82 @@ const ProfileComponent = ({ currentUser, history, userId, userDetails }) => {
   );
 };
 
-const HorizontalProduct = ({ product }) => {
+const HorizontalProduct = ({ product, storeId }) => {
   const { imageUrls, title, price, headline } = product;
   const [dialogOpen, setDialogOpen] = useState(false);
   const [eye, setEye] = useState(
-    product.hidden ? "fas fa-eye-flash " : "fas fa-eye"
+    product.hidden ? "fas fa-eye-slash " : "fas fa-eye"
   );
-  const [currentStatus, setCurrentStatus] = useState(product.hidden);
+  const [hidden, setHidden] = useState(product.hidden);
   const [dialogText, setDialogText] = useState(
     "Are you sure, you wish to hide the product"
   );
 
+  const db = firebase.firestore();
+  const storeProductRef = db
+    .collection("stores")
+    .doc(storeId)
+    .collection("products")
+    .doc(product.id);
+  const absoluteProductRef = db.collection("products").doc(product.id);
+  const [showProgress, setShowProgress] = useState(false);
+
   const handleVisibility = () => {
     setDialogOpen(true);
-    if (currentStatus) {
-      setDialogText("Do you really wish to unhide the product?");
-    } else {
-      setDialogText("Are you sure, you wish to hide the product?");
-    }
+    hidden
+      ? setDialogText("Do you really wish to unhide the product?")
+      : setDialogText("Are you sure, you wish to hide the product?");
   };
   const handleAgree = () => {
-    setDialogOpen(false);
-    currentStatus ? setEye("fas fa-eye") : setEye("fas fa-eye-slash");
-    currentStatus ? setCurrentStatus(false) : setCurrentStatus(true);
+    setShowProgress(true);
+    if (hidden) {
+      storeProductRef
+        .update({ hidden: false })
+        .then(() => {
+          absoluteProductRef
+            .update({ hidden: false })
+            .then(() => {
+              setTimeout(() => {
+                setShowProgress(false);
+                setDialogOpen(false);
+                setEye("fas fa-eye");
+                setHidden(false);
+              }, 800);
+            })
+            .catch((error) => {
+              alert(error);
+            });
+        })
+        .catch((error) => {
+          alert(error);
+        });
+    } else {
+      storeProductRef
+        .update({ hidden: true })
+        .then(() => {
+          absoluteProductRef
+            .update({ hidden: true })
+            .then(() => {
+              setTimeout(() => {
+                setShowProgress(false);
+                setDialogOpen(false);
+                setEye("fas fa-eye-slash");
+                setHidden(true);
+              }, 800);
+            })
+            .catch((error) => {
+              alert(error);
+            });
+        })
+        .catch((error) => {
+          alert(error);
+        });
+    }
+    // hidden ? setEye("fas fa-eye") : setEye("fas fa-eye-slash");
+    // hidden ? sethidden(false) : sethidden(true);
   };
 
   const handleCancel = () => {
-    setEye("fas fa-eye");
     setDialogOpen(false);
   };
 
@@ -192,12 +248,13 @@ const HorizontalProduct = ({ product }) => {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {currentStatus ? "Show Product" : "Hide Product"}
+          {hidden ? "Show Product" : "Hide Product"}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
             {dialogText}
           </DialogContentText>
+          {showProgress ? <LinearProgress /> : ""}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleAgree} color="primary">
