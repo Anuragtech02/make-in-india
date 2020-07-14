@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { withRouter } from "react-router-dom";
 import { useParams } from "react-router";
 import {
@@ -41,24 +41,26 @@ export default withRouter(MyProfile);
 const ProfileComponent = ({ currentUser, history, userId, userDetails }) => {
   const [products, setProducts] = useState([]);
 
-  const fetchProducts = async () => {
-    const db = firebase.firestore();
-    const storeRef = db.collection("stores").doc(userDetails.storeId);
-    const snapshost = await storeRef.collection("products").get();
-    const productData = snapshost.docs.map((doc) => ({
-      ...doc.data(),
-    }));
-    setProducts(productData);
-  };
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const db = firebase.firestore();
+      const storeRef = db.collection("stores").doc(userDetails.storeId);
+      const snapshost = await storeRef.collection("products").get();
+      const productData = snapshost.docs.map((doc) => ({
+        ...doc.data(),
+      }));
+      setProducts(productData);
+    };
 
-  if (currentUser && userDetails.uid) {
-    if (userId !== userDetails.uid) {
-      history.push("/login");
-      alert("You're not authorized for this");
-    } else {
-      fetchProducts();
+    if (currentUser && userDetails.uid) {
+      if (userId !== userDetails.uid) {
+        history.push("/login");
+        alert("You're not authorized for this");
+      } else {
+        fetchProducts();
+      }
     }
-  }
+  }, [currentUser, history, userDetails.storeId, userId, userDetails.uid]);
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -154,14 +156,31 @@ const ProfileComponent = ({ currentUser, history, userId, userDetails }) => {
 const HorizontalProduct = ({ product }) => {
   const { imageUrls, title, price, headline } = product;
   const [dialogOpen, setDialogOpen] = useState(false);
-  const [eye, setEye] = useState("fas fa-eye");
+  const [eye, setEye] = useState(
+    product.hidden ? "fas fa-eye-flash " : "fas fa-eye"
+  );
+  const [currentStatus, setCurrentStatus] = useState(product.hidden);
+  const [dialogText, setDialogText] = useState(
+    "Are you sure, you wish to hide the product"
+  );
 
   const handleVisibility = () => {
     setDialogOpen(true);
+    if (currentStatus) {
+      setDialogText("Do you really wish to unhide the product?");
+    } else {
+      setDialogText("Are you sure, you wish to hide the product?");
+    }
   };
   const handleAgree = () => {
     setDialogOpen(false);
-    setEye("fas fa-eye-slash");
+    currentStatus ? setEye("fas fa-eye") : setEye("fas fa-eye-slash");
+    currentStatus ? setCurrentStatus(false) : setCurrentStatus(true);
+  };
+
+  const handleCancel = () => {
+    setEye("fas fa-eye");
+    setDialogOpen(false);
   };
 
   return (
@@ -172,21 +191,19 @@ const HorizontalProduct = ({ product }) => {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{"Hide Product?"}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">
+          {currentStatus ? "Show Product" : "Hide Product"}
+        </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Are you sure, you wish to hide the product?
+            {dialogText}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleAgree} color="primary">
-            YES, HIDE
+            Yes
           </Button>
-          <Button
-            onClick={() => setDialogOpen(false)}
-            color="primary"
-            autoFocus
-          >
+          <Button onClick={handleCancel} color="primary" autoFocus>
             CANCEL
           </Button>
         </DialogActions>
