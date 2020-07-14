@@ -71,6 +71,7 @@ const AddProduct = ({ history }) => {
         category,
         storeId,
         asin: parseInt(asin),
+        hidden: false,
       })
       .then(async () => {
         await storeRef
@@ -90,6 +91,7 @@ const AddProduct = ({ history }) => {
             imageUrls: [mainImage, image1, image2, image3],
             storeId,
             asin: parseInt(asin),
+            hidden: false,
           })
           .then(() => {
             setTitle("");

@@ -34,6 +34,7 @@
 
 .thumbnail img {
   width: 200px;
+  max-height: 250px;
 }
 
 .priceLike {
@@ -76,6 +77,7 @@
 .name .category {
   color: var(--greyFont) !important;
   text-transform: capitalize;
+  margin-top: 15px;
 }
 
 .likeIcon {

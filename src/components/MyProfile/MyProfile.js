@@ -9,6 +9,11 @@ import {
   Card,
   Tooltip,
   Grid,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
 } from "@material-ui/core";
 import styles from "./myProfile.module.css";
 import firebase from "../Firebase";
@@ -79,37 +84,39 @@ const ProfileComponent = ({ currentUser, history, userId, userDetails }) => {
           </div>
           <div className={styles.personalDetails}>
             <div className={styles.inputContainer}>
-              {/* <h5>Name</h5> */}
-              <TextField
+              <h5>{userDetails.displayName}</h5>
+              {/* <TextField
                 className={styles.textField}
                 value={name}
                 label={userDetails.displayName}
                 size="small"
                 variant="outlined"
                 onChange={(e) => setName(e.target.value)}
-              />
+              /> */}
             </div>
 
             <div className={styles.inputContainer}>
-              {/* <h5>Email</h5> */}
-              <TextField
+              <h5>{userDetails.email}</h5>
+              {/* <TextField
                 className={styles.textField}
                 value={email}
                 label={userDetails.email}
                 size="small"
                 variant="outlined"
                 onChange={(e) => setEmail(e.target.value)}
-              />
+              /> */}
             </div>
-
-            <TextField
-              className={styles.textField}
-              value={mobile}
-              label={userDetails.mobile}
-              size="small"
-              variant="outlined"
-              onChange={(e) => setMobile(e.target.value)}
-            />
+            <div>
+              {/* <TextField
+                className={styles.textField}
+                value={mobile}
+                label={userDetails.mobile}
+                size="small"
+                variant="outlined"
+                onChange={(e) => setMobile(e.target.value)}
+              /> */}
+              <h5>{userDetails.mobile}</h5>
+            </div>
           </div>
         </div>
       </Paper>
@@ -146,49 +153,89 @@ const ProfileComponent = ({ currentUser, history, userId, userDetails }) => {
 
 const HorizontalProduct = ({ product }) => {
   const { imageUrls, title, price, headline } = product;
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [eye, setEye] = useState("fas fa-eye");
+
+  const handleVisibility = () => {
+    setDialogOpen(true);
+  };
+  const handleAgree = () => {
+    setDialogOpen(false);
+    setEye("fas fa-eye-slash");
+  };
 
   return (
-    <Card className={styles.individualProduct}>
-      <Grid container className={styles.product}>
-        <Grid item md={1} className={styles.visibility}>
-          <Tooltip title="Show/Hide Product" placement="top">
-            <IconButton className={styles.eye}>
-              <i className="fas fa-eye"></i>
-            </IconButton>
-          </Tooltip>
-        </Grid>
-        <Grid item md={9}>
-          <Grid container className={styles.productDetails}>
-            <Grid item md={3} className={styles.productImage}>
-              <img src={imageUrls[0]} alt={`product-${title}`} />
-            </Grid>
-            <Grid item md={8} className={styles.productName}>
-              <h5>
-                <b>{title}</b>
-                <br />
-                {headline}
-              </h5>
-            </Grid>
-            <Grid item md={1} className={styles.productPrice}>
-              <h5>{price}</h5>
+    <div>
+      <Dialog
+        open={dialogOpen}
+        onClose={() => setDialogOpen(false)}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"Hide Product?"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Are you sure, you wish to hide the product?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleAgree} color="primary">
+            YES, HIDE
+          </Button>
+          <Button
+            onClick={() => setDialogOpen(false)}
+            color="primary"
+            autoFocus
+          >
+            CANCEL
+          </Button>
+        </DialogActions>
+      </Dialog>
+      <Card className={styles.individualProduct}>
+        <Grid container className={styles.product}>
+          <Grid item md={1} className={styles.visibility}>
+            <Tooltip title="Show/Hide Product" placement="top">
+              <IconButton className={styles.eye} onClick={handleVisibility}>
+                <i className={eye}></i>
+              </IconButton>
+            </Tooltip>
+          </Grid>
+          <Grid item md={9}>
+            <Grid container className={styles.productDetails}>
+              <Grid item md={3} className={styles.productImage}>
+                <img src={imageUrls[0]} alt={`product-${title}`} />
+              </Grid>
+              <Grid item md={8} className={styles.productName}>
+                <h5>
+                  <b>{title}</b>
+                  <br />
+                  {headline}
+                </h5>
+              </Grid>
+              <Grid item md={1} className={styles.productPrice}>
+                <h5>{price}</h5>
+              </Grid>
             </Grid>
           </Grid>
+          <Grid item md={2} className={styles.editProduct}>
+            <Tooltip title="Edit Product" placement="top">
+              <IconButton className={styles.iconContainer}>
+                <i className="fas fa-pencil-alt"></i>
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Delete Product" placement="top">
+              <IconButton
+                className={classNames(
+                  styles.iconContainer,
+                  styles.deleteProduct
+                )}
+              >
+                <i className="fas fa-times"></i>
+              </IconButton>
+            </Tooltip>
+          </Grid>
         </Grid>
-        <Grid item md={2} className={styles.editProduct}>
-          <Tooltip title="Edit Product" placement="top">
-            <IconButton className={styles.iconContainer}>
-              <i className="fas fa-pencil-alt"></i>
-            </IconButton>
-          </Tooltip>
-          <Tooltip title="Delete Product" placement="top">
-            <IconButton
-              className={classNames(styles.iconContainer, styles.deleteProduct)}
-            >
-              <i className="fas fa-times"></i>
-            </IconButton>
-          </Tooltip>
-        </Grid>
-      </Grid>
-    </Card>
+      </Card>
+    </div>
   );
 };

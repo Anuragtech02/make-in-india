@@ -48,6 +48,7 @@ const Shop = ({ history }) => {
           .collection("stores")
           .doc(store.storeId)
           .collection("products")
+          .where("hidden", "==", false)
           .get();
         const productsData = storeProductRef.docs.map((doc) => ({
           ...doc.data(),
