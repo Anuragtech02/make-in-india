@@ -49,6 +49,21 @@
   margin-left: -30px !important;
 }
 
+.menuBtn {
+  min-width: 100px !important;
+  color: white !important;
+  font-weight: 400 !important;
+  z-index: 9999;
+}
+
+.menuBtn i {
+  margin: 0 10px;
+}
+
+.menu {
+  z-index: 999999 !important;
+}
+
 .searchIcon i {
   color: var(--greyIcon) !important;
 }
@@ -57,6 +72,10 @@
   text-decoration: none !important;
   list-style: none !important;
   color: white !important;
+}
+
+.colorBlack {
+  color: black !important;
 }
 
 @media screen and (max-width: 800px) {

@@ -23,6 +23,7 @@ i {
 body {
   font-family: "Open Sans", sans-serif !important;
   background: var(--backgroundWhite);
+  overflow-y: scroll;
 }
 
 .appBarContainer,
@@ -34,7 +35,7 @@ body {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  z-index: 999999;
+  z-index: 999;
 }
 
 .slider {

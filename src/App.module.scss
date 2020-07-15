@@ -21,6 +21,7 @@ i {
 body {
   font-family: "Open Sans", sans-serif !important;
   background: var(--backgroundWhite);
+  overflow-y: scroll;
 }
 .appBarContainer,
 .topBar {
@@ -29,7 +30,7 @@ body {
 .navbar {
   position: sticky;
   top: 0;
-  z-index: 999999;
+  z-index: 999;
 }
 .slider {
   margin-top: 50px;

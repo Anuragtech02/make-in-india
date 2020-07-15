@@ -29,10 +29,12 @@ export const Login = ({ history }) => {
     [history]
   );
 
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, userDetails } = useContext(AuthContext);
 
-  if (currentUser) {
-    return <Redirect to="/" />;
+  if (currentUser && userDetails) {
+    if (currentUser.emal === userDetails.email) {
+      return <Redirect to="/" />;
+    }
   }
 
   return (

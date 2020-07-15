@@ -4,22 +4,19 @@ import {
   Typography,
   Paper,
   InputBase,
-  ListItem,
-  List,
-  Collapse,
-  ListItemText,
-  ListItemIcon,
+  Menu,
+  MenuItem,
+  Button,
 } from "@material-ui/core";
 import { Link, withRouter, Redirect } from "react-router-dom";
-import ExpandLess from "@material-ui/icons/ExpandLess";
-import ExpandMore from "@material-ui/icons/ExpandMore";
 import styles from "./AppBar.module.css";
 import { AuthContext } from "../Auth";
 import firebase from "../Firebase";
-import { auth } from "firebase";
+import classNames from "classnames";
 
 const Appbar = ({ history }) => {
-  const [open, setOpen] = useState(false);
+  const [menuIcon, setMenuIcon] = useState("down");
+  const [anchorEl, setAnchorEl] = useState(null);
   const [account, setAccount] = useState("Account");
   const [item1, setItem1] = useState("Login");
   const [item1Route, setItem1Route] = useState("/login");
@@ -59,12 +56,23 @@ const Appbar = ({ history }) => {
 
   const handleLogout = () => {
     setAccount("Account");
-    auth().signOut();
     setItem1Route("/login");
     setItem2Route("/signup");
     setIsSeller(false);
+    firebase.auth().signOut();
+    console.log(currentUser);
     history.push("/login");
     return <Redirect to="/login" />;
+  };
+
+  const handleClickMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+    setMenuIcon("up");
+  };
+
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
+    setMenuIcon("down");
   };
 
   return (
@@ -88,51 +96,47 @@ const Appbar = ({ history }) => {
         </IconButton>
       </Paper>
       <div className={styles.account}>
-        <List component="div">
-          <ListItem button onClick={() => setOpen(!open)}>
-            <ListItemIcon>
-              <i className="fas fa-user"></i>
-            </ListItemIcon>
-            <ListItemText primary={account} className={styles.itemText} />
-            {open ? <ExpandLess /> : <ExpandMore />}
-          </ListItem>
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            <List component="div" disablePadding>
-              <Link
-                to={item1Route}
-                className={styles.noDecoration}
-                onClick={() => setOpen(!open)}
-              >
-                <ListItem button className={styles.nested}>
-                  <ListItemText primary={item1} />
-                </ListItem>
-              </Link>
-              {isSeller ? (
-                <Link
-                  to="/add-product"
-                  className={styles.noDecoration}
-                  onClick={() => setOpen(!open)}
-                >
-                  <ListItem button className={styles.nested}>
-                    <ListItemText primary="Add Product" />
-                  </ListItem>
-                </Link>
-              ) : (
-                " "
-              )}
-
-              <Link
-                to={item2Route}
-                className={styles.noDecoration}
-                onClick={() => (currentUser ? handleLogout() : setOpen(!open))}
-              >
-                <ListItem button className={styles.nested}>
-                  <ListItemText primary={item2} />
-                </ListItem>
-              </Link>
-            </List>
-          </Collapse>
-        </List>
+        <Button
+          aria-controls="simple-menu"
+          aria-haspopup="true"
+          onClick={handleClickMenu}
+          className={styles.menuBtn}
+        >
+          <i className="fas fa-user" /> {account}{" "}
+          <i className={`fas fa-angle-${menuIcon}`} />
+        </Button>
+        <Menu
+          id="simple-menu"
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleCloseMenu}
+          className={styles.menu}
+        >
+          <Link
+            to={item1Route}
+            className={classNames(styles.noDecoration, styles.colorBlack)}
+          >
+            <MenuItem onClick={handleCloseMenu}>{item1}</MenuItem>
+          </Link>
+          {isSeller ? (
+            <Link
+              to="/add-product"
+              className={classNames(styles.noDecoration, styles.colorBlack)}
+            >
+              <MenuItem onClick={handleCloseMenu}>Add Product</MenuItem>
+            </Link>
+          ) : (
+            ""
+          )}
+          <Link
+            to={item2Route}
+            className={classNames(styles.noDecoration, styles.colorBlack)}
+            onClick={() => (currentUser ? handleLogout() : handleCloseMenu())}
+          >
+            <MenuItem onClick={handleCloseMenu}>{item2}</MenuItem>
+          </Link>
+        </Menu>
       </div>
     </div>
   );
