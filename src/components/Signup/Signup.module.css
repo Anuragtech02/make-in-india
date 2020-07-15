@@ -63,11 +63,11 @@
   margin: 10px 10px;
 }
 
-.card .form .textFields .fieldPhone {
+.card .form .textFields .name {
   width: 100%;
 }
 
-.card .form .textFields .phone {
+.card .form .textFields .nameContainer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

@@ -60,7 +60,6 @@ const Appbar = ({ history }) => {
     setItem2Route("/signup");
     setIsSeller(false);
     firebase.auth().signOut();
-    console.log(currentUser);
     history.push("/login");
     return <Redirect to="/login" />;
   };

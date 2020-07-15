@@ -133,9 +133,9 @@ export const Signup = ({ history }) => {
           </div>
           <form className={styles.form} onSubmit={handleSignup}>
             <div className={styles.textFields}>
-              <div className={styles.nameMail}>
+              <div className={styles.nameContainer}>
                 <TextField
-                  className={styles.textField}
+                  className={classNames(styles.textField, styles.name)}
                   required
                   label="Your Name"
                   type="text"
@@ -146,6 +146,8 @@ export const Signup = ({ history }) => {
                   autoFocus
                   onChange={(e) => setName(e.target.value)}
                 />
+              </div>
+              <div className={styles.emailPhone}>
                 <TextField
                   required
                   className={styles.textField}
@@ -157,10 +159,8 @@ export const Signup = ({ history }) => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
-              </div>
-              <div className={styles.phone}>
                 <TextField
-                  className={classNames(styles.textField, styles.fieldPhone)}
+                  className={classNames(styles.textField)}
                   variant="outlined"
                   type="tel"
                   label="Mobile"
