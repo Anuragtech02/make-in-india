@@ -10,8 +10,8 @@ import {
 } from "@material-ui/core";
 import { Link, withRouter, Redirect } from "react-router-dom";
 import styles from "./AppBar.module.css";
-import { AuthContext } from "../Auth";
-import firebase from "../Firebase";
+import { AuthContext } from "../../Authentication/Auth";
+import firebase from "../../Authentication/Firebase";
 import classNames from "classnames";
 
 const Appbar = ({ history }) => {

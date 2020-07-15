@@ -7,8 +7,8 @@ import { motion } from "framer-motion";
 import userImage from "../../images/userImage.webp";
 import { Product } from "../../components";
 import { useParams } from "react-router";
-import firebase from "../Firebase";
-import { AuthContext } from "../Auth";
+import firebase from "../../Authentication/Firebase";
+import { AuthContext } from "../../Authentication/Auth";
 
 const Shop = ({ history }) => {
   const { storeId } = useParams();

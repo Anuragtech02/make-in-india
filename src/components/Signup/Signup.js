@@ -7,7 +7,7 @@ import {
   TextField,
   FormControlLabel,
 } from "@material-ui/core";
-import firebase from "../Firebase";
+import firebase from "../../Authentication/Firebase";
 import { withRouter } from "react-router-dom";
 import classNames from "classnames";
 
@@ -210,7 +210,6 @@ export const Signup = ({ history }) => {
                 }
                 label="I am a seller"
               />
-
               <Button
                 variant="contained"
                 style={{

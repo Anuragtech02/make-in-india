@@ -2,8 +2,8 @@ import React, { useEffect, useCallback, useContext } from "react";
 import styles from "./Login.module.css";
 import { withRouter, Redirect } from "react-router-dom";
 import { Card, TextField, Button } from "@material-ui/core";
-import firebase from "../Firebase";
-import { AuthContext } from "../Auth";
+import firebase from "../../Authentication/Firebase";
+import { AuthContext } from "../../Authentication/Auth";
 
 export const Login = ({ history }) => {
   // const [username, setUsername] = useState("");

@@ -15,14 +15,14 @@ import {
   AddProduct,
   MyProfile,
 } from "./components";
-import PrivateRoute from "./components/PrivateRoute";
+import PrivateRoute from "./Authentication/PrivateRoute";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import styles from "./App.module.css";
 import { Paper, IconButton } from "@material-ui/core";
 import { ChromePicker } from "react-color";
 import classNames from "classnames";
 import NotFound from "./404";
-import { AuthProvider } from "./components/Auth";
+import { AuthProvider } from "./Authentication/Auth";
 
 const App = () => {
   const [temp, setTemp] = useState(styles.noStyle);
@@ -63,31 +63,6 @@ const App = () => {
           <div className={styles.navbar}>
             <NavBar />
           </div>
-          {/* <div className={classNames(styles.colorPanel, temp)}>
-            <Paper className={styles.pickerContainer}>
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <h5>Primary Color</h5>
-                <IconButton className={styles.closeBtn} onClick={closeColor}>
-                  <i className="fas fa-times-circle"></i>
-                </IconButton>
-              </div>
-              <ChromePicker
-                color={colorPrimary}
-                onChange={(e) => changePrimaryColor(e)}
-              />
-              <h5>Accent Color</h5>
-              <ChromePicker
-                color={colorAccent}
-                onChange={(e) => changeAccentColor(e)}
-              />
-            </Paper>
-          </div> */}
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/login" exact component={Login} />

@@ -17,8 +17,8 @@ import {
   LinearProgress,
 } from "@material-ui/core";
 import styles from "./myProfile.module.css";
-import firebase from "../Firebase";
-import { AuthContext } from "../Auth";
+import firebase from "../../Authentication/Firebase";
+import { AuthContext } from "../../Authentication/Auth";
 import classNames from "classnames";
 
 const MyProfile = ({ history }) => {
@@ -231,8 +231,6 @@ const HorizontalProduct = ({ product, storeId }) => {
           alert(error);
         });
     }
-    // hidden ? setEye("fas fa-eye") : setEye("fas fa-eye-slash");
-    // hidden ? sethidden(false) : sethidden(true);
   };
 
   const handleCancel = () => {

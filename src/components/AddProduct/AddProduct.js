@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import styles from "./AddProduct.module.css";
 import { TextField, Button, Card } from "@material-ui/core";
-import firebase from "../Firebase";
+import firebase from "../../Authentication/Firebase";
 import { withRouter, Redirect } from "react-router-dom";
-import { AuthContext } from "../Auth";
+import { AuthContext } from "../../Authentication/Auth";
 
 const AddProduct = ({ history }) => {
   const [title, setTitle] = useState("");

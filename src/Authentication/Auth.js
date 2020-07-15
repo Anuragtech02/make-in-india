@@ -10,6 +10,10 @@ export const AuthProvider = ({ children }) => {
   const [userDetails, setUserDetails] = useState({});
   const [pending, setPending] = useState(true);
 
+  // state={
+
+  // }
+
   useEffect(() => {
     const fetchUser = async (email) => {
       const db = firebase.firestore();
