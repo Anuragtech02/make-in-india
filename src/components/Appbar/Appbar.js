@@ -23,7 +23,7 @@ const Appbar = ({ history }) => {
   const [item2, setItem2] = useState("Signup");
   const [item2Route, setItem2Route] = useState("/signup");
   const [isSeller, setIsSeller] = useState(false);
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, userDetails } = useContext(AuthContext);
 
   useEffect(() => {
     const getCurrentUser = async () => {
@@ -31,17 +31,10 @@ const Appbar = ({ history }) => {
         setItem1("My Profile");
         setItem2("Logout");
         try {
-          const db = firebase.firestore();
-          const ref = db.collection("users");
-          const snapshot = await ref
-            .where("email", "==", currentUser.email)
-            .get();
-          snapshot.forEach((doc) => {
-            setAccount(doc.data().displayName);
-            setItem1Route(`/my-profile/${doc.id}`);
-            setItem2Route("/login");
-            doc.data().isSeller ? setIsSeller(true) : setIsSeller(false);
-          });
+          setAccount(userDetails.displayName);
+          setItem1Route(`/my-profile/${userDetails.uid}`);
+          setItem2Route("/login");
+          userDetails.isSeller ? setIsSeller(true) : setIsSeller(false);
         } catch (error) {
           alert("Error : " + error);
         }
@@ -52,7 +45,7 @@ const Appbar = ({ history }) => {
       }
     };
     getCurrentUser();
-  }, [currentUser]);
+  }, [currentUser, userDetails]);
 
   const handleLogout = () => {
     setAccount("Account");

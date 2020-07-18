@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styles from "../ProductPage/ProductPage.module.css";
 import newStyles from "./EditProduct.module.css";
 import { motion } from "framer-motion";
@@ -22,6 +22,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 import firebase from "../../Authentication/Firebase";
+import { AuthContext } from "../../Authentication/Auth";
 
 import {
   amul,
@@ -36,26 +37,30 @@ import {
 const EditProduct = () => {
   const { productId } = useParams();
 
-  const [product, setProduct] = useState();
+  const { products } = useContext(AuthContext);
+
+  // const [product, setProduct] = useState({});
 
   const [display, setDisplay] = useState(false);
+
+  const product = products.filter((product) => product.id === productId)[0];
 
   useEffect(() => {
     setTimeout(() => {
       setDisplay(true);
     }, 800);
 
-    const fetchData = async () => {
-      const db = firebase.firestore();
-      await db
-        .collection("products")
-        .doc(productId)
-        .get()
-        .then((doc) => {
-          setProduct(doc.data());
-        });
-    };
-    fetchData();
+    // const fetchData = async () => {
+    //   const db = firebase.firestore();
+    //   await db
+    //     .collection("products")
+    //     .doc(productId)
+    //     .get()
+    //     .then((doc) => {
+    //       setProduct(doc.data());
+    //     });
+    // };
+    // fetchData();
   }, [productId]);
 
   return !display ? (
@@ -67,7 +72,9 @@ const EditProduct = () => {
       <MyProduct product={product} />
     </SnackbarProvider>
   ) : (
-    <div>Loading...</div>
+    <div className={styles.loading}>
+      <CircularProgress />
+    </div>
   );
 };
 

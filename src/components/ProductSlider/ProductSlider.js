@@ -65,11 +65,15 @@ const ProductSlider = () => {
         const newProduct = snapshot.docs.map((doc) => ({
           ...doc.data(),
         }));
-
         setProducts(newProduct);
+        localStorage.setItem("homeSlider", JSON.stringify(newProduct));
       });
 
-    return () => unsubscribe();
+    return () => {
+      localStorage.getItem("homeSlider") === null
+        ? unsubscribe()
+        : setProducts(JSON.parse(localStorage.getItem("homeSlider")));
+    };
   }, []);
 
   //Used to detect layout changes

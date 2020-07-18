@@ -23,7 +23,7 @@ import classNames from "classnames";
 
 const MyProfile = ({ history }) => {
   const { userId } = useParams();
-  const { currentUser, userDetails } = useContext(AuthContext);
+  const { currentUser, userDetails, products } = useContext(AuthContext);
 
   return (
     <div>
@@ -32,6 +32,7 @@ const MyProfile = ({ history }) => {
         userId={userId}
         userDetails={userDetails}
         currentUser={currentUser}
+        products={products}
       />
     </div>
   );
@@ -39,26 +40,32 @@ const MyProfile = ({ history }) => {
 
 export default withRouter(MyProfile);
 
-const ProfileComponent = ({ currentUser, history, userId, userDetails }) => {
-  const [products, setProducts] = useState([]);
+const ProfileComponent = ({
+  currentUser,
+  history,
+  userId,
+  userDetails,
+  products,
+}) => {
+  // const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      const db = firebase.firestore();
-      const storeRef = db.collection("stores").doc(userDetails.storeId);
-      const snapshost = await storeRef.collection("products").get();
-      const productData = snapshost.docs.map((doc) => ({
-        ...doc.data(),
-      }));
-      setProducts(productData);
-    };
+    // const fetchProducts = async () => {
+    //   const db = firebase.firestore();
+    //   const storeRef = db.collection("stores").doc(userDetails.storeId);
+    //   const snapshost = await storeRef.collection("products").get();
+    //   const productData = snapshost.docs.map((doc) => ({
+    //     ...doc.data(),
+    //   }));
+    //   setProducts(productData);
+    // };
 
     if (currentUser && userDetails.uid) {
       if (userId !== userDetails.uid) {
         history.push("/login");
         alert("You're not authorized for this");
       } else {
-        fetchProducts();
+        // fetchProducts();
       }
     }
   }, [currentUser, history, userDetails.storeId, userId, userDetails.uid]);

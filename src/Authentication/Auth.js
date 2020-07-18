@@ -9,12 +9,22 @@ export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [userDetails, setUserDetails] = useState({});
   const [pending, setPending] = useState(true);
+  const [products, setProducts] = useState([]);
 
   // state={
 
   // }
 
   useEffect(() => {
+    const fetchProducts = async (storeId) => {
+      const db = firebase.firestore();
+      const userProductsRef = db.collection("stores").doc(storeId);
+      const snapshot = await userProductsRef.collection("products").get();
+      const incomingData = snapshot.docs.map((doc) => ({
+        ...doc.data(),
+      }));
+      setProducts(incomingData);
+    };
     const fetchUser = async (email) => {
       const db = firebase.firestore();
       const userRef = db.collection("users").where("email", "==", email);
@@ -23,6 +33,10 @@ export const AuthProvider = ({ children }) => {
         ...doc.data(),
       }));
       setUserDetails(userData[0]);
+      // localStorage.setItem()
+      if (userData[0].isSeller) {
+        fetchProducts(userData[0].storeId);
+      }
     };
 
     firebase.auth().onAuthStateChanged((user) => {
@@ -42,7 +56,7 @@ export const AuthProvider = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ currentUser, userDetails }}>
+    <AuthContext.Provider value={{ currentUser, userDetails, products }}>
       {children}
     </AuthContext.Provider>
   );
