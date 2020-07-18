@@ -1,0 +1,55 @@
+.heading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.heading .headline {
+  width: 100%;
+  margin: 10px 0;
+}
+
+.heading .category {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin: 10px 0;
+}
+
+.pricing {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.pricing .priceField {
+  margin-left: 10px;
+}
+
+.descriptionField {
+  width: 100%;
+}
+
+.updateBtn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding-right: 30px;
+}
+
+.updateBtn .btn {
+  background: var(--primaryColor) !important;
+  color: white;
+  font-weight: 600;
+}
+/*# sourceMappingURL=EditProduct.module.css.map */

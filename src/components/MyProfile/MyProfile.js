@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { useParams } from "react-router";
 import {
   TextField,
@@ -151,6 +151,7 @@ const ProfileComponent = ({ currentUser, history, userId, userDetails }) => {
                 key={product.title}
                 storeId={userDetails.storeId}
                 product={product}
+                history={history}
               />
             );
           })}
@@ -160,8 +161,8 @@ const ProfileComponent = ({ currentUser, history, userId, userDetails }) => {
   );
 };
 
-const HorizontalProduct = ({ product, storeId }) => {
-  const { imageUrls, title, price, headline } = product;
+const HorizontalProduct = ({ product, storeId, history }) => {
+  const { imageUrls, title, price, headline, id } = product;
   const [dialogOpen, setDialogOpen] = useState(false);
   const [eye, setEye] = useState(
     product.hidden ? "fas fa-eye-slash " : "fas fa-eye"
@@ -291,7 +292,10 @@ const HorizontalProduct = ({ product, storeId }) => {
           </Grid>
           <Grid item md={2} className={styles.editProduct}>
             <Tooltip title="Edit Product" placement="top">
-              <IconButton className={styles.iconContainer}>
+              <IconButton
+                className={styles.iconContainer}
+                onClick={() => history.push(`/edit-product/${id}`)}
+              >
                 <i className="fas fa-pencil-alt"></i>
               </IconButton>
             </Tooltip>

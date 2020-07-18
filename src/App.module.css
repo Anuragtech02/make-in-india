@@ -23,7 +23,6 @@ i {
 body {
   font-family: "Open Sans", sans-serif !important;
   background: var(--backgroundWhite);
-  overflow-y: scroll;
 }
 
 .appBarContainer,

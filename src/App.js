@@ -14,6 +14,7 @@ import {
   Signup,
   AddProduct,
   MyProfile,
+  EditProduct,
 } from "./components";
 import PrivateRoute from "./Authentication/PrivateRoute";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -77,6 +78,11 @@ const App = () => {
               exact
               path="/my-profile/:userId"
               component={MyProfile}
+            />
+            <PrivateRoute
+              exact
+              path="/edit-product/:productId"
+              component={EditProduct}
             />
             <Route component={NotFound} />
           </Switch>

@@ -65,6 +65,7 @@
 }
 .pricing {
   justify-content: flex-start;
+  align-items: center;
   h1 {
     font-weight: 600;
     color: var(--orangeTint);
@@ -77,6 +78,7 @@
 .affiliateButtons {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   width: 100%;
   .amazonBtn {
     background: var(--amazonBG);

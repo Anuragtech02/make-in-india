@@ -1,0 +1,32 @@
+.heading {
+  display: flex;
+  flex-direction: column;
+  .headline {
+    width: 100%;
+    margin: 10px 0;
+  }
+  .category {
+    width: fit-content;
+    margin: 10px 0;
+  }
+}
+.pricing {
+  display: flex;
+  align-items: center;
+  .priceField {
+    margin-left: 10px;
+  }
+}
+.descriptionField {
+  width: 100%;
+}
+.updateBtn {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 30px;
+  .btn {
+    background: var(--primaryColor) !important;
+    color: white;
+    font-weight: 600;
+  }
+}
