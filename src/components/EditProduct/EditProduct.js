@@ -239,7 +239,10 @@ const MyProduct = ({ product }) => {
                 onChange={(e) => setUpdateCategory(e.target.value)}
               />
               <h5>In Stock</h5>
-              <Link to={`/stores/${storeId}`} className={styles.noDecoration}>
+              <Link
+                to={`/stores/${storeId}`}
+                className={classNames(styles.noDecoration, newStyles.storeName)}
+              >
                 <h6>by {storeName}</h6>
               </Link>
               <div className={styles.underLine}></div>

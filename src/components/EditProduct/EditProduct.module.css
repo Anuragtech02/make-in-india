@@ -8,6 +8,12 @@
           flex-direction: column;
 }
 
+.heading h6 {
+  width: -webkit-fit-content !important;
+  width: -moz-fit-content !important;
+  width: fit-content !important;
+}
+
 .heading .headline {
   width: 100%;
   margin: 10px 0;

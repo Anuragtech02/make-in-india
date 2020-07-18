@@ -1,6 +1,9 @@
 .heading {
   display: flex;
   flex-direction: column;
+  h6 {
+    width: fit-content !important;
+  }
   .headline {
     width: 100%;
     margin: 10px 0;
