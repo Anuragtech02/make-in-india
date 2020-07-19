@@ -42,9 +42,9 @@ export const AuthProvider = ({ children }) => {
     firebase.auth().onAuthStateChanged((user) => {
       setCurrentUser(user);
       setPending(false);
-      fetchUser(user.email);
+      if (user) fetchUser(user.email);
     });
-  }, []);
+  }, [currentUser]);
 
   if (pending) {
     return (
