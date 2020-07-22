@@ -15,6 +15,12 @@ import {
   DialogContentText,
   DialogTitle,
   LinearProgress,
+  Table,
+  TableBody,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableContainer,
 } from "@material-ui/core";
 import styles from "./myProfile.module.css";
 import firebase from "../../Authentication/Firebase";
@@ -89,42 +95,16 @@ const ProfileComponent = ({
             style={{
               backgroundImage: `url(https://upload.wikimedia.org/wikipedia/commons/b/bf/Mona_Lisa-restored.jpg`,
             }}
-          >
-            {/* <h5>Change Photo</h5> */}
-          </div>
+          ></div>
           <div className={styles.personalDetails}>
             <div className={styles.inputContainer}>
               <h5>{userDetails.displayName}</h5>
-              {/* <TextField
-                className={styles.textField}
-                value={name}
-                label={userDetails.displayName}
-                size="small"
-                variant="outlined"
-                onChange={(e) => setName(e.target.value)}
-              /> */}
             </div>
 
             <div className={styles.inputContainer}>
               <h5>{userDetails.email}</h5>
-              {/* <TextField
-                className={styles.textField}
-                value={email}
-                label={userDetails.email}
-                size="small"
-                variant="outlined"
-                onChange={(e) => setEmail(e.target.value)}
-              /> */}
             </div>
             <div>
-              {/* <TextField
-                className={styles.textField}
-                value={mobile}
-                label={userDetails.mobile}
-                size="small"
-                variant="outlined"
-                onChange={(e) => setMobile(e.target.value)}
-              /> */}
               <h5>{userDetails.mobile}</h5>
             </div>
           </div>

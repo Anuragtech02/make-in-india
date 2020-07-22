@@ -17,13 +17,22 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchProducts = async (storeId) => {
-      const db = firebase.firestore();
-      const userProductsRef = db.collection("stores").doc(storeId);
-      const snapshot = await userProductsRef.collection("products").get();
-      const incomingData = snapshot.docs.map((doc) => ({
-        ...doc.data(),
-      }));
-      setProducts(incomingData);
+      const localProducts = localStorage.getItem("homeSlider");
+      if (localProducts.length) {
+        setProducts(
+          JSON.parse(localProducts).filter(
+            (product) => product.storeId === storeId
+          )
+        );
+      } else {
+        const db = firebase.firestore();
+        const userProductsRef = db.collection("stores").doc(storeId);
+        const snapshot = await userProductsRef.collection("products").get();
+        const incomingData = snapshot.docs.map((doc) => ({
+          ...doc.data(),
+        }));
+        setProducts(incomingData);
+      }
     };
     const fetchUser = async (email) => {
       const db = firebase.firestore();

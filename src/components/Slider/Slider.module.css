@@ -1,5 +1,4 @@
 .slider {
-  width: var(--fixedWidth);
   margin: auto;
   display: -webkit-box;
   display: -ms-flexbox;

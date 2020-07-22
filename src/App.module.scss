@@ -53,7 +53,7 @@ body {
   }
 }
 .productSlider {
-  width: var(--fixedWidth);
+  // width: var(--fixedWidth);
   margin: auto;
 }
 //Styles for side color panel
@@ -95,5 +95,19 @@ body {
   }
   .colorPanel {
     display: none;
+  }
+}
+.container {
+  width: var(--fixedWidth);
+  margin: auto;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h2 {
+    font-size: 1.5rem;
+    margin: 10px 0;
+    font-weight: 400;
   }
 }

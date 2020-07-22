@@ -57,20 +57,23 @@ const ProductSlider = () => {
 
   //Used to check width of the device
   useEffect(() => {
-    const unsubscribe = firebase
-      .firestore()
-      .collection("products")
-      .where("hidden", "==", false)
-      .onSnapshot((snapshot) => {
-        const newProduct = snapshot.docs.map((doc) => ({
-          ...doc.data(),
-        }));
-        setProducts(newProduct);
-        localStorage.setItem("homeSlider", JSON.stringify(newProduct));
-      });
+    const localProducts = localStorage.getItem("homeSlider");
+    const unsubscribe = localProducts.length
+      ? setProducts(JSON.parse(localProducts))
+      : firebase
+          .firestore()
+          .collection("products")
+          .where("hidden", "==", false)
+          .onSnapshot((snapshot) => {
+            const newProduct = snapshot.docs.map((doc) => ({
+              ...doc.data(),
+            }));
+            setProducts(newProduct);
+            localStorage.setItem("homeSlider", JSON.stringify(newProduct));
+          });
 
     return () => {
-      localStorage.getItem("homeSlider") === null
+      !localStorage.getItem("homeSlider").length
         ? unsubscribe()
         : setProducts(JSON.parse(localStorage.getItem("homeSlider")));
     };

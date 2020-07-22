@@ -96,13 +96,21 @@ export default App;
 
 const Home = () => {
   return (
-    <>
+    <div className={styles.container}>
       <div className={styles.slider}>
         <Slider />
       </div>
       <div className={styles.productSlider}>
         <ProductSlider />
       </div>
-    </>
+      <div className={styles.info}>
+        <h2>Do you know ?</h2>
+        <p>
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cumque iure
+          quas quasi sunt sequi. Culpa quis facere corrupti alias odit cumque
+          id. Inventore veniam laboriosam, rerum magnam facilis ad laborum?
+        </p>
+      </div>
+    </div>
   );
 };
