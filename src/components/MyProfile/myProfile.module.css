@@ -105,93 +105,44 @@
   margin: 0 10px;
 }
 
-.dashboard .heading {
+.tableHead {
+  background: #e6e6e6;
+}
+
+.heading {
   width: 100%;
   text-align: left;
+  margin: 10px 0;
 }
 
-.dashboard .titleBar {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  text-align: left;
-  margin-top: 20px;
-  padding: 10px;
-  background: #d3d3d3;
-}
-
-.dashboard .titleBar h4 {
-  font-weight: 600;
-}
-
-.dashboard .titleBar .editProduct {
-  text-align: right;
-}
-
-.dashboard .products {
-  width: 100%;
-}
-
-.dashboard .products .individualProduct {
-  margin: 5px 0;
-}
-
-.dashboard .products .product {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  padding: 10px;
-}
-
-.dashboard .products .product .productDetails {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.dashboard .products .product .productDetails h5 {
-  font-weight: 600;
-}
-
-.dashboard .products .product .visibility .eye i {
+.eye i {
   color: black !important;
-  font-size: 1.2rem;
 }
 
-.dashboard .products .product .productName {
-  text-align: left;
-  padding-right: 15px;
+.productImage {
+  width: 80px !important;
 }
 
-.dashboard .products .product .productPrice {
-  margin: auto;
-}
-
-.dashboard .products .product .productImage img {
-  width: 80px;
-}
-
-.dashboard .products .product .editProduct {
+.editProduct {
   text-align: right;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
 
-.dashboard .products .product .editProduct .iconContainer i {
+.editProduct .iconContainer i {
   color: var(--primaryColor) !important;
   text-align: right;
   font-size: 1.2rem;
 }
 
-.dashboard .products .product .editProduct .deleteProduct i {
+.editProduct .deleteProduct i {
   color: #b60909 !important;
 }
 /*# sourceMappingURL=myProfile.module.css.map */

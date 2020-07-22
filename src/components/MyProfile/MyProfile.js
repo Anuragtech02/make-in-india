@@ -114,35 +114,29 @@ const ProfileComponent = ({
         <div className={styles.heading}>
           <h2>My Products</h2>
         </div>
-        <Grid container className={styles.titleBar}>
-          <Grid item md={1} className={styles.productVisibility}>
-            <h4>Status</h4>
-          </Grid>
-          <Grid item md={2} className={styles.imageHeading}>
-            <h4>Image</h4>
-          </Grid>
-          <Grid item md={6} className={styles.nameHeading}>
-            <h4>Product Name</h4>
-          </Grid>
-          <Grid item md={1} className={styles.priceHeading}>
-            <h4>Price (₹)</h4>
-          </Grid>
-          <Grid item md={2} className={styles.editProduct}>
-            <h4>Edit Details</h4>
-          </Grid>
-        </Grid>
-        <div className={styles.products}>
-          {products.map((product) => {
-            return (
-              <HorizontalProduct
-                key={product.title}
-                storeId={userDetails.storeId}
-                product={product}
-                history={history}
-              />
-            );
-          })}
-        </div>
+        <TableContainer className={styles.tableContainer} component={Paper}>
+          <Table className={styles.table}>
+            <TableHead className={styles.tableHead}>
+              <TableRow>
+                <TableCell>Status</TableCell>
+                <TableCell>Image</TableCell>
+                <TableCell>Product Name</TableCell>
+                <TableCell>Price</TableCell>
+                <TableCell align="right">Actions</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {products.map((product) => (
+                <HorizontalProduct
+                  key={product.title}
+                  storeId={userDetails.storeId}
+                  product={product}
+                  history={history}
+                />
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </Paper>
     </div>
   );
@@ -226,7 +220,7 @@ const HorizontalProduct = ({ product, storeId, history }) => {
   };
 
   return (
-    <div>
+    <>
       <Dialog
         open={dialogOpen}
         onClose={() => setDialogOpen(false)}
@@ -251,36 +245,36 @@ const HorizontalProduct = ({ product, storeId, history }) => {
           </Button>
         </DialogActions>
       </Dialog>
-      <Card className={styles.individualProduct}>
-        <Grid container className={styles.product}>
-          <Grid item md={1} className={styles.visibility}>
-            <Tooltip title="Show/Hide Product" placement="top">
-              <IconButton className={styles.eye} onClick={handleVisibility}>
-                <i className={eye}></i>
-              </IconButton>
-            </Tooltip>
-          </Grid>
-          <Grid item md={9}>
-            <Grid container className={styles.productDetails}>
-              <Grid item md={3} className={styles.productImage}>
-                <img src={imageUrls[0]} alt={`product-${title}`} />
-              </Grid>
-              <Grid item md={8} className={styles.productName}>
-                <h5>
-                  <b>{title}</b>
-                  <br />
-                  {headline}
-                </h5>
-              </Grid>
-              <Grid item md={1} className={styles.productPrice}>
-                <h5>{price}</h5>
-              </Grid>
-            </Grid>
-          </Grid>
-          <Grid item md={2} className={styles.editProduct}>
+      <TableRow className={styles.individualProduct}>
+        <TableCell component="th" scope="row">
+          <Tooltip title="Show/Hide Product" placement="top">
+            <IconButton className={styles.eye} onClick={handleVisibility}>
+              <i className={eye}></i>
+            </IconButton>
+          </Tooltip>
+        </TableCell>
+        <TableCell>
+          <img
+            className={styles.productImage}
+            src={imageUrls[0]}
+            alt={`product-${title}`}
+          />
+        </TableCell>
+        <TableCell>
+          <h5>
+            <b>{title}</b>
+            <br />
+            {headline}
+          </h5>
+        </TableCell>
+        <TableCell>
+          <h5>{price}</h5>
+        </TableCell>
+        <TableCell align="right">
+          <div className={styles.editProduct}>
             <Tooltip title="Edit Product" placement="top">
               <IconButton
-                className={styles.iconContainer}
+                className={classNames(styles.iconContainer)}
                 onClick={() => history.push(`/edit-product/${id}`)}
               >
                 <i className="fas fa-pencil-alt"></i>
@@ -296,9 +290,9 @@ const HorizontalProduct = ({ product, storeId, history }) => {
                 <i className="fas fa-times"></i>
               </IconButton>
             </Tooltip>
-          </Grid>
-        </Grid>
-      </Card>
-    </div>
+          </div>
+        </TableCell>
+      </TableRow>
+    </>
   );
 };

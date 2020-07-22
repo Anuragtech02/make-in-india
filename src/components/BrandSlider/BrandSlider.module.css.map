@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,YAAY,CAAC;EACX,UAAU,EAAE,OAAkB;EAC9B,WAAW,EAAE,MAAM;EACnB,OAAO,EAAE,MAAM;EACf,eAAe,EAAE,MAAM;EACvB,OAAO,EAAE,IAAI;CACd;;AACD,AAAA,eAAe,CAAC;EACd,OAAO,EAAE,eAAe;EACxB,eAAe,EAAE,MAAM;EACvB,WAAW,EAAE,MAAM;EACnB,MAAM,EAAE,IAAI;EACZ,UAAU,EAAE,KAAK;CAKlB;;AAVD,AAME,eANa,CAMb,WAAW,CAAC;EACV,KAAK,EAAE,KAAK;EACZ,MAAM,EAAE,IAAI;CACb",
+    "sources": [
+        "BrandSlider.module.scss"
+    ],
+    "names": [],
+    "file": "BrandSlider.module.css"
+}

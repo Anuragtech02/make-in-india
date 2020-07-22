@@ -1,0 +1,18 @@
+.brandSlider {
+  background: rgb(219, 219, 219);
+  align-items: center;
+  padding: 20px 0;
+  justify-content: center;
+  display: flex;
+}
+.brandContainer {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  min-height: 100px;
+  .brandImage {
+    width: 100px;
+    margin: auto;
+  }
+}
