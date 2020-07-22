@@ -123,7 +123,6 @@ const Home = ({ history }) => {
         <ProductSlider />
       </div>
       <div className={styles.info}>
-        <h2>Browse by Category</h2>
         <Grid container spacing={2}>
           {categories.map((category) => (
             <Grid item xs={6} md={4} key={category.category}>

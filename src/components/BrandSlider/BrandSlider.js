@@ -35,7 +35,21 @@ const BrandSlider = () => {
       <Slider {...settings} className={styles.brandSlider}>
         {brands.map((brand, index) => {
           return (
-            <motion.div key={index} className={styles.brandContainer}>
+            <motion.div
+              intial={{
+                opacity: 0,
+                size: 0.8,
+              }}
+              animate={{
+                opacity: 1,
+                size: 1,
+              }}
+              transition={{
+                duration: 0.2,
+              }}
+              key={index}
+              className={styles.brandContainer}
+            >
               <img className={styles.brandImage} src={brand} alt={brand}></img>
             </motion.div>
           );

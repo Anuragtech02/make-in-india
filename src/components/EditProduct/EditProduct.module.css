@@ -39,6 +39,10 @@
   margin-left: 10px;
 }
 
+.pricingContainer {
+  width: 100%;
+}
+
 .descriptionField {
   width: 100%;
 }
@@ -57,5 +61,21 @@
   background: var(--primaryColor) !important;
   color: white;
   font-weight: 600;
+}
+
+.affiliateLinks {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100% !important;
+}
+
+.affiliateLinks .amazonEdit,
+.affiliateLinks .flipkartEdit {
+  width: 100% !important;
+  margin-top: 20px;
 }
 /*# sourceMappingURL=EditProduct.module.css.map */

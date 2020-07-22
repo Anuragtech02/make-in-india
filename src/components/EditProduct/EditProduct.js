@@ -99,6 +99,8 @@ const MyProduct = ({ product }) => {
   const [updateStoreId, setUpdateStoreId] = useState(storeId);
   const [updateHeadline, setUpdateHeadline] = useState(headline);
   const [updateDescription, setUpdateDescription] = useState(description);
+  const [updateAmazonLink, setUpdateAmazonLink] = useState(amazonLink);
+  const [updateFlipkartLink, setUpdateFlipkartLink] = useState(flipkartLink);
 
   useEffect(() => {
     document.title = `INDIPRODUCTS | ${headline}`;
@@ -267,7 +269,12 @@ const MyProduct = ({ product }) => {
                 ease: "easeOut",
               }}
             >
-              <motion.div className={classNames(styles.pricing)}>
+              <motion.div
+                className={classNames(
+                  styles.pricing,
+                  newStyles.pricingContainer
+                )}
+              >
                 <h6>MRP</h6>
                 <div className={newStyles.pricing}>
                   <h1>{`₹ `}</h1>
@@ -280,37 +287,25 @@ const MyProduct = ({ product }) => {
                     onChange={(e) => setUpdatePrice(e.target.value)}
                   />
                 </div>
-              </motion.div>
-              <motion.div className={styles.affiliateButtons}>
-                <Tooltip title="Add to favourites" placement="top">
-                  <div>
-                    <IconButton
-                      onClick={handleClickVariant("success", storeName, id)}
-                      className={styles.likeIcon}
-                    >
-                      <i
-                        id={product.id}
-                        className={classNames("fas fa-heart")}
-                      />
-                    </IconButton>
-                  </div>
-                </Tooltip>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  className={styles.amazonBtn}
-                  onClick={() => gotoURL(amazonLink)}
-                >
-                  <img src={amazon} alt="amazon-link" /> amazon.in
-                </Button>
-                <Button
-                  variant="contained"
-                  color="primary"
-                  className={styles.flipkartBtn}
-                  onClick={() => gotoURL(flipkartLink)}
-                >
-                  <img src={flipkart} alt="flipkart-link" />
-                </Button>
+                <div className={newStyles.affiliateLinks}>
+                  <TextField
+                    className={newStyles.amazonEdit}
+                    label="Amazon Link"
+                    variant="filled"
+                    value={updateAmazonLink}
+                    size="small"
+                    onChange={(e) => setUpdateAmazonLink(e.target.value)}
+                  />
+                  <span style={{ width: "10px" }}></span>
+                  <TextField
+                    className={newStyles.flipkartEdit}
+                    label="Flipkart Link"
+                    variant="filled"
+                    value={updateFlipkartLink}
+                    size="small"
+                    onChange={(e) => setUpdateFlipkartLink(e.target.value)}
+                  />
+                </div>
               </motion.div>
             </motion.div>
             <motion.div
