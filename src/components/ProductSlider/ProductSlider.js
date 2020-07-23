@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useLayoutEffect } from "react";
-import { Grid, CircularProgress, Box } from "@material-ui/core";
+import React, { useState, useEffect, useLayoutEffect, createRef } from "react";
+import { Grid, CircularProgress, Box, IconButton } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import styles from "./ProductSlider.module.css";
 // import products from "../../assets/products.json";
@@ -11,53 +11,43 @@ import firebase from "../../Authentication/Firebase";
 import classNames from "classnames";
 
 const ProductSlider = () => {
+  const slider = createRef();
+
   useEffect(() => {
-    document.querySelectorAll(".slick-arrow").forEach((item) => {
-      item.style.background = "white";
-      item.style.width = "35px";
-      item.style.height = "35px";
-      item.style.borderRadius = "100px";
-      item.style.zIndex = "1000";
-      item.style.boxShadow = "2px 2px 10px rgba(0,0,0,0.2)";
-    });
-    document.querySelectorAll(".slick-next").forEach((item) => {
-      item.style.right = "30px";
-    });
-    document.querySelectorAll(".slick-prev").forEach((item) => {
-      item.style.left = "30px";
-    });
-    document.styleSheets[0].addRule(
-      ".slick-next:before",
-      "color: black !important;"
-    );
-    document.styleSheets[0].addRule(
-      ".slick-prev:before",
-      "color: black !important"
-    );
-
-    function updateSize() {
-      if (window.innerWidth > 1700) setVisibleSlides(4);
-      else if (widthBetween(1200, 1700)) setVisibleSlides(3);
-      else if (widthBetween(800, 1200)) setVisibleSlides(2);
-      else if (window.innerWidth <= 800) setVisibleSlides(1);
-    }
-    window.addEventListener("resize", updateSize);
+    // document.querySelectorAll(".slick-arrow").forEach((item) => {
+    //   item.style.background = "white";
+    //   item.style.width = "35px";
+    //   item.style.height = "35px";
+    //   item.style.borderRadius = "100px";
+    //   item.style.zIndex = "1000";
+    //   item.style.boxShadow = "2px 2px 10px rgba(0,0,0,0.2)";
+    // });
+    // document.querySelectorAll(".slick-next").forEach((item) => {
+    //   item.style.right = "30px";
+    // });
+    // document.querySelectorAll(".slick-prev").forEach((item) => {
+    //   item.style.left = "30px";
+    // });
+    // document.styleSheets[0].addRule(
+    //   ".slick-next:before",
+    //   "color: black !important;"
+    // );
+    // document.styleSheets[0].addRule(
+    //   ".slick-prev:before",
+    //   "color: black !important"
+    // );
   }, []);
-
-  const [visibleSlides, setVisibleSlides] = useState(4);
-
-  //Check if width is between given range
-  const widthBetween = (smaller, larger) => {
-    if (window.innerWidth <= larger && window.innerWidth > smaller) {
-      return true;
-    } else {
-      return false;
-    }
-  };
 
   const [products, setProducts] = useState([]);
 
-  //Used to check width of the device
+  const gotoPrev = () => {
+    slider.current.slickPrev();
+  };
+
+  const gotoNext = () => {
+    slider.current.slickNext();
+  };
+
   useEffect(() => {
     const localProducts = localStorage.getItem("homeSlider");
     const unsubscribe = localProducts.length
@@ -81,17 +71,6 @@ const ProductSlider = () => {
     };
   }, []);
 
-  //Used to detect layout changes
-  useLayoutEffect(() => {
-    function updateSize() {
-      if (window.innerWidth > 1700) setVisibleSlides(4);
-      else if (widthBetween(1200, 1700)) setVisibleSlides(3);
-      else if (widthBetween(800, 1200)) setVisibleSlides(2);
-      else if (window.innerWidth <= 800) setVisibleSlides(1);
-    }
-    window.addEventListener("resize", updateSize);
-  }, []);
-
   const settings = {
     className: "center",
     infinite: false,
@@ -99,35 +78,66 @@ const ProductSlider = () => {
     accessibility: true,
     dots: true,
     lazyload: true,
-    slidesToShow: visibleSlides,
+    slidesToShow: 4,
     swipeToSlide: true,
+    responsive: [
+      {
+        breakpoint: 1700,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
   };
 
   return !products.length ? (
-    <Slider
-      {...settings}
-      className={classNames(styles.slider, styles.loadingSlider)}
-    >
-      <Box className={styles.loadingBox} pt={0.5}>
-        <Skeleton variant="rect" width={210} height={150} />
-        <Skeleton width="60%" />
-      </Box>
-      <Box className={styles.loadingBox} pt={0.5}>
-        <Skeleton variant="rect" width={210} height={150} />
-        <Skeleton width="60%" />
-      </Box>
-      <Box className={styles.loadingBox} pt={0.5}>
-        <Skeleton variant="rect" width={210} height={150} />
-        <Skeleton width="60%" />
-      </Box>
-      <Box className={styles.loadingBox} pt={0.5}>
-        <Skeleton variant="rect" width={210} height={150} />
-        <Skeleton width="60%" />
-      </Box>
-    </Slider>
+    <div>
+      <IconButton onClick={() => gotoPrev()} className={styles.arrowLeft}>
+        <i className="fas fa-arrow-circle-left"></i>
+      </IconButton>
+      <Slider
+        {...settings}
+        className={classNames(styles.slider, styles.loadingSlider)}
+      >
+        <Box className={styles.loadingBox} pt={0.5}>
+          <Skeleton variant="rect" width={210} height={150} />
+          <Skeleton width="60%" />
+        </Box>
+        <Box className={styles.loadingBox} pt={0.5}>
+          <Skeleton variant="rect" width={210} height={150} />
+          <Skeleton width="60%" />
+        </Box>
+        <Box className={styles.loadingBox} pt={0.5}>
+          <Skeleton variant="rect" width={210} height={150} />
+          <Skeleton width="60%" />
+        </Box>
+        <Box className={styles.loadingBox} pt={0.5}>
+          <Skeleton variant="rect" width={210} height={150} />
+          <Skeleton width="60%" />
+        </Box>
+      </Slider>
+      <IconButton onClick={() => gotoNext()} className={styles.arrowRight}>
+        <i className="fas fa-arrow-circle-right"></i>
+      </IconButton>
+    </div>
   ) : (
     <div className={styles.container}>
-      <Slider {...settings} className={styles.slider}>
+      <IconButton onClick={() => gotoPrev()} className={styles.arrowLeft}>
+        <i className="fas fa-arrow-circle-left"></i>
+      </IconButton>
+      <Slider {...settings} className={styles.slider} ref={slider}>
         {products.map((product) => {
           return (
             <div key={product.id}>
@@ -138,6 +148,9 @@ const ProductSlider = () => {
           );
         })}
       </Slider>
+      <IconButton onClick={() => gotoNext()} className={styles.arrowRight}>
+        <i className="fas fa-arrow-circle-right"></i>
+      </IconButton>
     </div>
   );
 };

@@ -7,6 +7,13 @@
           justify-content: center;
 }
 
+.container a {
+  text-decoration: none;
+  color: black;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
 .navContainer {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -30,44 +37,36 @@
   margin: auto;
 }
 
-.nav a {
-  text-decoration: none;
-  color: black;
-  font-weight: 300;
-  text-transform: uppercase;
+.navLink {
+  width: -webkit-max-content !important;
+  width: -moz-max-content !important;
+  width: max-content !important;
+  padding: 0 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  /* number of lines to show */
+  -webkit-box-orient: vertical;
 }
 
-@media screen and (max-width: 1200px) {
-  .nav {
-    width: 90%;
-  }
+.sliderContainer {
+  overflow: hidden !important;
+  border-radius: 0 !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 10vh;
 }
 
-@media screen and (max-width: 800px) {
-  .container {
-    overflow-x: hidden;
-  }
-  .navContainer {
-    width: -webkit-max-content;
-    width: -moz-max-content;
-    width: max-content;
-  }
-  .nav {
-    width: -webkit-max-content;
-    width: -moz-max-content;
-    width: max-content;
-    margin-bottom: -50px;
-    /* maximum width of scrollbar */
-    padding-bottom: 50px;
-    /* maximum width of scrollbar */
-    overflow-y: hidden;
-    overflow-x: scroll;
-  }
-  .nav a {
-    margin: 0 20px;
-    width: -webkit-max-content;
-    width: -moz-max-content;
-    width: max-content;
-  }
+.slider {
+  width: 100%;
+  overflow: hidden;
 }
 /*# sourceMappingURL=NavBar.module.css.map */

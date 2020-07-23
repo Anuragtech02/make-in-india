@@ -1,6 +1,12 @@
 .container {
   display: flex;
   justify-content: center;
+  a {
+    text-decoration: none;
+    color: black;
+    font-weight: 300;
+    text-transform: uppercase;
+  }
 }
 
 .navContainer {
@@ -15,37 +21,52 @@
   justify-content: space-between;
   width: var(--fixedWidth);
   margin: auto;
-  a {
-    text-decoration: none;
-    color: black;
-    font-weight: 300;
-    text-transform: uppercase;
-  }
 }
 
-@media screen and (max-width: 1200px) {
-  .nav {
-    width: 90%;
-  }
+.navLink {
+  width: max-content !important;
+  padding: 0 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* number of lines to show */
+  -webkit-box-orient: vertical;
 }
-
-@media screen and (max-width: 800px) {
-  .container {
-    overflow-x: hidden;
-  }
-  .navContainer {
-    width: max-content;
-  }
-  .nav {
-    width: max-content;
-    margin-bottom: -50px; /* maximum width of scrollbar */
-    padding-bottom: 50px; /* maximum width of scrollbar */
-    overflow-y: hidden;
-    overflow-x: scroll;
-
-    a {
-      margin: 0 20px;
-      width: max-content;
-    }
-  }
+.sliderContainer {
+  overflow: hidden !important;
+  border-radius: 0 !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
 }
+.slider {
+  width: 100%;
+  overflow: hidden;
+}
+// @media screen and (max-width: 1200px) {
+//   .nav {
+//     width: 90%;
+//   }
+// }
+
+// @media screen and (max-width: 800px) {
+//   .container {
+//     overflow-x: hidden;
+//   }
+//   .navContainer {
+//     overflow: hidden;
+//   }
+//   .nav {
+//     width: max-content;
+//     margin-bottom: -50px; /* maximum width of scrollbar */
+//     padding-bottom: 50px; /* maximum width of scrollbar */
+//     overflow-y: hidden;
+//     overflow-x: scroll;
+
+//     a {
+//       margin: 0 20px;
+//       width: max-content;
+//     }
+//   }
+// }

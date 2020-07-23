@@ -30,6 +30,26 @@ const BrandSlider = () => {
     lazyload: true,
     slidesToShow: 6,
     swipeToSlide: true,
+    responsive: [
+      {
+        breakpoint: 1500,
+        settings: {
+          slidesToShow: 5,
+        },
+      },
+      {
+        breakpoint: 1000,
+        settings: {
+          slidesToShow: 4,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+    ],
   };
 
   return !brands ? (

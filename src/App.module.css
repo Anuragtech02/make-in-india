@@ -179,6 +179,12 @@ body {
   color: white !important;
   min-height: 20vh;
   background: rgba(0, 0, 0, 0.4);
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.categoryCard .innerDiv:hover {
+  background: rgba(0, 0, 0, 0.6);
 }
 
 .categoryCard .innerDiv h1 {

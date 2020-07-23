@@ -136,6 +136,10 @@ body {
     color: white !important;
     min-height: 20vh;
     background: rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+    &:hover {
+      background: rgba(0, 0, 0, 0.6);
+    }
     h1 {
       transition: all 0.2s ease;
       &:hover {
