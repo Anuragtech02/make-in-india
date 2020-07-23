@@ -37,14 +37,11 @@
     width: max-content;
   }
   .nav {
-    overflow-x: auto;
     width: max-content;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-    // scrollbar-width: none !important;
-    &::-webkit-scrollbar {
-      display: none;
-    }
+    margin-bottom: -50px; /* maximum width of scrollbar */
+    padding-bottom: 50px; /* maximum width of scrollbar */
+    overflow-y: hidden;
+    overflow-x: scroll;
 
     a {
       margin: 0 20px;
