@@ -1,5 +1,7 @@
 import React from "react";
 import Slider from "react-slick";
+import { Box } from "@material-ui/core";
+import Skeleton from "@material-ui/lab/Skeleton";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styles from "./BrandSlider.module.css";
@@ -24,13 +26,34 @@ const BrandSlider = () => {
     infinite: false,
     centerPadding: "60px",
     accessibility: true,
-    dots: true,
+    dots: false,
     lazyload: true,
     slidesToShow: 6,
     swipeToSlide: true,
   };
 
-  return (
+  return !brands ? (
+    <Slider {...settings} className={styles.brandSlider}>
+      <Box className={styles.loadingBox} pt={0.5}>
+        <Skeleton variant="rect" width={200} height={80} />
+      </Box>
+      <Box className={styles.loadingBox} pt={0.5}>
+        <Skeleton variant="rect" width={200} height={80} />
+      </Box>
+      <Box className={styles.loadingBox} pt={0.5}>
+        <Skeleton variant="rect" width={200} height={80} />
+      </Box>
+      <Box className={styles.loadingBox} pt={0.5}>
+        <Skeleton variant="rect" width={200} height={80} />
+      </Box>
+      <Box className={styles.loadingBox} pt={0.5}>
+        <Skeleton variant="rect" width={200} height={80} />
+      </Box>
+      <Box className={styles.loadingBox} pt={0.5}>
+        <Skeleton variant="rect" width={200} height={80} />
+      </Box>
+    </Slider>
+  ) : (
     <div>
       <Slider {...settings} className={styles.brandSlider}>
         {brands.map((brand, index) => {

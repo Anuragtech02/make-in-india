@@ -37,12 +37,37 @@
   text-transform: uppercase;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1200px) {
   .nav {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .container {
+    overflow-x: hidden;
+  }
+  .navContainer {
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+  }
+  .nav {
+    overflow-x: auto;
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .nav::-webkit-scrollbar {
+    display: none;
+  }
+  .nav a {
+    margin: 0 20px;
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
   }
 }
 /*# sourceMappingURL=NavBar.module.css.map */

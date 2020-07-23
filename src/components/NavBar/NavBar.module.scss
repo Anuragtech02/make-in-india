@@ -23,8 +23,32 @@
   }
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 1200px) {
   .nav {
-    flex-direction: column;
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .container {
+    overflow-x: hidden;
+  }
+  .navContainer {
+    width: max-content;
+  }
+  .nav {
+    overflow-x: auto;
+    width: max-content;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    // scrollbar-width: none !important;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    a {
+      margin: 0 20px;
+      width: max-content;
+    }
   }
 }

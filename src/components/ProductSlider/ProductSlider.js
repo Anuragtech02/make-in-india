@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useLayoutEffect } from "react";
-import { Grid, CircularProgress } from "@material-ui/core";
+import { Grid, CircularProgress, Box } from "@material-ui/core";
+import Skeleton from "@material-ui/lab/Skeleton";
 import styles from "./ProductSlider.module.css";
 // import products from "../../assets/products.json";
 import Slider from "react-slick";
@@ -7,6 +8,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Product } from "../../components";
 import firebase from "../../Authentication/Firebase";
+import classNames from "classnames";
 
 const ProductSlider = () => {
   useEffect(() => {
@@ -101,8 +103,28 @@ const ProductSlider = () => {
     swipeToSlide: true,
   };
 
-  return !products ? (
-    <CircularProgress />
+  return !products.length ? (
+    <Slider
+      {...settings}
+      className={classNames(styles.slider, styles.loadingSlider)}
+    >
+      <Box className={styles.loadingBox} pt={0.5}>
+        <Skeleton variant="rect" width={210} height={150} />
+        <Skeleton width="60%" />
+      </Box>
+      <Box className={styles.loadingBox} pt={0.5}>
+        <Skeleton variant="rect" width={210} height={150} />
+        <Skeleton width="60%" />
+      </Box>
+      <Box className={styles.loadingBox} pt={0.5}>
+        <Skeleton variant="rect" width={210} height={150} />
+        <Skeleton width="60%" />
+      </Box>
+      <Box className={styles.loadingBox} pt={0.5}>
+        <Skeleton variant="rect" width={210} height={150} />
+        <Skeleton width="60%" />
+      </Box>
+    </Slider>
   ) : (
     <div className={styles.container}>
       <Slider {...settings} className={styles.slider}>

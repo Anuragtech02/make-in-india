@@ -5,6 +5,14 @@
   justify-content: center;
   display: flex;
 }
+.loadingBox {
+  min-height: 100px !important;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px !important;
+}
 .brandContainer {
   display: flex !important;
   justify-content: center;
