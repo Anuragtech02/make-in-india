@@ -12,6 +12,7 @@
     max-width: 300px;
     min-height: 350px;
     max-height: 400px;
+    border-radius: 5px;
   }
 }
 .description {
@@ -42,4 +43,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+@media screen and (max-width: 1500px) {
+  .imageContainer {
+    img {
+      min-width: 200px;
+      max-width: 250px;
+      min-height: 300px;
+      max-height: 350px;
+    }
+  }
 }
