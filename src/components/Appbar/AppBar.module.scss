@@ -1,13 +1,22 @@
 .logo {
-  font-weight: 700 !important;
-  color: white;
   width: fit-content !important;
+  h3 {
+    font-size: 2rem;
+    font-weight: 700 !important;
+    color: white;
+  }
+}
+.accountMobile {
+  display: none !important;
+}
+.accountLarge {
+  display: flex !important;
 }
 .container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 0;
+  padding: 30px 0;
   margin: auto;
   width: var(--fixedWidth);
 }
@@ -17,6 +26,9 @@
   align-items: center;
   flex: 1;
   margin: 0 100px;
+}
+.inputPaperMobile {
+  display: none !important;
 }
 .searchInput {
   flex: 1;
@@ -55,11 +67,44 @@
   color: black !important;
 }
 
+@media screen and (max-width: 1500px) {
+  .inputPaper {
+    margin: auto 70px;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .logo {
+    h3 {
+      font-size: 2rem;
+    }
+  }
+  .inputPaper {
+    margin: auto 40px;
+  }
+}
+
 @media screen and (max-width: 800px) {
   .container {
     flex-direction: column;
   }
+  .logo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100% !important;
+    h3 {
+      font-size: 1.8rem;
+    }
+  }
+  .accountMobile {
+    display: flex !important;
+  }
+  .accountLarge {
+    display: none !important;
+  }
   .inputPaper {
-    margin: 0 10px;
+    width: 100% !important;
+    margin-top: 20px;
   }
 }

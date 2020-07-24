@@ -14,7 +14,40 @@ import { AuthContext } from "../../Authentication/Auth";
 import firebase from "../../Authentication/Firebase";
 import classNames from "classnames";
 
-const Appbar = ({ history }) => {
+const Appbar = () => {
+  return (
+    <div className={styles.container}>
+      <div variant="h4" className={styles.logo}>
+        <Link to="/" className={styles.noDecoration}>
+          <h3>INDIPRODUCTS</h3>
+        </Link>
+        <div className={styles.accountMobile}>
+          <AccountComponent />
+        </div>
+      </div>
+      <Paper className={styles.inputPaper}>
+        <InputBase
+          className={styles.searchInput}
+          placeholder="Type something to search..."
+        />
+        <IconButton
+          type="submit"
+          aria-label="search"
+          className={styles.searchIcon}
+        >
+          <i className="fas fa-search"></i>
+        </IconButton>
+      </Paper>
+      <div className={styles.accountLarge}>
+        <AccountComponent />
+      </div>
+    </div>
+  );
+};
+
+export default withRouter(Appbar);
+
+const AccountComponent = ({ history }) => {
   const [menuIcon, setMenuIcon] = useState("down");
   const [anchorEl, setAnchorEl] = useState(null);
   const [account, setAccount] = useState("Account");
@@ -68,70 +101,48 @@ const Appbar = ({ history }) => {
   };
 
   return (
-    <div className={styles.container}>
-      <Typography variant="h4" className={styles.logo}>
-        <Link to="/" className={styles.noDecoration}>
-          INDIPRODUCTS
+    <div className={styles.account}>
+      <Button
+        aria-controls="simple-menu"
+        aria-haspopup="true"
+        onClick={handleClickMenu}
+        className={styles.menuBtn}
+      >
+        <i className="fas fa-user" /> {account}{" "}
+        <i className={`fas fa-angle-${menuIcon}`} />
+      </Button>
+      <Menu
+        id="simple-menu"
+        anchorEl={anchorEl}
+        keepMounted
+        open={Boolean(anchorEl)}
+        onClose={handleCloseMenu}
+        className={styles.menu}
+      >
+        <Link
+          to={item1Route}
+          className={classNames(styles.noDecoration, styles.colorBlack)}
+        >
+          <MenuItem onClick={handleCloseMenu}>{item1}</MenuItem>
         </Link>
-      </Typography>
-      <Paper className={styles.inputPaper}>
-        <InputBase
-          className={styles.searchInput}
-          placeholder="Type something to search..."
-        />
-        <IconButton
-          type="submit"
-          aria-label="search"
-          className={styles.searchIcon}
-        >
-          <i className="fas fa-search"></i>
-        </IconButton>
-      </Paper>
-      <div className={styles.account}>
-        <Button
-          aria-controls="simple-menu"
-          aria-haspopup="true"
-          onClick={handleClickMenu}
-          className={styles.menuBtn}
-        >
-          <i className="fas fa-user" /> {account}{" "}
-          <i className={`fas fa-angle-${menuIcon}`} />
-        </Button>
-        <Menu
-          id="simple-menu"
-          anchorEl={anchorEl}
-          keepMounted
-          open={Boolean(anchorEl)}
-          onClose={handleCloseMenu}
-          className={styles.menu}
-        >
+        {isSeller ? (
           <Link
-            to={item1Route}
+            to="/add-product"
             className={classNames(styles.noDecoration, styles.colorBlack)}
           >
-            <MenuItem onClick={handleCloseMenu}>{item1}</MenuItem>
+            <MenuItem onClick={handleCloseMenu}>Add Product</MenuItem>
           </Link>
-          {isSeller ? (
-            <Link
-              to="/add-product"
-              className={classNames(styles.noDecoration, styles.colorBlack)}
-            >
-              <MenuItem onClick={handleCloseMenu}>Add Product</MenuItem>
-            </Link>
-          ) : (
-            ""
-          )}
-          <Link
-            to={item2Route}
-            className={classNames(styles.noDecoration, styles.colorBlack)}
-            onClick={() => (currentUser ? handleLogout() : handleCloseMenu())}
-          >
-            <MenuItem onClick={handleCloseMenu}>{item2}</MenuItem>
-          </Link>
-        </Menu>
-      </div>
+        ) : (
+          ""
+        )}
+        <Link
+          to={item2Route}
+          className={classNames(styles.noDecoration, styles.colorBlack)}
+          onClick={() => (currentUser ? handleLogout() : handleCloseMenu())}
+        >
+          <MenuItem onClick={handleCloseMenu}>{item2}</MenuItem>
+        </Link>
+      </Menu>
     </div>
   );
 };
-
-export default withRouter(Appbar);

@@ -55,13 +55,26 @@
   margin-left: 10px;
 }
 
-@media screen and (max-width: 800px) {
-  .container,
+@media screen and (max-width: 600px) {
+  .container {
+    width: 100%;
+  }
   .information {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    width: 100%;
+    margin-left: 10px;
+  }
+  .information h4 {
+    font-size: 0.8rem;
+  }
+  .information,
+  .socialIcons {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+  .information i,
+  .socialIcons i {
+    font-size: 0.8rem;
   }
 }
 /*# sourceMappingURL=topBar.module.css.map */
