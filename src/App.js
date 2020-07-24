@@ -16,6 +16,7 @@ import {
   MyProfile,
   EditProduct,
   BrandSlider,
+  Stores,
 } from "./components";
 import PrivateRoute from "./Authentication/PrivateRoute";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -118,6 +119,9 @@ const Home = ({ history }) => {
     <div className={styles.container}>
       <div className={styles.slider}>
         <Slider />
+      </div>
+      <div className={styles.stores}>
+        <Stores />
       </div>
       <div className={styles.productSlider}>
         <ProductSlider />

@@ -54,7 +54,8 @@ body {
 }
 .productSlider {
   // width: var(--fixedWidth);
-  margin: auto;
+  margin: 5vh auto;
+  margin-top: 0;
 }
 //Styles for side color panel
 .colorPanel {
@@ -87,6 +88,10 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 60vh;
+}
+
+.stores {
+  padding: 10vh 0;
 }
 
 @media screen and (max-width: 800px) {

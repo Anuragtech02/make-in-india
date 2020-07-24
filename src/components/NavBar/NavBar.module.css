@@ -41,6 +41,7 @@
           justify-content: space-between;
   width: var(--fixedWidth);
   margin: auto;
+  overflow-x: hidden !important;
 }
 
 .navLink {
@@ -64,10 +65,11 @@
       -ms-flex-align: center;
           align-items: center;
   height: 10vh;
+  overflow-x: hidden !important;
 }
 
 .slider {
   width: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 /*# sourceMappingURL=NavBar.module.css.map */
