@@ -103,24 +103,16 @@
 }
 
 .buttons .amazonBtn {
-  background: var(--amazonBG);
+  background: var(--amazonBG) !important;
   text-transform: lowercase;
   margin: 0 5px;
   padding: 10px;
 }
 
-.buttons .amazonBtn:hover {
-  background: var(--primaryColor) !important;
-}
-
 .buttons .flipkartBtn {
-  background: var(--flipkartBG);
+  background: var(--flipkartBG) !important;
   margin: 0 5px;
   padding: 10px;
-}
-
-.buttons .flipkartBtn:hover {
-  background: var(--primaryColor) !important;
 }
 
 .noDecoration {

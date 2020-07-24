@@ -57,21 +57,15 @@
   justify-content: space-between;
   width: 100%;
   .amazonBtn {
-    background: var(--amazonBG);
+    background: var(--amazonBG) !important;
     text-transform: lowercase;
     margin: 0 5px;
     padding: 10px;
-    &:hover {
-      background: var(--primaryColor) !important;
-    }
   }
   .flipkartBtn {
-    background: var(--flipkartBG);
+    background: var(--flipkartBG) !important;
     margin: 0 5px;
     padding: 10px;
-    &:hover {
-      background: var(--primaryColor) !important;
-    }
   }
 }
 
