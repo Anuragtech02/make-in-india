@@ -65,8 +65,15 @@ export const Stores = () => {
   return (
     <div className={styles.container}>
       <Grid container spacing={2}>
-        {data.map((shop) => (
-          <Grid item md={3} sm={6} xs={12} className={styles.shopContainer}>
+        {data.map((shop, index) => (
+          <Grid
+            key={index}
+            item
+            md={3}
+            sm={6}
+            xs={12}
+            className={styles.shopContainer}
+          >
             <div className={styles.imageContainer}>
               <img src={shop.image} alt={shop.alt} />
             </div>

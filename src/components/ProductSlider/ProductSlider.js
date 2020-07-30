@@ -50,7 +50,7 @@ const ProductSlider = () => {
 
   useEffect(() => {
     const localProducts = localStorage.getItem("homeSlider");
-    const unsubscribe = localProducts.length
+    const unsubscribe = localProducts
       ? setProducts(JSON.parse(localProducts))
       : firebase
           .firestore()
@@ -102,7 +102,7 @@ const ProductSlider = () => {
     ],
   };
 
-  return !products.length ? (
+  return !products ? (
     <div>
       <IconButton onClick={() => gotoPrev()} className={styles.arrowLeft}>
         <i className="fas fa-arrow-circle-left"></i>

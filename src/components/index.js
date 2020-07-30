@@ -17,3 +17,4 @@ export { default as MyProfile } from "./MyProfile/MyProfile";
 export { default as EditProduct } from "./EditProduct/EditProduct";
 export { default as BrandSlider } from "./BrandSlider/BrandSlider";
 export { default as Stores } from "./Stores/Stores";
+export { default as Cart } from "./Cart/Cart";

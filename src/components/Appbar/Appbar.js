@@ -14,15 +14,22 @@ import { AuthContext } from "../../Authentication/Auth";
 import firebase from "../../Authentication/Firebase";
 import classNames from "classnames";
 
-const Appbar = () => {
+const Appbar = ({ history }) => {
+  const onClickCart = () => {
+    history.push("/cart");
+  };
+
   return (
     <div className={styles.container}>
       <div variant="h4" className={styles.logo}>
         <Link to="/" className={styles.noDecoration}>
           <h3>INDIPRODUCTS</h3>
         </Link>
-        <div className={styles.accountMobile}>
+        <div className={classNames(styles.accountMobile, styles.showFlex)}>
           <AccountComponent />
+          <IconButton onClick={onClickCart} className={styles.cart}>
+            <i className="fas fa-shopping-cart"></i>
+          </IconButton>
         </div>
       </div>
       <Paper className={styles.inputPaper}>
@@ -38,8 +45,11 @@ const Appbar = () => {
           <i className="fas fa-search"></i>
         </IconButton>
       </Paper>
-      <div className={styles.accountLarge}>
-        <AccountComponent />
+      <div className={classNames(styles.accountLarge, styles.showFlex)}>
+        <AccountComponent history={history} />
+        <IconButton onClick={onClickCart} className={styles.cart}>
+          <i className="fas fa-shopping-cart"></i>
+        </IconButton>
       </div>
     </div>
   );

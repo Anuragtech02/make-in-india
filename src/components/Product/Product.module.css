@@ -26,15 +26,15 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  height: 180px;
+  height: 200px;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
 }
 
 .thumbnail img {
-  width: 200px;
-  max-height: 250px;
+  max-width: 170px !important;
+  max-height: 200px !important;
 }
 
 .priceLike {

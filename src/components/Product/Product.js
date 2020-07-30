@@ -45,10 +45,18 @@ const ProductCard = ({ product }) => {
   };
 
   const handleClickVariant = (variant, title, id) => () => {
-    enqueueSnackbar(`Successfully added ${title} to favourites`, {
+    enqueueSnackbar(`Successfully added ${title} to cart`, {
       variant,
     });
     onClickHeart(id);
+    saveToLocal();
+  };
+
+  const saveToLocal = () => {
+    let oldCart = localStorage.getItem("cart");
+    let newCart = oldCart ? JSON.parse(oldCart) : [];
+    newCart.push(product);
+    localStorage.setItem("cart", JSON.stringify(newCart));
   };
 
   const onClickHeart = (id) => {
@@ -83,7 +91,7 @@ const ProductCard = ({ product }) => {
             onClick={handleClickVariant("success", title, id)}
             className={styles.likeIcon}
           >
-            <i id={id} className={classNames("fas fa-heart")} />
+            <i id={id} className={classNames("fas fa-cart-plus")} />
           </IconButton>
         </Tooltip>
       </div>

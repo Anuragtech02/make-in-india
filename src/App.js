@@ -17,6 +17,7 @@ import {
   EditProduct,
   BrandSlider,
   Stores,
+  Cart,
 } from "./components";
 import PrivateRoute from "./Authentication/PrivateRoute";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -82,6 +83,7 @@ const App = () => {
             <Route path="/products/:id" exact component={ProductPage} />
             <Route path="/stores/:storeId" exact component={Shop} />
             <PrivateRoute exact path="/add-product" component={AddProduct} />
+            <PrivateRoute exact path="/cart" component={Cart} />
             <PrivateRoute
               exact
               path="/my-profile/:userId"

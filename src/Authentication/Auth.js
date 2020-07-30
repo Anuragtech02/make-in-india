@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const fetchProducts = async (storeId) => {
       const localProducts = localStorage.getItem("homeSlider");
-      if (localProducts.length) {
+      if (localProducts) {
         setProducts(
           JSON.parse(localProducts).filter(
             (product) => product.storeId === storeId
