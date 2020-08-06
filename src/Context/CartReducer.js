@@ -34,6 +34,7 @@ const increment = (oldProducts, id) => {
   let product = oldProduct[0];
   product.quantity += 1;
   oldProducts.splice(oldProducts.indexOf(product), 1, product);
+  localStorage.setItem("cart", JSON.stringify(oldProducts));
   return oldProducts;
 };
 
@@ -42,5 +43,6 @@ const decrement = (oldProducts, id) => {
   let product = oldProduct[0];
   product.quantity -= 1;
   oldProducts.splice(oldProducts.indexOf(product), 1, product);
+  localStorage.setItem("cart", JSON.stringify(oldProducts));
   return oldProducts;
 };

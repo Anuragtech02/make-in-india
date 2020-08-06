@@ -38,7 +38,9 @@ const ProductCard = ({ product }) => {
 
   const iconColor = "var(--primaryColor)";
 
-  const { addProductWithId } = useContext(CartContext);
+  const { addProductWithId, incrementQuantity, products } = useContext(
+    CartContext
+  );
 
   const gotoURL = (location) => {
     let a = document.createElement("a");
@@ -52,8 +54,17 @@ const ProductCard = ({ product }) => {
       variant,
     });
     onClickHeart(id);
-    saveToLocal();
-    addProductWithId(product);
+
+    if (
+      products.some((product) => {
+        return product.id === id;
+      })
+    ) {
+      incrementQuantity(id);
+    } else {
+      saveToLocal();
+      addProductWithId(product);
+    }
   };
 
   const saveToLocal = () => {
@@ -91,7 +102,7 @@ const ProductCard = ({ product }) => {
       </div>
       <div className={styles.priceLike}>
         <h4>₹{price}</h4>
-        <Tooltip title="Add to favourites" placement="top">
+        <Tooltip title="Add to Cart" placement="top">
           <IconButton
             onClick={handleClickVariant("success", title, id)}
             className={styles.likeIcon}
