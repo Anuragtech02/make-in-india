@@ -13,7 +13,6 @@ export const Cart = () => {
 export default Cart;
 
 const CartComponent = ({ products }) => {
-  console.log(products);
   return (
     <div className={styles.container}>
       <div className={styles.header}>

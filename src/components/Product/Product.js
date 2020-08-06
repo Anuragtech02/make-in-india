@@ -38,7 +38,7 @@ const ProductCard = ({ product }) => {
 
   const iconColor = "var(--primaryColor)";
 
-  const { addProduct } = useContext(CartContext);
+  const { addProductWithId } = useContext(CartContext);
 
   const gotoURL = (location) => {
     let a = document.createElement("a");
@@ -53,7 +53,7 @@ const ProductCard = ({ product }) => {
     });
     onClickHeart(id);
     saveToLocal();
-    addProduct(product);
+    addProductWithId(product);
   };
 
   const saveToLocal = () => {

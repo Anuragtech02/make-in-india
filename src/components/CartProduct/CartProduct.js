@@ -40,7 +40,11 @@ const ProductCard = ({ product }) => {
 
   const iconColor = "var(--primaryColor)";
 
-  const { addProduct } = useContext(CartContext);
+  const {
+    incrementQuantity,
+    decrementQuantity,
+    deleteProductWithId,
+  } = useContext(CartContext);
 
   const gotoURL = (location) => {
     let a = document.createElement("a");
@@ -49,14 +53,14 @@ const ProductCard = ({ product }) => {
     a.click();
   };
 
-  const handleClickVariant = (variant, title, id) => () => {
-    enqueueSnackbar(`Successfully added ${title} to cart`, {
-      variant,
-    });
-    onClickHeart(id);
-    saveToLocal();
-    addProduct(product);
-  };
+  //   const handleClickVariant = (variant, title, id) => () => {
+  //     enqueueSnackbar(`Successfully added ${title} to cart`, {
+  //       variant,
+  //     });
+  //     onClickHeart(id);
+  //     saveToLocal();
+  //     addProduct(product);
+  //   };
 
   const saveToLocal = () => {
     let oldCart = localStorage.getItem("cart");
@@ -93,11 +97,19 @@ const ProductCard = ({ product }) => {
       <div className={styles.priceLike}>
         <h4>₹{price}</h4>
         <div className={styles.cartUpdate}>
-          <IconButton className={styles.updateBtns}>
+          <IconButton
+            onClick={() =>
+              quantity === 1 ? deleteProductWithId(id) : decrementQuantity(id)
+            }
+            className={styles.updateBtns}
+          >
             <i className="fas fa-minus" />
           </IconButton>
           <h4>{quantity}</h4>
-          <IconButton className={styles.updateBtns}>
+          <IconButton
+            onClick={() => incrementQuantity(id)}
+            className={styles.updateBtns}
+          >
             <i className="fas fa-plus" />
           </IconButton>
         </div>

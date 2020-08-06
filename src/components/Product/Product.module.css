@@ -136,11 +136,23 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background: var(--primaryColor);
+  background: var(--orangeTint);
   border-radius: 5px;
+  height: 40px;
+  padding: 5px 5px;
 }
 
 .cartUpdate i {
   font-size: 0.8rem !important;
+}
+
+.cartUpdate .updateBtns {
+  margin: 0 5px;
+}
+
+.cartUpdate h4 {
+  font-size: 1.2rem;
+  font-weight: 600 !important;
+  color: white;
 }
 /*# sourceMappingURL=Product.module.css.map */

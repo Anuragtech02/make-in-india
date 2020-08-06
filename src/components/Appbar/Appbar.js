@@ -21,8 +21,6 @@ const Appbar = ({ history }) => {
 
   const { currentUser, userDetails } = useContext(AuthContext);
 
-  console.log(userDetails.isSeller);
-
   return (
     <div className={styles.container}>
       <div variant="h4" className={styles.logo}>

@@ -14,7 +14,7 @@ export const CartContext = createContext(initialState);
 export const CartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(CartReducer, initialState);
 
-  function addProduct(product) {
+  function addProductWithId(product) {
     dispatch({
       type: "ADD_PRODUCT",
       payload: product,
@@ -28,12 +28,28 @@ export const CartProvider = ({ children }) => {
     });
   };
 
+  const incrementQuantity = (id) => {
+    dispatch({
+      type: "INCREMENT_QUANTITY",
+      payload: id,
+    });
+  };
+
+  const decrementQuantity = (id) => {
+    dispatch({
+      type: "DECREMENT_QUANTITY",
+      payload: id,
+    });
+  };
+
   return (
     <CartContext.Provider
       value={{
         products: state.products,
-        addProduct,
+        addProductWithId,
         deleteProductWithId,
+        incrementQuantity,
+        decrementQuantity,
       }}
     >
       {children}
