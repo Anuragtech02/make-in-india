@@ -6,6 +6,7 @@ import {
   Switch,
   TextField,
   FormControlLabel,
+  Collapse,
 } from "@material-ui/core";
 import firebase from "../../Authentication/Firebase";
 import { withRouter } from "react-router-dom";
@@ -101,6 +102,9 @@ export const Signup = ({ history }) => {
           })
           .then(() => {
             history.push("/");
+          })
+          .catch((error) => {
+            alert(error);
           });
       } catch (error) {
         alert("Error : " + error);
@@ -168,7 +172,6 @@ export const Signup = ({ history }) => {
                   autoComplete="off"
                   value={mobile}
                   onChange={(e) => setMobile(e.target.value)}
-                  flex
                 />
               </div>
               <div className={styles.passwords}>
@@ -221,13 +224,14 @@ export const Signup = ({ history }) => {
                 Signup
               </Button>
             </div>
-            {checked ? (
+            <Collapse in={checked}>
+              {/* {checked ? ( */}
               <div
                 className={classNames(styles.textFields, styles.sellerFields)}
               >
                 <div className={styles.industryWrapper}>
                   <TextField
-                    required
+                    required={checked ? true : false}
                     variant="outlined"
                     className={classNames(styles.textField, styles.industry)}
                     size="small"
@@ -238,7 +242,7 @@ export const Signup = ({ history }) => {
                 </div>
                 <div className={styles.emailMobile}>
                   <TextField
-                    required
+                    required={checked ? true : false}
                     variant="outlined"
                     className={styles.textField}
                     size="small"
@@ -294,9 +298,10 @@ export const Signup = ({ history }) => {
                   </Button>
                 </div>
               </div>
-            ) : (
-              " "
-            )}
+              {/* ) : (
+                " "
+              )} */}
+            </Collapse>
           </form>
         </Card>
       </div>

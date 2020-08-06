@@ -27,6 +27,7 @@ import { ChromePicker } from "react-color";
 import classNames from "classnames";
 import NotFound from "./404";
 import { AuthProvider } from "./Authentication/Auth";
+import { CartProvider } from "./Context/CartContext";
 import electronics from "./images/electronics-category.webp";
 import fashion from "./images/fashion-category.webp";
 import food from "./images/food-category.webp";
@@ -62,42 +63,48 @@ const App = () => {
 
   return (
     <AuthProvider>
-      <Router>
-        <div className={styles.outerContainer}>
-          <div className={styles.topBar}>
-            <TopBar />
+      <CartProvider>
+        <Router>
+          <div className={styles.outerContainer}>
+            <div className={styles.topBar}>
+              <TopBar />
+            </div>
+            <div className={styles.appBarContainer}>
+              <Appbar />
+            </div>
+            <div className={styles.navbar}>
+              <NavBar />
+            </div>
+            <Switch>
+              <Route path="/" exact component={Home} />
+              <Route path="/login" exact component={Login} />
+              <Route path="/signup" exact component={Signup} />
+              <Route path="/about" exact component={About} />
+              <Route path="/contact" exact component={Contact} />
+              <Route
+                path="/category/:category"
+                exact
+                component={CategoryPage}
+              />
+              <Route path="/products/:id" exact component={ProductPage} />
+              <Route path="/stores/:storeId" exact component={Shop} />
+              <PrivateRoute exact path="/add-product" component={AddProduct} />
+              <PrivateRoute exact path="/cart" component={Cart} />
+              <PrivateRoute
+                exact
+                path="/my-profile/:userId"
+                component={MyProfile}
+              />
+              <PrivateRoute
+                exact
+                path="/edit-product/:productId"
+                component={EditProduct}
+              />
+              <Route component={NotFound} />
+            </Switch>
           </div>
-          <div className={styles.appBarContainer}>
-            <Appbar />
-          </div>
-          <div className={styles.navbar}>
-            <NavBar />
-          </div>
-          <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/login" exact component={Login} />
-            <Route path="/signup" exact component={Signup} />
-            <Route path="/about" exact component={About} />
-            <Route path="/contact" exact component={Contact} />
-            <Route path="/category/:category" exact component={CategoryPage} />
-            <Route path="/products/:id" exact component={ProductPage} />
-            <Route path="/stores/:storeId" exact component={Shop} />
-            <PrivateRoute exact path="/add-product" component={AddProduct} />
-            <PrivateRoute exact path="/cart" component={Cart} />
-            <PrivateRoute
-              exact
-              path="/my-profile/:userId"
-              component={MyProfile}
-            />
-            <PrivateRoute
-              exact
-              path="/edit-product/:productId"
-              component={EditProduct}
-            />
-            <Route component={NotFound} />
-          </Switch>
-        </div>
-      </Router>
+        </Router>
+      </CartProvider>
     </AuthProvider>
   );
 };

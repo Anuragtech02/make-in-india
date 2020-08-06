@@ -77,3 +77,14 @@
     color: var(--primaryColor) !important;
   }
 }
+.cartUpdate {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--primaryColor);
+  border-radius: 5px;
+
+  i {
+    font-size: 0.8rem !important;
+  }
+}

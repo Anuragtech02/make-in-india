@@ -1,31 +1,33 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Grid } from "@material-ui/core";
-import { Product } from "../../components";
+import { CartProduct } from "../../components";
 import styles from "./Cart.module.css";
+import { CartContext } from "../../Context/CartContext";
 
 export const Cart = () => {
-  const [products, setProducts] = useState([]);
+  const { products } = useContext(CartContext);
 
-  useEffect(() => {
-    const localCart = localStorage.getItem("cart");
+  return <CartComponent products={products} />;
+};
 
-    setProducts(JSON.parse(localCart));
-  }, []);
+export default Cart;
 
+const CartComponent = ({ products }) => {
+  console.log(products);
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <h1>CART</h1>
       </div>
       <div className={styles.products}>
-        {!products ? (
+        {!products || !products.length ? (
           <h4>No products in the cart.</h4>
         ) : (
           <Grid container spacing={2} className={styles.productGrid}>
             {products.map((product, index) => {
               return (
                 <Grid key={index} item md={3}>
-                  <Product product={product} />
+                  <CartProduct product={product} />
                 </Grid>
               );
             })}
@@ -35,5 +37,3 @@ export const Cart = () => {
     </div>
   );
 };
-
-export default Cart;

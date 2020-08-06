@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     const fetchProducts = async (storeId) => {
       const localProducts = localStorage.getItem("homeSlider");
-      if (localProducts) {
+      if (!localProducts) {
         setProducts(
           JSON.parse(localProducts).filter(
             (product) => product.storeId === storeId
@@ -58,7 +58,6 @@ export const AuthProvider = ({ children }) => {
   if (pending) {
     return (
       <div className={styles.container}>
-        {/* <LinearProgress className={styles.linearProgress} /> */}
         <CircularProgress className={styles.circularProgress} />
       </div>
     );

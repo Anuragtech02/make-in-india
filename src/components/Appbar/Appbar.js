@@ -19,6 +19,10 @@ const Appbar = ({ history }) => {
     history.push("/cart");
   };
 
+  const { currentUser, userDetails } = useContext(AuthContext);
+
+  console.log(userDetails.isSeller);
+
   return (
     <div className={styles.container}>
       <div variant="h4" className={styles.logo}>
@@ -46,7 +50,11 @@ const Appbar = ({ history }) => {
         </IconButton>
       </Paper>
       <div className={classNames(styles.accountLarge, styles.showFlex)}>
-        <AccountComponent history={history} />
+        <AccountComponent
+          history={history}
+          currentUser={currentUser}
+          userDetails={userDetails}
+        />
         <IconButton onClick={onClickCart} className={styles.cart}>
           <i className="fas fa-shopping-cart"></i>
         </IconButton>
@@ -57,7 +65,7 @@ const Appbar = ({ history }) => {
 
 export default withRouter(Appbar);
 
-const AccountComponent = ({ history }) => {
+const AccountComponent = ({ history, currentUser, userDetails }) => {
   const [menuIcon, setMenuIcon] = useState("down");
   const [anchorEl, setAnchorEl] = useState(null);
   const [account, setAccount] = useState("Account");
@@ -66,7 +74,6 @@ const AccountComponent = ({ history }) => {
   const [item2, setItem2] = useState("Signup");
   const [item2Route, setItem2Route] = useState("/signup");
   const [isSeller, setIsSeller] = useState(false);
-  const { currentUser, userDetails } = useContext(AuthContext);
 
   useEffect(() => {
     const getCurrentUser = async () => {
