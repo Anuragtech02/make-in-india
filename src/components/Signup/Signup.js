@@ -48,6 +48,8 @@ export const Signup = ({ history }) => {
             email,
             mobile,
             isSeller: false,
+            cart: [],
+            placedOrders: [],
             secondary_mobile: null,
             recovery_email: null,
             industry: null,
