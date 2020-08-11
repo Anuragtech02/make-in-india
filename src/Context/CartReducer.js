@@ -1,6 +1,24 @@
+import React, { useContext } from "react";
+import firebase from "../Authentication/Firebase";
+import { AuthContext } from "../Authentication/Auth";
+
 export default (state, action) => {
+  const db = firebase.firestore();
+
+  const { userDetails } = useContext(AuthContext);
+  const userRef = db.collection("users").doc(userDetails.uid);
+
   switch (action.type) {
     case "ADD_PRODUCT":
+      setTimeout(() => {
+        userRef
+          .update({
+            cart: [newProduct(action.payload), ...state.products],
+          })
+          .then(() => {
+            console.log("Updated Cart on firebase!");
+          });
+      }, 1000);
       return {
         ...state,
         products: [newProduct(action.payload), ...state.products],
