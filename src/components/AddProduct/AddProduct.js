@@ -21,7 +21,7 @@ const AddProduct = ({ history }) => {
   const [image1, setImage1] = useState("");
   const [image2, setImage2] = useState("");
   const [image3, setImage3] = useState("");
-  const [asin, setAsin] = useState(0);
+  const [asin, setAsin] = useState("");
   const [storeId, setStoreId] = useState("");
 
   const { currentUser } = useContext(AuthContext);
@@ -70,7 +70,7 @@ const AddProduct = ({ history }) => {
         website,
         category,
         storeId,
-        asin: parseInt(asin),
+        asin,
         hidden: false,
       })
       .then(async () => {
@@ -90,7 +90,7 @@ const AddProduct = ({ history }) => {
             tags,
             imageUrls: [mainImage, image1, image2, image3],
             storeId,
-            asin: parseInt(asin),
+            asin,
             hidden: false,
           })
           .then(() => {

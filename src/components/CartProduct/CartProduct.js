@@ -97,21 +97,28 @@ const ProductCard = ({ product }) => {
       <div className={styles.priceLike}>
         <h4>₹{price}</h4>
         <div className={styles.cartUpdate}>
-          <IconButton
-            onClick={() =>
-              quantity === 1 ? deleteProductWithId(id) : decrementQuantity(id)
-            }
-            className={styles.updateBtns}
+          <Tooltip
+            placement="top"
+            title={quantity === 1 ? "Delete Product" : "Remove one"}
           >
-            <i className="fas fa-minus" />
-          </IconButton>
+            <IconButton
+              onClick={() =>
+                quantity === 1 ? deleteProductWithId(id) : decrementQuantity(id)
+              }
+              className={styles.updateBtns}
+            >
+              <i className="fas fa-minus" />
+            </IconButton>
+          </Tooltip>
           <h4>{quantity}</h4>
-          <IconButton
-            onClick={() => incrementQuantity(id)}
-            className={styles.updateBtns}
-          >
-            <i className="fas fa-plus" />
-          </IconButton>
+          <Tooltip placement="top" title="Add more">
+            <IconButton
+              onClick={() => incrementQuantity(id)}
+              className={styles.updateBtns}
+            >
+              <i className="fas fa-plus" />
+            </IconButton>
+          </Tooltip>
         </div>
       </div>
       <div className={styles.buttons}>
