@@ -6,24 +6,40 @@ export default (state, action) => {
   const db = firebase.firestore();
 
   const { userDetails } = useContext(AuthContext);
-  const userRef = db.collection("users").doc(userDetails.uid);
+  const userRef = db
+    .collection("users")
+    .doc(userDetails.uid ? userDetails.uid : sessionStorage.getItem("uid"));
 
   switch (action.type) {
+    case "FETCH_CART":
+      return {
+        ...state,
+        products: userDetails.cart,
+      };
     case "ADD_PRODUCT":
-      setTimeout(() => {
-        userRef
-          .update({
-            cart: [newProduct(action.payload), ...state.products],
-          })
-          .then(() => {
-            console.log("Updated Cart on firebase!");
-          });
-      }, 1000);
+      // setTimeout(() => {
+      // const updateCart = async () =>
+      //   await
+      // // }, 1000);
+      // updateCart();
+      userRef
+        .update({
+          cart: [newProduct(action.payload), ...state.products],
+        })
+        .then(() => {
+          console.log("Updated Cart on firebase!");
+        });
+
       return {
         ...state,
         products: [newProduct(action.payload), ...state.products],
       };
     case "DELETE_PRODUCT":
+      const updateCartOnDelete = async () =>
+        await userRef.update({
+          cart: deleteProduct(state.products, action.payload),
+        });
+      updateCartOnDelete();
       return {
         products: state.products.filter(
           (product) => product.id !== action.payload
@@ -45,6 +61,14 @@ export default (state, action) => {
 const newProduct = (product) => {
   product["quantity"] = 1;
   return product;
+};
+
+const deleteProduct = (products, productToBeDeletedId) => {
+  const dataAfterDelete = products.filter(
+    (product) => product.id !== productToBeDeletedId
+  );
+  localStorage.setItem("cart", JSON.stringify(dataAfterDelete));
+  return dataAfterDelete;
 };
 
 const increment = (oldProducts, id) => {

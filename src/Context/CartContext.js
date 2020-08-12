@@ -1,18 +1,41 @@
-import React, { useState, createContext, useReducer, useEffect } from "react";
+import React, {
+  useState,
+  useContext,
+  createContext,
+  useReducer,
+  useEffect,
+  useCallback,
+} from "react";
 import CartReducer from "./CartReducer";
+// import firebase from "../Authentication/Firebase";
+// import { AuthContext } from "../Authentication/Auth";
 
 const localCart = localStorage.getItem("cart");
 const cartData = JSON.parse(localCart);
 
-const initialState = {
-  products: cartData ? cartData : [],
-};
+// const initialState = {
+//   products: cartData ? cartData : [],
+// };
 
 //Initialized Context
-export const CartContext = createContext(initialState);
+export const CartContext = createContext({
+  products: [],
+});
 
 export const CartProvider = ({ children }) => {
+  // const { userDetails } = useContext(AuthContext);
+
+  const [initialState, setInitialState] = useState({
+    products: [],
+  });
+
   const [state, dispatch] = useReducer(CartReducer, initialState);
+
+  const fetchCartData = () => {
+    dispatch({
+      type: "FETCH_CART",
+    });
+  };
 
   function addProductWithId(product) {
     dispatch({
@@ -50,6 +73,7 @@ export const CartProvider = ({ children }) => {
         deleteProductWithId,
         incrementQuantity,
         decrementQuantity,
+        fetchCartData,
       }}
     >
       {children}

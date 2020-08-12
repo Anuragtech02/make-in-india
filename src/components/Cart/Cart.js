@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useCallback } from "react";
 import { Grid } from "@material-ui/core";
 import { CartProduct } from "../../components";
 import styles from "./Cart.module.css";
 import { CartContext } from "../../Context/CartContext";
 
 export const Cart = () => {
-  const { products } = useContext(CartContext);
+  const { fetchCartData, products } = useContext(CartContext);
 
   return <CartComponent products={products} />;
 };

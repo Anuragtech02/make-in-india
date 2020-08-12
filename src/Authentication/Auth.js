@@ -16,6 +16,8 @@ export const AuthProvider = ({ children }) => {
   // }
 
   useEffect(() => {
+    const db = firebase.firestore();
+
     const fetchProducts = async (storeId) => {
       const localProducts = localStorage.getItem("homeSlider");
       if (!localProducts) {
@@ -25,7 +27,6 @@ export const AuthProvider = ({ children }) => {
           )
         );
       } else {
-        const db = firebase.firestore();
         const userProductsRef = db.collection("stores").doc(storeId);
         const snapshot = await userProductsRef.collection("products").get();
         const incomingData = snapshot.docs.map((doc) => ({
@@ -35,13 +36,13 @@ export const AuthProvider = ({ children }) => {
       }
     };
     const fetchUser = async (email) => {
-      const db = firebase.firestore();
       const userRef = db.collection("users").where("email", "==", email);
       const snapshot = await userRef.get();
       const userData = snapshot.docs.map((doc) => ({
         ...doc.data(),
       }));
       setUserDetails(userData[0]);
+      sessionStorage.setItem("uid", userData[0].uid);
       // localStorage.setItem()
       if (userData[0].isSeller) {
         fetchProducts(userData[0].storeId);

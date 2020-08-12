@@ -13,6 +13,7 @@ import flipkart from "../../icons/flipkart.png";
 import { SnackbarProvider, useSnackbar } from "notistack";
 import classNames from "classnames";
 import { CartContext } from "../../Context/CartContext";
+import { AuthContext } from "../../Authentication/Auth";
 
 const Product = ({ product }) => {
   return (
@@ -37,6 +38,8 @@ const ProductCard = ({ product }) => {
   } = product;
 
   const iconColor = "var(--primaryColor)";
+
+  const { userDetails } = useContext(AuthContext);
 
   const { addProductWithId, incrementQuantity, products } = useContext(
     CartContext
@@ -104,6 +107,7 @@ const ProductCard = ({ product }) => {
         <h4>₹{price}</h4>
         <Tooltip title="Add to Cart" placement="top">
           <IconButton
+            disabled={userDetails.isSeller ? true : false}
             onClick={handleClickVariant("success", title, id)}
             className={styles.likeIcon}
           >

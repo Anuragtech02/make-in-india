@@ -11,15 +11,24 @@ import {
 import { Link, withRouter, Redirect } from "react-router-dom";
 import styles from "./AppBar.module.css";
 import { AuthContext } from "../../Authentication/Auth";
+import { CartContext } from "../../Context/CartContext";
 import firebase from "../../Authentication/Firebase";
 import classNames from "classnames";
 
 const Appbar = ({ history }) => {
+  const { currentUser, userDetails } = useContext(AuthContext);
+
+  const [changeOnSeller, setChangeOnSeller] = useState(styles.nothing);
+
   const onClickCart = () => {
     history.push("/cart");
   };
 
-  const { currentUser, userDetails } = useContext(AuthContext);
+  useEffect(() => {
+    userDetails.isSeller
+      ? setChangeOnSeller(styles.disabledCart)
+      : setChangeOnSeller(styles.nothing);
+  }, [userDetails]);
 
   return (
     <div className={styles.container}>
@@ -29,7 +38,11 @@ const Appbar = ({ history }) => {
         </Link>
         <div className={classNames(styles.accountMobile, styles.showFlex)}>
           <AccountComponent />
-          <IconButton onClick={onClickCart} className={styles.cart}>
+          <IconButton
+            disabled={userDetails.isSeller ? true : false}
+            onClick={onClickCart}
+            className={styles.cart}
+          >
             <i className="fas fa-shopping-cart"></i>
           </IconButton>
         </div>
@@ -53,7 +66,11 @@ const Appbar = ({ history }) => {
           currentUser={currentUser}
           userDetails={userDetails}
         />
-        <IconButton onClick={onClickCart} className={styles.cart}>
+        <IconButton
+          disabled={userDetails.isSeller ? true : false}
+          onClick={onClickCart}
+          className={classNames(styles.cart, changeOnSeller)}
+        >
           <i className="fas fa-shopping-cart"></i>
         </IconButton>
       </div>
