@@ -3,6 +3,7 @@ import { Grid } from "@material-ui/core";
 import { CartProduct } from "../../components";
 import styles from "./Cart.module.css";
 import { CartContext } from "../../Context/CartContext";
+import { AuthContext } from "../../Authentication/Auth";
 
 export const Cart = () => {
   const { fetchCartData, products } = useContext(CartContext);

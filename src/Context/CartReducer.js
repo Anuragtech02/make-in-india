@@ -4,6 +4,7 @@ import { AuthContext } from "../Authentication/Auth";
 
 export default (state, action) => {
   const db = firebase.firestore();
+  const cartData = sessionStorage.getItem("cart");
 
   const { userDetails } = useContext(AuthContext);
   const userRef = db
@@ -14,7 +15,7 @@ export default (state, action) => {
     case "FETCH_CART":
       return {
         ...state,
-        products: userDetails.cart,
+        products: JSON.parse(cartData),
       };
     case "ADD_PRODUCT":
       // setTimeout(() => {
@@ -22,24 +23,48 @@ export default (state, action) => {
       //   await
       // // }, 1000);
       // updateCart();
-      userRef
-        .update({
-          cart: [newProduct(action.payload), ...state.products],
-        })
-        .then(() => {
-          console.log("Updated Cart on firebase!");
-        });
+      sessionStorage.setItem(
+        "cart",
+        JSON.stringify(newProduct(action.payload), ...state.products)
+      );
+      let updateTimer,
+        counter = 0;
+      clearTimeout(updateTimer);
+      updateTimer = setTimeout(() => {
+        userRef
+          .update({
+            cart: [newProduct(action.payload), ...state.products],
+          })
+          .then(() => {
+            console.log("Updated Cart on firebase!", counter++);
+          });
+      }, 1000);
 
       return {
         ...state,
         products: [newProduct(action.payload), ...state.products],
       };
     case "DELETE_PRODUCT":
-      const updateCartOnDelete = async () =>
-        await userRef.update({
-          cart: deleteProduct(state.products, action.payload),
-        });
-      updateCartOnDelete();
+      sessionStorage.setItem(
+        "cart",
+        JSON.stringify(deleteProduct(state.products, action.payload))
+      );
+      // const updateCartOnDelete = async () =>
+      //   await userRef.update({
+      //     cart: deleteProduct(state.products, action.payload),
+      //   });
+      let deleteTimer;
+      let deleteCounter = 0;
+      clearTimeout(deleteTimer);
+      deleteTimer = setTimeout(() => {
+        userRef
+          .update({
+            cart: JSON.parse(sessionStorage.getItem("cart")),
+          })
+          .then(() => {
+            console.log("Deleted", deleteCounter++);
+          });
+      }, 1000);
       return {
         products: state.products.filter(
           (product) => product.id !== action.payload

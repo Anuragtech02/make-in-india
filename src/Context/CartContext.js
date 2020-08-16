@@ -8,9 +8,9 @@ import React, {
 } from "react";
 import CartReducer from "./CartReducer";
 // import firebase from "../Authentication/Firebase";
-// import { AuthContext } from "../Authentication/Auth";
+import { AuthContext } from "../Authentication/Auth";
 
-const localCart = localStorage.getItem("cart");
+const localCart = sessionStorage.getItem("cart");
 const cartData = JSON.parse(localCart);
 
 // const initialState = {
@@ -19,15 +19,19 @@ const cartData = JSON.parse(localCart);
 
 //Initialized Context
 export const CartContext = createContext({
-  products: [],
+  products: cartData,
 });
 
 export const CartProvider = ({ children }) => {
-  // const { userDetails } = useContext(AuthContext);
+  const { userDetails } = useContext(AuthContext);
 
-  const [initialState, setInitialState] = useState({
-    products: [],
-  });
+  let initialState = {
+    products: cartData,
+  };
+
+  // useEffect(() => {
+  //   fetchCartData();
+  // }, [userDetails.cart]);
 
   const [state, dispatch] = useReducer(CartReducer, initialState);
 

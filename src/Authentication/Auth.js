@@ -43,6 +43,7 @@ export const AuthProvider = ({ children }) => {
       }));
       setUserDetails(userData[0]);
       sessionStorage.setItem("uid", userData[0].uid);
+      sessionStorage.setItem("cart", JSON.stringify(userData[0].cart));
       // localStorage.setItem()
       if (userData[0].isSeller) {
         fetchProducts(userData[0].storeId);
