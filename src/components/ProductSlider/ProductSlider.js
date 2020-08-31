@@ -73,7 +73,6 @@ const ProductSlider = () => {
 
   const settings = {
     className: "center",
-    infinite: false,
     centerPadding: "60px",
     accessibility: true,
     dots: true,

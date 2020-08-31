@@ -1,7 +1,12 @@
 import React from "react";
 import styles from "./Home.module.css";
 import { withRouter } from "react-router-dom";
-import { Slider, ProductSlider, BrandSlider, Stores } from "../../components";
+import {
+  HomeSlider,
+  ProductSlider,
+  BrandSlider,
+  Stores,
+} from "../../components";
 import { Card, Grid } from "@material-ui/core";
 import electronics from "../../images/electronics-category.webp";
 import fashion from "../../images/fashion-category.webp";
@@ -26,7 +31,7 @@ const Home = ({ history }) => {
   return (
     <div className={styles.container}>
       <div className={styles.slider}>
-        <Slider />
+        <HomeSlider />
       </div>
       <div className={styles.stores}>
         <Stores />

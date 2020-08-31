@@ -4,14 +4,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.sliderCard {
-  box-shadow: none !important;
   position: relative;
-  display: flex;
-  width: 100%;
-  align-items: center;
 }
+
 .slide {
   position: relative;
   min-width: 100%;
@@ -19,15 +14,32 @@
   align-items: center;
   background-size: cover;
   background-repeat: no-repeat;
-  transition: 0.5s;
   min-height: 50vh;
   display: flex;
   justify-content: center;
   align-items: center;
   color: white;
   flex-direction: column;
+  border-radius: 5px !important;
 }
-
+.arrowLeft,
+.arrowRight {
+  z-index: 10;
+  i {
+    font-size: 1.2rem;
+    color: var(--primaryColor) !important;
+  }
+  padding: 8px !important;
+  position: absolute !important;
+  top: 50%;
+  left: 20px;
+  background: white !important;
+  box-shadow: 2px 2px 8px -2px rgba(0, 0, 0, 0.2);
+}
+.arrowRight {
+  right: 25px;
+  left: auto;
+}
 .leftClick {
   position: absolute !important;
   top: 50% !important;
