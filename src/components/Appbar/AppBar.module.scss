@@ -104,12 +104,17 @@
     justify-content: space-between;
     align-items: center;
     width: 100% !important;
+
     h3 {
-      font-size: 1.8rem;
+      font-size: 1.5rem;
     }
   }
+
   .accountMobile {
     display: flex !important;
+    .accountLabel {
+      display: none;
+    }
   }
   .accountLarge {
     display: none !important;

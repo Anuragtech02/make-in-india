@@ -37,7 +37,11 @@ const Appbar = ({ history }) => {
           <h3>INDIPRODUCTS</h3>
         </Link>
         <div className={classNames(styles.accountMobile, styles.showFlex)}>
-          <AccountComponent />
+          <AccountComponent
+            history={history}
+            currentUser={currentUser}
+            userDetails={userDetails}
+          />
           <IconButton
             disabled={userDetails.isSeller ? true : false}
             onClick={onClickCart}
@@ -140,7 +144,8 @@ const AccountComponent = ({ history, currentUser, userDetails }) => {
         onClick={handleClickMenu}
         className={styles.menuBtn}
       >
-        <i className="fas fa-user" /> {account}{" "}
+        <i className="fas fa-user" />
+        <span className={styles.accountLabel}> {account}</span>
         <i className={`fas fa-angle-${menuIcon}`} />
       </Button>
       <Menu

@@ -37,7 +37,7 @@ export const Login = ({ history }) => {
   return (
     <div className={styles.container}>
       <Helmet>
-        <title>INDIPRODUCTS | LOGin</title>
+        <title>INDIPRODUCTS | LOGIN</title>
       </Helmet>
       <div className={styles.cardWrapper}>
         <Card className={styles.card}>
