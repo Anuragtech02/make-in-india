@@ -183,4 +183,44 @@
       -ms-flex-pack: end;
           justify-content: flex-end;
 }
+
+@media screen and (max-width: 800px) {
+  .textField,
+  .textFields {
+    width: 100% !important;
+  }
+  .nameContainer,
+  .emailPhone,
+  .passwords,
+  .industryWrapper,
+  .emailMobile,
+  .websiteWrapper,
+  .fbInsta {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    width: 100% !important;
+  }
+  .container {
+    padding: 50px 15px;
+    width: 100% !important;
+  }
+  .card,
+  .cardWrapper,
+  .form,
+  .sellerFields,
+  .sellerCollapse {
+    width: 100% !important;
+  }
+}
 /*# sourceMappingURL=Signup.module.css.map */

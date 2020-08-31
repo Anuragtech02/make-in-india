@@ -230,7 +230,7 @@ export const Signup = ({ history }) => {
                 Signup
               </Button>
             </div>
-            <Collapse in={checked}>
+            <Collapse className={styles.sellerCollapse} in={checked}>
               {/* {checked ? ( */}
               <div
                 className={classNames(styles.textFields, styles.sellerFields)}
