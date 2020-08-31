@@ -48,12 +48,11 @@
   width: -webkit-max-content !important;
   width: -moz-max-content !important;
   width: max-content !important;
-  padding: 0 10px;
+  margin: 0 10px;
   overflow: hidden;
 }
 
 .sliderContainer {
-  overflow: hidden !important;
   border-radius: 0 !important;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -66,16 +65,16 @@
           align-items: center;
   height: 10vh;
   overflow-x: hidden !important;
+  padding-left: 3%;
 }
 
 .slider {
-  width: 100%;
   overflow-x: hidden;
 }
 
-@media screen and (max-width: 1200px) {
-  .sliderContainer {
-    padding: 0 10px;
+@media screen and (max-width: 500px) {
+  .slider > div > div {
+    width: 1500px !important;
   }
 }
 /*# sourceMappingURL=NavBar.module.css.map */

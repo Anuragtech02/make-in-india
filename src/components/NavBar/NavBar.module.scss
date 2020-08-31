@@ -30,7 +30,7 @@
 
 .navLink {
   width: max-content !important;
-  padding: 0 10px;
+  margin: 0 10px;
   overflow: hidden;
   // text-overflow: ellipsis;
   // display: -webkit-box;
@@ -38,16 +38,15 @@
   // -webkit-box-orient: vertical;
 }
 .sliderContainer {
-  overflow: hidden !important;
   border-radius: 0 !important;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 10vh;
   overflow-x: hidden !important;
+  padding-left: 3%;
 }
 .slider {
-  width: 100%;
   overflow-x: hidden;
 }
 // @media screen and (max-width: 1200px) {
@@ -76,8 +75,8 @@
 //     }
 //   }
 // }
-@media screen and (max-width: 1200px) {
-  .sliderContainer {
-    padding: 0 10px;
+@media screen and (max-width: 500px) {
+  .slider > div > div {
+    width: 1500px !important;
   }
 }
