@@ -154,15 +154,15 @@
     display: -ms-flexbox !important;
     display: flex !important;
   }
-  .accountMobile .accountLabel {
-    display: none;
-  }
   .accountLarge {
     display: none !important;
   }
   .inputPaper {
     width: 100% !important;
     margin-top: 20px;
+  }
+  .accountLabel {
+    display: none !important;
   }
 }
 /*# sourceMappingURL=AppBar.module.css.map */

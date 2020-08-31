@@ -112,9 +112,6 @@
 
   .accountMobile {
     display: flex !important;
-    .accountLabel {
-      display: none;
-    }
   }
   .accountLarge {
     display: none !important;
@@ -122,5 +119,8 @@
   .inputPaper {
     width: 100% !important;
     margin-top: 20px;
+  }
+  .accountLabel {
+    display: none !important;
   }
 }

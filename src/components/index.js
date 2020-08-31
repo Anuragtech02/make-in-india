@@ -19,3 +19,4 @@ export { default as BrandSlider } from "./BrandSlider/BrandSlider";
 export { default as Stores } from "./Stores/Stores";
 export { default as Cart } from "./Cart/Cart";
 export { default as CartProduct } from "./CartProduct/CartProduct";
+export { default as Home } from "./Home/Home";

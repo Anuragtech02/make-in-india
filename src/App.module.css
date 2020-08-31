@@ -31,14 +31,10 @@ body {
 }
 
 .navbar {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  z-index: 999;
-}
-
-.slider {
-  margin-top: 50px;
+  position: -webkit-sticky !important;
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 9999 !important;
 }
 
 .loading {
@@ -65,11 +61,6 @@ body {
 
 .linearProgress svg {
   color: var(--orangeTint) !important;
-}
-
-.productSlider {
-  margin: 5vh auto;
-  margin-top: 0;
 }
 
 .colorPanel {
@@ -113,98 +104,14 @@ body {
   min-height: 60vh;
 }
 
-.stores {
-  padding: 10vh 0;
-}
-
 .container {
   width: var(--fixedWidth);
   margin: auto;
 }
 
-.info {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding: 5vh 0;
-}
-
-.info h2 {
-  font-size: 3rem;
-  margin-bottom: 20px;
-  font-weight: 900;
-  text-transform: uppercase;
-  width: 100%;
-  text-align: center;
-  color: var(--orangeTint);
-  opacity: 0.8;
-}
-
-.info p {
-  text-align: center;
-  color: var(--greyFont);
-}
-
-.categoryCard {
-  cursor: pointer;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.categoryCard .innerDiv {
-  padding: 20px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  text-transform: uppercase;
-  font-weight: 600;
-  color: white !important;
-  min-height: 20vh;
-  background: rgba(0, 0, 0, 0.4);
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-
-.categoryCard .innerDiv:hover {
-  background: rgba(0, 0, 0, 0.6);
-}
-
-.categoryCard .innerDiv h1 {
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-  font-size: 2rem;
-}
-
-.categoryCard .innerDiv h1:hover {
-  color: var(--orangeTint);
-}
-
-.brands {
-  padding-bottom: 10vh;
-}
-
 @media screen and (max-width: 1500px) {
   :root {
     --fixedWidth: 80% !important;
-  }
-}
-
-@media screen and (max-width: 1200px) {
-  .categoryCard .innerDiv h1 {
-    font-size: 1.8rem;
   }
 }
 

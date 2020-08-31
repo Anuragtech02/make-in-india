@@ -1,0 +1,104 @@
+.container {
+  width: var(--fixedWidth);
+  margin: auto;
+}
+
+.slider {
+  margin-top: 50px;
+}
+
+.info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 5vh 0;
+}
+
+.info h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  font-weight: 900;
+  text-transform: uppercase;
+  width: 100%;
+  text-align: center;
+  color: var(--orangeTint);
+  opacity: 0.8;
+}
+
+.info p {
+  text-align: center;
+  color: var(--greyFont);
+}
+
+.productSlider {
+  margin: 5vh auto;
+  margin-top: 0;
+}
+
+.categoryCard {
+  cursor: pointer;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.categoryCard .innerDiv {
+  padding: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: white !important;
+  min-height: 20vh;
+  background: rgba(0, 0, 0, 0.4);
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.categoryCard .innerDiv:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.categoryCard .innerDiv h1 {
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  font-size: 2rem;
+}
+
+.categoryCard .innerDiv h1:hover {
+  color: var(--orangeTint);
+}
+
+.brands {
+  padding-bottom: 10vh;
+}
+
+.stores {
+  padding: 10vh 0;
+}
+
+@media screen and (max-width: 1200px) {
+  .categoryCard .innerDiv h1 {
+    font-size: 1.8rem;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .categoryCard .innerDiv h1 {
+    font-size: 1.5rem;
+  }
+}
+/*# sourceMappingURL=Home.module.css.map */
