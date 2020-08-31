@@ -44,16 +44,17 @@ const HomeSlider = () => {
   // };
 
   return (
-    <div style={{ position: "relative", width: "100%" }}>
+    <div
+      style={{ position: "relative", overflow: "hidden", borderRadius: "5px" }}
+    >
       <IconButton onClick={() => gotoPrev()} className={styles.arrowLeft}>
         <i className="fas fa-arrow-circle-left"></i>
       </IconButton>
       <Slider {...settings} ref={homeSlider} className={styles.slider}>
         {arr.map((item, index) => {
           return (
-            <>
+            <div key={index}>
               <div
-                key={index}
                 className={styles.slide}
                 style={{
                   backgroundImage: `url(${item})`,
@@ -66,7 +67,7 @@ const HomeSlider = () => {
                   Buy Now
                 </Button>
               </div>
-            </>
+            </div>
           );
         })}
       </Slider>

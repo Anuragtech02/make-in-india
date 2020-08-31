@@ -10,6 +10,7 @@
       -ms-flex-align: center;
           align-items: center;
   position: relative;
+  border-radius: 5px !important;
 }
 
 .slide {
@@ -34,7 +35,6 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  border-radius: 5px !important;
 }
 
 .arrowLeft,

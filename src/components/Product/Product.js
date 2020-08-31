@@ -105,15 +105,15 @@ const ProductCard = ({ product }) => {
       </div>
       <div className={styles.priceLike}>
         <h4>₹{price}</h4>
-        <Tooltip title="Add to Cart" placement="top">
-          <IconButton
-            disabled={userDetails.isSeller ? true : false}
-            onClick={handleClickVariant("success", title, id)}
-            className={styles.likeIcon}
-          >
+        <IconButton
+          disabled={userDetails.isSeller ? true : false}
+          onClick={handleClickVariant("success", title, id)}
+          className={styles.likeIcon}
+        >
+          <Tooltip title="Add to Cart" placement="top">
             <i id={id} className={classNames("fas fa-cart-plus")} />
-          </IconButton>
-        </Tooltip>
+          </Tooltip>
+        </IconButton>
       </div>
       <div className={styles.buttons}>
         <Button
