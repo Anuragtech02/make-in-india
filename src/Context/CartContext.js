@@ -4,18 +4,11 @@ import React, {
   createContext,
   useReducer,
   useEffect,
-  useCallback,
 } from "react";
 import CartReducer from "./CartReducer";
-// import firebase from "../Authentication/Firebase";
-import { AuthContext } from "../Authentication/Auth";
 
 const localCart = sessionStorage.getItem("cart");
 const cartData = JSON.parse(localCart);
-
-// const initialState = {
-//   products: cartData ? cartData : [],
-// };
 
 //Initialized Context
 export const CartContext = createContext({
@@ -23,15 +16,9 @@ export const CartContext = createContext({
 });
 
 export const CartProvider = ({ children }) => {
-  const { userDetails } = useContext(AuthContext);
-
   let initialState = {
     products: cartData,
   };
-
-  // useEffect(() => {
-  //   fetchCartData();
-  // }, [userDetails.cart]);
 
   const [state, dispatch] = useReducer(CartReducer, initialState);
 

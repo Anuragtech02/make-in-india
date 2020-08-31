@@ -15,6 +15,10 @@ export const AuthProvider = ({ children }) => {
 
   // }
 
+  const saveCartToSession = () => {
+    sessionStorage.setItem("cart", JSON.stringify(userDetails.cart));
+  };
+
   useEffect(() => {
     const db = firebase.firestore();
 
@@ -66,7 +70,9 @@ export const AuthProvider = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ currentUser, userDetails, products }}>
+    <AuthContext.Provider
+      value={{ currentUser, userDetails, products, saveCartToSession }}
+    >
       {children}
     </AuthContext.Provider>
   );

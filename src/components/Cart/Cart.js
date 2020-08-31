@@ -6,7 +6,12 @@ import { CartContext } from "../../Context/CartContext";
 import { AuthContext } from "../../Authentication/Auth";
 
 export const Cart = () => {
-  const { fetchCartData, products } = useContext(CartContext);
+  const { products, fetchCartData } = useContext(CartContext);
+  const { saveCartToSession } = useContext(AuthContext);
+
+  useEffect(() => {
+    saveCartToSession();
+  }, [saveCartToSession]);
 
   return <CartComponent products={products} />;
 };

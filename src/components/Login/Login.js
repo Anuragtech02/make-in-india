@@ -1,17 +1,14 @@
-import React, { useEffect, useCallback, useContext } from "react";
+import React, { useCallback, useContext } from "react";
 import styles from "./Login.module.css";
 import { withRouter, Redirect } from "react-router-dom";
 import { Card, TextField, Button } from "@material-ui/core";
 import firebase from "../../Authentication/Firebase";
+import { Helmet } from "react-helmet";
 import { AuthContext } from "../../Authentication/Auth";
 
 export const Login = ({ history }) => {
   // const [username, setUsername] = useState("");
   // const [password, setPassword] = useState("");
-
-  useEffect(() => {
-    document.title = "INDIPRODUCTS | Login";
-  }, []);
 
   const handleLogin = useCallback(
     async (event) => {
@@ -32,13 +29,16 @@ export const Login = ({ history }) => {
   const { currentUser, userDetails } = useContext(AuthContext);
 
   if (currentUser && userDetails) {
-    if (currentUser.emal === userDetails.email) {
+    if (currentUser.email === userDetails.email) {
       return <Redirect to="/" />;
     }
   }
 
   return (
     <div className={styles.container}>
+      <Helmet>
+        <title>INDIPRODUCTS | LOGin</title>
+      </Helmet>
       <div className={styles.cardWrapper}>
         <Card className={styles.card}>
           <div className={styles.heading}>

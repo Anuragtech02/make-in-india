@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core";
 import firebase from "../../Authentication/Firebase";
 import { withRouter } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import classNames from "classnames";
 
 export const Signup = ({ history }) => {
@@ -29,7 +30,7 @@ export const Signup = ({ history }) => {
   const [helperText, setHelperText] = useState("");
 
   useEffect(() => {
-    document.title = "INDIPRODUCTS | Signup";
+    // document.title = "Signup";
   }, []);
 
   const handleSignup = async (e) => {
@@ -132,6 +133,9 @@ export const Signup = ({ history }) => {
 
   return (
     <div className={styles.container}>
+      <Helmet>
+        <title>INDIPRODUCTS | SIGNUP</title>
+      </Helmet>
       <div className={styles.cardWrapper}>
         <Card className={styles.card}>
           <div className={styles.heading}>

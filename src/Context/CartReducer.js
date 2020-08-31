@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
 import firebase from "../Authentication/Firebase";
 import { AuthContext } from "../Authentication/Auth";
+import _ from "lodash";
 
 export default (state, action) => {
   const db = firebase.firestore();
   const cartData = sessionStorage.getItem("cart");
+  let updateTimer, deleteTimer;
 
   const { userDetails } = useContext(AuthContext);
   const userRef = db
@@ -18,48 +20,36 @@ export default (state, action) => {
         products: JSON.parse(cartData),
       };
     case "ADD_PRODUCT":
-      // setTimeout(() => {
-      // const updateCart = async () =>
-      //   await
-      // // }, 1000);
-      // updateCart();
-      sessionStorage.setItem(
-        "cart",
-        JSON.stringify(newProduct(action.payload), ...state.products)
-      );
-      let updateTimer,
-        counter = 0;
-      clearTimeout(updateTimer);
-      updateTimer = setTimeout(() => {
-        userRef
-          .update({
-            cart: [newProduct(action.payload), ...state.products],
-          })
-          .then(() => {
-            console.log("Updated Cart on firebase!", counter++);
-          });
-      }, 1000);
+      const setNewCart = [newProduct(action.payload), ...state.products];
+      sessionStorage.setItem("cart", JSON.stringify(setNewCart));
+      let counter = 0;
+      // clearTimeout(updateTimer);
+      const updateCart = () => {
+        userRef.update({
+          cart: setNewCart,
+        });
+        console.log("Added to cart successfully : )");
+      };
+      updateCart();
+      // _.debounce(() => {
+      //   updateCart();
+      //   console.log("Triggered");
+      // }, 1000);
 
       return {
         ...state,
-        products: [newProduct(action.payload), ...state.products],
+        products: setNewCart,
       };
     case "DELETE_PRODUCT":
-      sessionStorage.setItem(
-        "cart",
-        JSON.stringify(deleteProduct(state.products, action.payload))
-      );
-      // const updateCartOnDelete = async () =>
-      //   await userRef.update({
-      //     cart: deleteProduct(state.products, action.payload),
-      //   });
-      let deleteTimer;
+      const setCart = deleteProduct(state.products, action.payload);
+      sessionStorage.setItem("cart", JSON.stringify(setCart));
+
       let deleteCounter = 0;
-      clearTimeout(deleteTimer);
-      deleteTimer = setTimeout(() => {
+      // clearTimeout(deleteTimer);
+      _.debounce(() => {
         userRef
           .update({
-            cart: JSON.parse(sessionStorage.getItem("cart")),
+            cart: setCart,
           })
           .then(() => {
             console.log("Deleted", deleteCounter++);
@@ -92,7 +82,7 @@ const deleteProduct = (products, productToBeDeletedId) => {
   const dataAfterDelete = products.filter(
     (product) => product.id !== productToBeDeletedId
   );
-  localStorage.setItem("cart", JSON.stringify(dataAfterDelete));
+  sessionStorage.setItem("cart", JSON.stringify(dataAfterDelete));
   return dataAfterDelete;
 };
 
@@ -101,7 +91,7 @@ const increment = (oldProducts, id) => {
   let product = oldProduct[0];
   product.quantity += 1;
   oldProducts.splice(oldProducts.indexOf(product), 1, product);
-  localStorage.setItem("cart", JSON.stringify(oldProducts));
+  sessionStorage.setItem("cart", JSON.stringify(oldProducts));
   return oldProducts;
 };
 
@@ -113,3 +103,5 @@ const decrement = (oldProducts, id) => {
   localStorage.setItem("cart", JSON.stringify(oldProducts));
   return oldProducts;
 };
+
+const addProductToDB = (data) => {};
