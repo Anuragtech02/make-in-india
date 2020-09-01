@@ -10,22 +10,11 @@ import { Link } from "react-router-dom";
 import styles from "./Product.module.css";
 import amazon from "../../icons/amazon-brands.png";
 import flipkart from "../../icons/flipkart.png";
-import { SnackbarProvider, useSnackbar } from "notistack";
 import classNames from "classnames";
 import { CartContext } from "../../Context/CartContext";
 import { AuthContext } from "../../Authentication/Auth";
 
-const Product = ({ product }) => {
-  return (
-    <SnackbarProvider maxSnack={3} preventDuplicate>
-      <ProductCard product={product} />
-    </SnackbarProvider>
-  );
-};
-
-export default Product;
-
-const ProductCard = ({ product }) => {
+const Product = ({ product, showSnackbar }) => {
   const {
     id,
     imageUrls,
@@ -53,9 +42,10 @@ const ProductCard = ({ product }) => {
   };
 
   const handleClickVariant = (variant, title, id) => () => {
-    enqueueSnackbar(`Successfully added ${title} to cart`, {
-      variant,
-    });
+    // enqueueSnackbar(`Successfully added ${title} to cart`, {
+    //   variant,
+    // });
+    showSnackbar(variant, title);
     onClickHeart(id);
 
     if (
@@ -83,8 +73,6 @@ const ProductCard = ({ product }) => {
       .getElementById(id)
       .style.setProperty("color", iconColor, "important");
   };
-
-  const { enqueueSnackbar } = useSnackbar();
 
   return (
     <Card key={id} className={styles.card}>
@@ -136,3 +124,5 @@ const ProductCard = ({ product }) => {
     </Card>
   );
 };
+
+export default Product;

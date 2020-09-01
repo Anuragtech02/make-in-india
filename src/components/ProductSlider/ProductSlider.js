@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect, createRef } from "react";
+import React, { useState, useEffect, createRef } from "react";
 import { Grid, CircularProgress, Box, IconButton } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
 import styles from "./ProductSlider.module.css";
@@ -7,46 +7,12 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Product } from "../../components";
+import { SnackbarProvider, useSnackbar } from "notistack";
 import firebase from "../../Authentication/Firebase";
 import classNames from "classnames";
 
 const ProductSlider = () => {
-  const slider = createRef();
-
-  useEffect(() => {
-    // document.querySelectorAll(".slick-arrow").forEach((item) => {
-    //   item.style.background = "white";
-    //   item.style.width = "35px";
-    //   item.style.height = "35px";
-    //   item.style.borderRadius = "100px";
-    //   item.style.zIndex = "1000";
-    //   item.style.boxShadow = "2px 2px 10px rgba(0,0,0,0.2)";
-    // });
-    // document.querySelectorAll(".slick-next").forEach((item) => {
-    //   item.style.right = "30px";
-    // });
-    // document.querySelectorAll(".slick-prev").forEach((item) => {
-    //   item.style.left = "30px";
-    // });
-    // document.styleSheets[0].addRule(
-    //   ".slick-next:before",
-    //   "color: black !important;"
-    // );
-    // document.styleSheets[0].addRule(
-    //   ".slick-prev:before",
-    //   "color: black !important"
-    // );
-  }, []);
-
   const [products, setProducts] = useState([]);
-
-  const gotoPrev = () => {
-    slider.current.slickPrev();
-  };
-
-  const gotoNext = () => {
-    slider.current.slickNext();
-  };
 
   useEffect(() => {
     const localProducts = localStorage.getItem("homeSlider");
@@ -70,6 +36,26 @@ const ProductSlider = () => {
         : setProducts(JSON.parse(localStorage.getItem("homeSlider")));
     };
   }, []);
+
+  return (
+    <SnackbarProvider maxSnack={3} preventDuplicate>
+      <ProductSliderComponent products={products} />
+    </SnackbarProvider>
+  );
+};
+
+export default ProductSlider;
+
+const ProductSliderComponent = ({ products }) => {
+  const slider = createRef();
+
+  const gotoPrev = () => {
+    slider.current.slickPrev();
+  };
+
+  const gotoNext = () => {
+    slider.current.slickNext();
+  };
 
   const settings = {
     className: "center",
@@ -99,6 +85,14 @@ const ProductSlider = () => {
         },
       },
     ],
+  };
+
+  const { enqueueSnackbar } = useSnackbar();
+
+  const showSnackbar = (variant, title) => {
+    enqueueSnackbar(`Successfully added ${title} to cart`, {
+      variant,
+    });
   };
 
   return !products ? (
@@ -141,7 +135,7 @@ const ProductSlider = () => {
           return (
             <div key={product.id}>
               <Grid item xs={12} className={styles.grid}>
-                <Product product={product} />
+                <Product showSnackbar={showSnackbar} product={product} />
               </Grid>
             </div>
           );
@@ -153,5 +147,3 @@ const ProductSlider = () => {
     </div>
   );
 };
-
-export default ProductSlider;
