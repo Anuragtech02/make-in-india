@@ -12,6 +12,14 @@
           align-items: center;
 }
 
+.store {
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 5px;
+  overflow: hidden;
+  background-position: center;
+}
+
 .imageContainer img {
   min-width: 250px;
   max-width: 300px;
@@ -35,26 +43,29 @@
       -ms-flex-align: center;
           align-items: center;
   max-width: 300px;
-  text-align: center;
-  margin-top: 10px;
+  text-align: left;
   word-wrap: break-word;
 }
 
 .description h3 {
-  color: var(--primaryColor);
+  color: whitesmoke;
   font-family: "Raleway", sans-serif;
-  font-weight: 400;
+  font-weight: 800;
   text-transform: uppercase;
+  letter-spacing: 5px;
+  font-size: 2rem;
+  width: 100%;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .description p {
-  color: var(--greyFont);
-  margin-top: 5px;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 5px 0 20px 0;
   opacity: 0.8;
-  font-weight: 300;
+  font-weight: 400;
 }
 
-.shopContainer {
+.overlayContainer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -62,12 +73,23 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  min-height: 300px;
+  padding: 20px;
+  background-image: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, 0.4)), to(rgba(255, 255, 255, 0)));
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4), rgba(255, 255, 255, 0));
+}
+
+.overlayContainer .shopNowBtn {
+  background: var(--orangeTint) !important;
+  color: white;
+  font-weight: 600;
+  padding: 10px 20px;
 }
 
 @media screen and (max-width: 1500px) {
