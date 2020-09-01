@@ -3,8 +3,6 @@ import {
   TopBar,
   Appbar,
   NavBar,
-  Slider,
-  ProductSlider,
   CategoryPage,
   Contact,
   About,
@@ -15,8 +13,6 @@ import {
   AddProduct,
   MyProfile,
   EditProduct,
-  BrandSlider,
-  Stores,
   Cart,
   Home,
 } from "./components";

@@ -6,12 +6,10 @@ import _ from "lodash";
 export default (state, action) => {
   const db = firebase.firestore();
   const cartData = sessionStorage.getItem("cart");
-  let updateTimer, deleteTimer;
+  var updateTimer, deleteTimer;
 
-  const { userDetails } = useContext(AuthContext);
-  const userRef = db
-    .collection("users")
-    .doc(userDetails.uid ? userDetails.uid : sessionStorage.getItem("uid"));
+  // const { userDetails } = useContext(AuthContext);
+  const userRef = db.collection("users").doc(sessionStorage.getItem("uid"));
 
   switch (action.type) {
     case "FETCH_CART":
@@ -23,18 +21,18 @@ export default (state, action) => {
       const setNewCart = [newProduct(action.payload), ...state.products];
       sessionStorage.setItem("cart", JSON.stringify(setNewCart));
       let counter = 0;
-      // clearTimeout(updateTimer);
-      const updateCart = () => {
-        userRef.update({
-          cart: setNewCart,
-        });
-        console.log("Added to cart successfully : )");
+
+      const addProduct = () => {
+        clearTimeout(updateTimer);
+
+        updateTimer = setTimeout(() => {
+          userRef.update({
+            cart: setNewCart,
+          });
+          console.log("Added to cart successfully : )");
+        }, 2000);
       };
-      updateCart();
-      // _.debounce(() => {
-      //   updateCart();
-      //   console.log("Triggered");
-      // }, 1000);
+      addProduct();
 
       return {
         ...state,
@@ -45,8 +43,8 @@ export default (state, action) => {
       sessionStorage.setItem("cart", JSON.stringify(setCart));
 
       let deleteCounter = 0;
-      // clearTimeout(deleteTimer);
-      _.debounce(() => {
+      clearTimeout(deleteTimer);
+      deleteTimer = setTimeout(() => {
         userRef
           .update({
             cart: setCart,
@@ -54,7 +52,7 @@ export default (state, action) => {
           .then(() => {
             console.log("Deleted", deleteCounter++);
           });
-      }, 1000);
+      }, 2000);
       return {
         products: state.products.filter(
           (product) => product.id !== action.payload
