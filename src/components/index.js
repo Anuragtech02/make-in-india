@@ -4,7 +4,7 @@ export { default as NavBar } from "./NavBar/NavBar";
 export { default as HomeSlider } from "./HomeSlider/HomeSlider";
 export { default as ImageSlide } from "./ImageSlide/ImageSlide";
 export { default as ProductSlider } from "./ProductSlider/ProductSlider";
-export { default as CategoryPage } from "./CategoryPage/CateogryPage";
+export { default as CategoryPage } from "./CategoryPage/CategoryPage";
 export { default as Contact } from "./Contact/Contact";
 export { default as About } from "./About/About";
 export { default as ProductPage } from "./ProductPage/ProductPage";
