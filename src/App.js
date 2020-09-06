@@ -15,6 +15,7 @@ import {
   EditProduct,
   Cart,
   Home,
+  SellerSignup,
 } from "./components";
 import PrivateRoute from "./Authentication/PrivateRoute";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -77,6 +78,7 @@ const App = () => {
                 exact
                 component={CategoryPage}
               />
+              <Route path="/signup/seller" exact component={SellerSignup} />
               <Route path="/products/:id" exact component={ProductPage} />
               <Route path="/stores/:storeId" exact component={Shop} />
               <PrivateRoute exact path="/add-product" component={AddProduct} />

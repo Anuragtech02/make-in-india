@@ -151,14 +151,10 @@
   margin: 20px 0;
 }
 
-.card .signupBtn .btnSignup {
+.card .signupBtn Button {
   background-color: var(--primaryColor) !important;
   color: white !important;
   font-weight: 600;
-}
-
-.card .signupBtn .sellerRegisterBtn {
-  font-weight: 400;
 }
 
 .card .sellerFields .industryWrapper,
@@ -227,4 +223,16 @@
     width: 100% !important;
   }
 }
-/*# sourceMappingURL=Signup.module.css.map */
+
+.shopDetails {
+  width: 100%;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.shopDetails h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.6);
+}
+/*# sourceMappingURL=SellerSignup.module.css.map */

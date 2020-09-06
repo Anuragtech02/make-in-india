@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styles from "./ProductPage.module.css";
 import { motion } from "framer-motion";
 import {
@@ -20,6 +20,8 @@ import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 import firebase from "../../Authentication/Firebase";
+import { AuthContext } from "../../Authentication/Auth";
+import { CartContext } from "../../Context/CartContext";
 
 import {
   amul,
@@ -88,6 +90,16 @@ const MyProduct = ({ product }) => {
     document.title = `INDIPRODUCTS | ${headline}`;
   }, [headline]);
 
+  const { userDetails } = useContext(AuthContext);
+
+  const {
+    addProductWithId,
+    products,
+    incrementQuantity,
+    decrementQuantity,
+    deleteProductWithId,
+  } = useContext(CartContext);
+
   const iconColor = "var(--primaryColor)";
 
   //Settings for the vertical brand slider
@@ -119,6 +131,24 @@ const MyProduct = ({ product }) => {
       variant,
     });
     onClickHeart(id);
+    if (
+      products.some((product) => {
+        return product.id === id;
+      })
+    ) {
+      incrementQuantity(id);
+    } else {
+      saveToLocal();
+      addProductWithId(product);
+    }
+  };
+
+  const saveToLocal = () => {
+    let oldCart = localStorage.getItem("cart");
+    let newCart = oldCart ? JSON.parse(oldCart) : [];
+    product["quantity"] = 1;
+    newCart.push(product);
+    localStorage.setItem("cart", JSON.stringify(newCart));
   };
 
   const onClickHeart = (id) => {
@@ -202,19 +232,52 @@ const MyProduct = ({ product }) => {
                 <h1>{`₹${price}`}</h1>
               </motion.div>
               <motion.div className={styles.affiliateButtons}>
-                <Tooltip title="Add to favourites" placement="top">
-                  <div>
-                    <IconButton
-                      onClick={handleClickVariant("success", storeName, id)}
-                      className={styles.likeIcon}
+                {!product.quantity ? (
+                  <Tooltip title="Add to Cart" placement="top">
+                    <div>
+                      <IconButton
+                        disabled={userDetails.isSeller ? true : false}
+                        onClick={handleClickVariant("success", storeName, id)}
+                        className={styles.likeIcon}
+                      >
+                        <i
+                          id={product.id}
+                          className={classNames("fas fa-cart-plus")}
+                        />
+                      </IconButton>
+                    </div>
+                  </Tooltip>
+                ) : (
+                  <div className={styles.cartUpdate}>
+                    <Tooltip
+                      placement="top"
+                      title={
+                        product.quantity === 1 ? "Delete Product" : "Remove one"
+                      }
                     >
-                      <i
-                        id={product.id}
-                        className={classNames("fas fa-heart")}
-                      />
-                    </IconButton>
+                      <IconButton
+                        onClick={() =>
+                          product.quantity === 1
+                            ? deleteProductWithId(product.id)
+                            : decrementQuantity(product.id)
+                        }
+                        className={styles.updateBtns}
+                      >
+                        <i className="fas fa-minus" />
+                      </IconButton>
+                    </Tooltip>
+                    <h4>{product.quantity}</h4>
+                    <Tooltip placement="top" title="Add more">
+                      <IconButton
+                        onClick={() => incrementQuantity(product.id)}
+                        className={styles.updateBtns}
+                      >
+                        <i className="fas fa-plus" />
+                      </IconButton>
+                    </Tooltip>
                   </div>
-                </Tooltip>
+                )}
+
                 <Button
                   variant="contained"
                   color="primary"

@@ -20,3 +20,4 @@ export { default as Stores } from "./Stores/Stores";
 export { default as Cart } from "./Cart/Cart";
 export { default as CartProduct } from "./CartProduct/CartProduct";
 export { default as Home } from "./Home/Home";
+export { default as SellerSignup } from "./SellerSignup/SellerSignup";

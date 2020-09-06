@@ -30,9 +30,13 @@ const Product = ({ product, showSnackbar }) => {
 
   const { userDetails } = useContext(AuthContext);
 
-  const { addProductWithId, incrementQuantity, products } = useContext(
-    CartContext
-  );
+  const {
+    addProductWithId,
+    incrementQuantity,
+    products,
+    deleteProductWithId,
+    decrementQuantity,
+  } = useContext(CartContext);
 
   const gotoURL = (location) => {
     let a = document.createElement("a");
@@ -93,15 +97,44 @@ const Product = ({ product, showSnackbar }) => {
       </div>
       <div className={styles.priceLike}>
         <h4>₹{price}</h4>
-        <IconButton
-          disabled={userDetails.isSeller ? true : false}
-          onClick={handleClickVariant("success", title, id)}
-          className={styles.likeIcon}
-        >
-          <Tooltip title="Add to Cart" placement="top">
-            <i id={id} className={classNames("fas fa-cart-plus")} />
-          </Tooltip>
-        </IconButton>
+        {!product.quantity ? (
+          <IconButton
+            disabled={userDetails.isSeller ? true : false}
+            onClick={handleClickVariant("success", title, id)}
+            className={styles.likeIcon}
+          >
+            <Tooltip title="Add to Cart" placement="top">
+              <i id={id} className={classNames("fas fa-cart-plus")} />
+            </Tooltip>
+          </IconButton>
+        ) : (
+          <div className={styles.cartUpdate}>
+            <Tooltip
+              placement="top"
+              title={product.quantity === 1 ? "Delete Product" : "Remove one"}
+            >
+              <IconButton
+                onClick={() =>
+                  product.quantity === 1
+                    ? deleteProductWithId(product.id)
+                    : decrementQuantity(product.id)
+                }
+                className={styles.updateBtns}
+              >
+                <i className="fas fa-minus" />
+              </IconButton>
+            </Tooltip>
+            <h4>{product.quantity}</h4>
+            <Tooltip placement="top" title="Add more">
+              <IconButton
+                onClick={() => incrementQuantity(product.id)}
+                className={styles.updateBtns}
+              >
+                <i className="fas fa-plus" />
+              </IconButton>
+            </Tooltip>
+          </div>
+        )}
       </div>
       <div className={styles.buttons}>
         <Button

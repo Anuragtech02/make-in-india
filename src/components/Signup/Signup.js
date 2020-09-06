@@ -17,102 +17,91 @@ export const Signup = ({ history }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [mobile, setMobile] = useState();
-  const [website, setWebsite] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
-  const [checked, setChecked] = useState(false);
-  const [industry, setIndustry] = useState("");
-  const [email2, setEmail2] = useState("");
-  const [mobile2, setMobile2] = useState("");
-  const [facebook, setFacebook] = useState("");
-  const [insta, setInsta] = useState("");
   const [errorNotSame, setErrorNotSame] = useState(false);
   const [helperText, setHelperText] = useState("");
 
-  useEffect(() => {
-    // document.title = "Signup";
-  }, []);
-
   const handleSignup = async (e) => {
     e.preventDefault();
-    if (!checked) {
-      try {
-        const db = firebase.firestore();
-        const ref = db.collection("users");
-        const tempUserId = ref.doc().id;
-        await firebase.auth().createUserWithEmailAndPassword(email, password);
-        await ref
-          .doc(tempUserId)
-          .set({
-            uid: tempUserId,
-            displayName: name,
-            email,
-            mobile,
-            isSeller: false,
-            cart: [],
-            placedOrders: [],
-            secondary_mobile: null,
-            recovery_email: null,
-            industry: null,
-            facebook: null,
-            insta: null,
-            website: null,
-            storeId: null,
-          })
-          .then(() => {
-            history.push("/");
-          });
-      } catch (error) {
-        alert("Error : " + error);
-      }
-    } else {
-      try {
-        const db = firebase.firestore();
-        const refUser = db.collection("users");
-        const refStore = db.collection("stores");
-        const tempStoreId = refStore.doc().id;
-        const tempUserId = refUser.doc().id;
-        await firebase.auth().createUserWithEmailAndPassword(email, password);
-        await refStore.doc(tempStoreId).set({
+    // if (!checked) {
+    try {
+      const db = firebase.firestore();
+      const ref = db.collection("users");
+      const tempUserId = ref.doc().id;
+      await firebase.auth().createUserWithEmailAndPassword(email, password);
+      await ref
+        .doc(tempUserId)
+        .set({
+          uid: tempUserId,
           displayName: name,
           email,
           mobile,
-          isSeller: true,
-          secondary_mobile: mobile2,
-          recovery_email: email2,
-          industry,
-          facebook,
-          insta,
-          website,
-          storeId: tempStoreId,
+          isSeller: false,
+          cart: [],
+          placedOrders: [],
+          secondary_mobile: null,
+          recovery_email: null,
+          industry: null,
+          facebook: null,
+          insta: null,
+          website: null,
+          storeId: null,
+        })
+        .then(() => {
+          history.push("/");
         });
-
-        await refUser
-          .doc(tempUserId)
-          .set({
-            uid: tempUserId,
-            displayName: name,
-            email,
-            mobile,
-            isSeller: true,
-            secondary_mobile: mobile2,
-            recovery_email: email2,
-            industry,
-            facebook,
-            insta,
-            website,
-            storeId: tempStoreId,
-          })
-          .then(() => {
-            history.push("/");
-          })
-          .catch((error) => {
-            alert(error);
-          });
-      } catch (error) {
-        alert("Error : " + error);
-      }
+    } catch (error) {
+      alert("Error : " + error);
     }
+    // } else {
+    //   try {
+    //     const db = firebase.firestore();
+    //     const refUser = db.collection("users");
+    //     const refStore = db.collection("stores");
+    //     const tempStoreId = refStore.doc().id;
+    //     const tempUserId = refUser.doc().id;
+    //     await firebase.auth().createUserWithEmailAndPassword(email, password);
+    //     await refStore.doc(tempStoreId).set({
+    //       displayName: name,
+    //       email,
+    //       mobile,
+    //       isSeller: true,
+    //       secondary_mobile: mobile2,
+    //       recovery_email: email2,
+    //       industry,
+    //       facebook,
+    //       insta,
+    //       website,
+    //       storeId: tempStoreId,
+    //     });
+
+    //     await refUser
+    //       .doc(tempUserId)
+    //       .set({
+    //         uid: tempUserId,
+    //         displayName: name,
+    //         email,
+    //         mobile,
+    //         isSeller: true,
+    //         secondary_mobile: mobile2,
+    //         recovery_email: email2,
+    //         industry,
+    //         facebook,
+    //         insta,
+    //         website,
+    //         storeId: tempStoreId,
+    //       })
+    //       .then(() => {
+    //         history.push("/");
+    //       })
+    //       .catch((error) => {
+    //         alert(error);
+    //       });
+    //   } catch (error) {
+    //     alert("Error : " + error);
+    //   }
+    // }
   };
 
   const matchPassword = (e) => {
@@ -209,7 +198,7 @@ export const Signup = ({ history }) => {
               </div>
             </div>
             <div className={styles.signupBtn}>
-              <FormControlLabel
+              {/* <FormControlLabel
                 control={
                   <Switch
                     name="seller"
@@ -218,20 +207,27 @@ export const Signup = ({ history }) => {
                   />
                 }
                 label="I am a seller"
-              />
+              /> */}
               <Button
                 variant="contained"
-                style={{
-                  opacity: !checked ? "1" : "0",
-                  pointerEvents: !checked ? "" : "none",
-                }}
+                onClick={() => history.push("/signup/seller")}
+                className={styles.sellerRegisterBtn}
+              >
+                Register as Seller
+              </Button>
+              <Button
+                variant="contained"
+                // style={{
+                //   opacity: !checked ? "1" : "0",
+                //   pointerEvents: !checked ? "" : "none",
+                // }}
                 type="submit"
+                className={styles.btnSignup}
               >
                 Signup
               </Button>
             </div>
-            <Collapse className={styles.sellerCollapse} in={checked}>
-              {/* {checked ? ( */}
+            {/* <Collapse className={styles.sellerCollapse} in={checked}>
               <div
                 className={classNames(styles.textFields, styles.sellerFields)}
               >
@@ -304,10 +300,7 @@ export const Signup = ({ history }) => {
                   </Button>
                 </div>
               </div>
-              {/* ) : (
-                " "
-              )} */}
-            </Collapse>
+            </Collapse> */}
           </form>
         </Card>
       </div>

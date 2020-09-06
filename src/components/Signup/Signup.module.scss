@@ -102,10 +102,13 @@
     width: 100%;
     padding: 0 10px;
     margin: 20px 0;
-    Button {
+    .btnSignup {
       background-color: var(--primaryColor) !important;
       color: white !important;
       font-weight: 600;
+    }
+    .sellerRegisterBtn {
+      font-weight: 400;
     }
   }
 

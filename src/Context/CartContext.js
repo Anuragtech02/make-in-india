@@ -1,10 +1,4 @@
-import React, {
-  useState,
-  useContext,
-  createContext,
-  useReducer,
-  useEffect,
-} from "react";
+import React, { useState, createContext, useReducer, useEffect } from "react";
 import CartReducer from "./CartReducer";
 
 const localCart = sessionStorage.getItem("cart");
@@ -33,6 +27,7 @@ export const CartProvider = ({ children }) => {
       type: "ADD_PRODUCT",
       payload: product,
     });
+    // console.log("Add function called");
   }
 
   const deleteProductWithId = (id) => {
@@ -40,6 +35,7 @@ export const CartProvider = ({ children }) => {
       type: "DELETE_PRODUCT",
       payload: id,
     });
+    // console.log("Delete product called");
   };
 
   const incrementQuantity = (id) => {

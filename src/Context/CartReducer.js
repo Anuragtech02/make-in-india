@@ -1,12 +1,13 @@
-import React, { useContext } from "react";
+import React from "react";
 import firebase from "../Authentication/Firebase";
 import { AuthContext } from "../Authentication/Auth";
-import _ from "lodash";
+import debounce from "lodash/debounce";
 
 export default (state, action) => {
   const db = firebase.firestore();
   const cartData = sessionStorage.getItem("cart");
-  var updateTimer, deleteTimer;
+  let updateTimer, deleteTimer;
+  let deleteCounter = 0;
 
   // const { userDetails } = useContext(AuthContext);
   const userRef = db.collection("users").doc(sessionStorage.getItem("uid"));
@@ -23,14 +24,10 @@ export default (state, action) => {
       let counter = 0;
 
       const addProduct = () => {
-        clearTimeout(updateTimer);
-
-        updateTimer = setTimeout(() => {
-          userRef.update({
-            cart: setNewCart,
-          });
-          console.log("Added to cart successfully : )");
-        }, 2000);
+        userRef.update({
+          cart: setNewCart,
+        });
+        console.log("Added to cart successfully : )");
       };
       addProduct();
 
@@ -42,17 +39,10 @@ export default (state, action) => {
       const setCart = deleteProduct(state.products, action.payload);
       sessionStorage.setItem("cart", JSON.stringify(setCart));
 
-      let deleteCounter = 0;
-      clearTimeout(deleteTimer);
-      deleteTimer = setTimeout(() => {
-        userRef
-          .update({
-            cart: setCart,
-          })
-          .then(() => {
-            console.log("Deleted", deleteCounter++);
-          });
-      }, 2000);
+      userRef.update({
+        cart: setCart,
+      });
+      console.log("Deleted", deleteCounter++);
       return {
         products: state.products.filter(
           (product) => product.id !== action.payload
