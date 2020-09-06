@@ -100,6 +100,7 @@ const Product = ({ product, showSnackbar }) => {
         {!product.quantity ? (
           <IconButton
             disabled={userDetails.isSeller ? true : false}
+            style={{ opacity: userDetails.isSeller ? "0.4" : "1" }}
             onClick={handleClickVariant("success", title, id)}
             className={styles.likeIcon}
           >
