@@ -34,6 +34,39 @@ const HomeSlider = () => {
   };
 
   let arr = [image1, image2, image3, image4, image5];
+
+  let slides = [
+    {
+      image: image1,
+      title: "Winter Wear",
+      desc:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum non a tenetur itaque. Odit temporibus saepe praesentium at qui rem maxime perspiciatis ex delectus. Laudantium, at perferendis. Sit, illo explicabo.",
+    },
+    {
+      image: image2,
+      title: "Earings",
+      desc:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum non a tenetur itaque. Odit temporibus saepe praesentium at qui rem maxime perspiciatis ex delectus. Laudantium, at perferendis. Sit, illo explicabo.",
+    },
+    {
+      image: image3,
+      title: "Rayban Aviators",
+      desc:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum non a tenetur itaque. Odit temporibus saepe praesentium at qui rem maxime perspiciatis ex delectus. Laudantium, at perferendis. Sit, illo explicabo.",
+    },
+    {
+      image: image4,
+      title: "Raymond",
+      desc:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum non a tenetur itaque. Odit temporibus saepe praesentium at qui rem maxime perspiciatis ex delectus. Laudantium, at perferendis. Sit, illo explicabo.",
+    },
+    {
+      image: image5,
+      title: "T-Shirts",
+      desc:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum non a tenetur itaque. Odit temporibus saepe praesentium at qui rem maxime perspiciatis ex delectus. Laudantium, at perferendis. Sit, illo explicabo.",
+    },
+  ];
   // const [X, setX] = useState(0);
 
   // const onClickLeft = () => {
@@ -51,21 +84,22 @@ const HomeSlider = () => {
         <i className="fas fa-arrow-circle-left"></i>
       </IconButton>
       <Slider {...settings} ref={homeSlider} className={styles.slider}>
-        {arr.map((item, index) => {
+        {slides.map((slide, index) => {
           return (
-            <div key={index}>
+            <div key={slide.title}>
               <div
-                className={styles.slide}
+                className={styles.backgroundContainer}
                 style={{
-                  backgroundImage: `url(${item})`,
+                  backgroundImage: `url(${slide.image})`,
                 }}
               >
-                <Typography className={styles.title} variant="h2">
-                  Slide {index}
-                </Typography>
-                <Button className={styles.buyBtn} variant="contained">
-                  Buy Now
-                </Button>
+                <div className={styles.slide}>
+                  <h2 className={styles.title}>{slide.title}</h2>
+                  <p>{slide.desc}</p>
+                  <Button className={styles.buyBtn} variant="contained">
+                    Buy Now
+                  </Button>
+                </div>
               </div>
             </div>
           );
