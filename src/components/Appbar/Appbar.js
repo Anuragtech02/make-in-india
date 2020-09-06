@@ -125,7 +125,9 @@ const AccountComponent = ({ history, currentUser, userDetails }) => {
     setIsSeller(false);
     firebase.auth().signOut();
     history.push("/login");
-    return <Redirect to="/login" />;
+    setTimeout(() => {
+      history.push("/login");
+    }, 1000);
   };
 
   const handleClickMenu = (event) => {
