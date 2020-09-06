@@ -44,7 +44,7 @@ const HomeSlider = () => {
     },
     {
       image: image2,
-      title: "Earings",
+      title: "Earrings",
       desc:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum non a tenetur itaque. Odit temporibus saepe praesentium at qui rem maxime perspiciatis ex delectus. Laudantium, at perferendis. Sit, illo explicabo.",
     },
