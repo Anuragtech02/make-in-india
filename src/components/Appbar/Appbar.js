@@ -44,6 +44,7 @@ const Appbar = ({ history }) => {
           />
           <IconButton
             disabled={userDetails.isSeller ? true : false}
+            style={{ opacity: userDetails.isSeller ? "0.4" : "1" }}
             onClick={onClickCart}
             className={styles.cart}
           >
@@ -72,6 +73,7 @@ const Appbar = ({ history }) => {
         />
         <IconButton
           disabled={userDetails.isSeller ? true : false}
+          style={{ opacity: userDetails.isSeller ? "0.4" : "1" }}
           onClick={onClickCart}
           className={classNames(styles.cart, changeOnSeller)}
         >

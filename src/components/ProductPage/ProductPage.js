@@ -233,10 +233,18 @@ const MyProduct = ({ product }) => {
               </motion.div>
               <motion.div className={styles.affiliateButtons}>
                 {!product.quantity ? (
-                  <Tooltip title="Add to Cart" placement="top">
+                  <Tooltip
+                    title={
+                      userDetails.isSeller
+                        ? "Not availble on seller account"
+                        : "Add to cart"
+                    }
+                    placement="top"
+                  >
                     <div>
                       <IconButton
                         disabled={userDetails.isSeller ? true : false}
+                        style={{ opacity: userDetails.isSeller ? "0.4" : "1" }}
                         onClick={handleClickVariant("success", storeName, id)}
                         className={styles.likeIcon}
                       >
