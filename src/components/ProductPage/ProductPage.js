@@ -132,23 +132,15 @@ const MyProduct = ({ product }) => {
     });
     onClickHeart(id);
     if (
+      products &&
       products.some((product) => {
         return product.id === id;
       })
     ) {
       incrementQuantity(id);
     } else {
-      saveToLocal();
       addProductWithId(product);
     }
-  };
-
-  const saveToLocal = () => {
-    let oldCart = localStorage.getItem("cart");
-    let newCart = oldCart ? JSON.parse(oldCart) : [];
-    product["quantity"] = 1;
-    newCart.push(product);
-    localStorage.setItem("cart", JSON.stringify(newCart));
   };
 
   const onClickHeart = (id) => {
