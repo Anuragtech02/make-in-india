@@ -1,13 +1,9 @@
 import React from "react";
 import firebase from "../Authentication/Firebase";
-import { AuthContext } from "../Authentication/Auth";
-import debounce from "lodash/debounce";
 
 export default (state, action) => {
   const db = firebase.firestore();
-  const cartData = sessionStorage.getItem("cart");
-  let updateTimer, deleteTimer;
-  let deleteCounter = 0;
+  const cartData = localStorage.getItem("cart");
 
   // const { userDetails } = useContext(AuthContext);
   const userRef = db.collection("users").doc(sessionStorage.getItem("uid"));
@@ -20,7 +16,7 @@ export default (state, action) => {
       };
     case "ADD_PRODUCT":
       const setNewCart = [newProduct(action.payload), ...state.products];
-      sessionStorage.setItem("cart", JSON.stringify(setNewCart));
+      localStorage.setItem("cart", JSON.stringify(setNewCart));
       let counter = 0;
 
       // const addProduct = () => {
@@ -37,7 +33,7 @@ export default (state, action) => {
       };
     case "DELETE_PRODUCT":
       const setCart = deleteProduct(state.products, action.payload);
-      sessionStorage.setItem("cart", JSON.stringify(setCart));
+      localStorage.setItem("cart", JSON.stringify(setCart));
 
       // userRef.update({
       //   cart: setCart,
@@ -56,6 +52,16 @@ export default (state, action) => {
       return {
         products: decrement(state.products, action.payload),
       };
+    case "UPDATE_DB":
+      const updateDB = async () => {
+        await userRef
+          .update({
+            cart: state.products,
+          })
+          .then(() => console.log("Updated On DB"));
+      };
+      updateDB();
+      break;
     default:
       return state;
   }
@@ -70,7 +76,7 @@ const deleteProduct = (products, productToBeDeletedId) => {
   const dataAfterDelete = products.filter(
     (product) => product.id !== productToBeDeletedId
   );
-  sessionStorage.setItem("cart", JSON.stringify(dataAfterDelete));
+  // sessionStorage.setItem("cart", JSON.stringify(dataAfterDelete));
   return dataAfterDelete;
 };
 
@@ -79,7 +85,7 @@ const increment = (oldProducts, id) => {
   let product = oldProduct[0];
   product.quantity += 1;
   oldProducts.splice(oldProducts.indexOf(product), 1, product);
-  sessionStorage.setItem("cart", JSON.stringify(oldProducts));
+  localStorage.setItem("cart", JSON.stringify(oldProducts));
   return oldProducts;
 };
 

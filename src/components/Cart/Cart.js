@@ -7,11 +7,11 @@ import { AuthContext } from "../../Authentication/Auth";
 
 export const Cart = () => {
   const { products, fetchCartData } = useContext(CartContext);
-  const { saveCartToSession } = useContext(AuthContext);
+  const { saveCartToLocal } = useContext(AuthContext);
 
   useEffect(() => {
-    saveCartToSession();
-  }, [saveCartToSession]);
+    saveCartToLocal();
+  }, [saveCartToLocal]);
 
   return <CartComponent products={products} />;
 };

@@ -4,12 +4,13 @@ import React, {
   useReducer,
   useEffect,
   useRef,
+  useCallback,
 } from "react";
 import CartReducer from "./CartReducer";
 import debounce from "lodash/debounce";
 import firebase from "../Authentication/Firebase";
 
-const localCart = sessionStorage.getItem("cart");
+const localCart = localStorage.getItem("cart");
 const cartData = JSON.parse(localCart);
 
 //Initialized Context
@@ -22,9 +23,17 @@ export const CartProvider = ({ children }) => {
     products: cartData,
   };
 
+  const [uid, setUid] = useState(sessionStorage.getItem("uid"));
+
   const db = firebase.firestore();
 
-  const userRef = db.collection("users").doc(sessionStorage.getItem("uid"));
+  let userRef = sessionStorage.getItem("uid")
+    ? db.collection("users").doc(uid)
+    : null;
+
+  useEffect(() => {
+    setUid(sessionStorage.getItem("uid"));
+  }, [uid]);
 
   const [state, dispatch] = useReducer(CartReducer, initialState);
 
@@ -34,11 +43,14 @@ export const CartProvider = ({ children }) => {
     });
   };
 
-  const saveToDb = async () => {
-    await userRef.update({
-      cart: state.products,
-    });
-    console.log("Added to cart");
+  const saveToDb = () => {
+    const newCart = JSON.parse(localStorage.getItem("cart"));
+    console.log(newCart);
+    userRef
+      .update({
+        cart: newCart,
+      })
+      .then(() => console.log("Updated Cart"));
   };
 
   const debounceSave = useRef(debounce(() => saveToDb(), 2000)).current;
@@ -48,7 +60,6 @@ export const CartProvider = ({ children }) => {
       type: "ADD_PRODUCT",
       payload: product,
     });
-    // console.log("Add function called");
     debounceSave();
   }
 
@@ -65,6 +76,7 @@ export const CartProvider = ({ children }) => {
       type: "INCREMENT_QUANTITY",
       payload: id,
     });
+    debounceSave();
   };
 
   const decrementQuantity = (id) => {
@@ -72,6 +84,7 @@ export const CartProvider = ({ children }) => {
       type: "DECREMENT_QUANTITY",
       payload: id,
     });
+    debounceSave();
   };
 
   return (

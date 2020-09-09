@@ -15,8 +15,8 @@ export const AuthProvider = ({ children }) => {
 
   // }
 
-  const saveCartToSession = () => {
-    sessionStorage.setItem("cart", JSON.stringify(userDetails.cart));
+  const saveCartToLocal = () => {
+    localStorage.setItem("cart", JSON.stringify(userDetails.cart));
   };
 
   useEffect(() => {
@@ -71,7 +71,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ currentUser, userDetails, products, saveCartToSession }}
+      value={{ currentUser, userDetails, products, saveCartToLocal }}
     >
       {children}
     </AuthContext.Provider>
