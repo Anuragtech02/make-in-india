@@ -1,5 +1,13 @@
-import React, { useState, createContext, useReducer, useEffect } from "react";
+import React, {
+  useState,
+  createContext,
+  useReducer,
+  useEffect,
+  useRef,
+} from "react";
 import CartReducer from "./CartReducer";
+import debounce from "lodash/debounce";
+import firebase from "../Authentication/Firebase";
 
 const localCart = sessionStorage.getItem("cart");
 const cartData = JSON.parse(localCart);
@@ -14,6 +22,10 @@ export const CartProvider = ({ children }) => {
     products: cartData,
   };
 
+  const db = firebase.firestore();
+
+  const userRef = db.collection("users").doc(sessionStorage.getItem("uid"));
+
   const [state, dispatch] = useReducer(CartReducer, initialState);
 
   const fetchCartData = () => {
@@ -22,12 +34,22 @@ export const CartProvider = ({ children }) => {
     });
   };
 
+  const saveToDb = async () => {
+    await userRef.update({
+      cart: state.products,
+    });
+    console.log("Added to cart");
+  };
+
+  const debounceSave = useRef(debounce(() => saveToDb(), 2000)).current;
+
   function addProductWithId(product) {
     dispatch({
       type: "ADD_PRODUCT",
       payload: product,
     });
     // console.log("Add function called");
+    debounceSave();
   }
 
   const deleteProductWithId = (id) => {
@@ -35,7 +57,7 @@ export const CartProvider = ({ children }) => {
       type: "DELETE_PRODUCT",
       payload: id,
     });
-    // console.log("Delete product called");
+    debounceSave();
   };
 
   const incrementQuantity = (id) => {

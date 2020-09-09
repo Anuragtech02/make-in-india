@@ -53,6 +53,7 @@ const Product = ({ product, showSnackbar }) => {
     onClickHeart(id);
 
     if (
+      products &&
       products.some((product) => {
         return product.id === id;
       })
@@ -97,45 +98,16 @@ const Product = ({ product, showSnackbar }) => {
       </div>
       <div className={styles.priceLike}>
         <h4>₹{price}</h4>
-        {!product.quantity ? (
-          <IconButton
-            disabled={userDetails.isSeller ? true : false}
-            style={{ opacity: userDetails.isSeller ? "0.4" : "1" }}
-            onClick={handleClickVariant("success", title, id)}
-            className={styles.likeIcon}
-          >
-            <Tooltip title="Add to Cart" placement="top">
-              <i id={id} className={classNames("fas fa-cart-plus")} />
-            </Tooltip>
-          </IconButton>
-        ) : (
-          <div className={styles.cartUpdate}>
-            <Tooltip
-              placement="top"
-              title={product.quantity === 1 ? "Delete Product" : "Remove one"}
-            >
-              <IconButton
-                onClick={() =>
-                  product.quantity === 1
-                    ? deleteProductWithId(product.id)
-                    : decrementQuantity(product.id)
-                }
-                className={styles.updateBtns}
-              >
-                <i className="fas fa-minus" />
-              </IconButton>
-            </Tooltip>
-            <h4>{product.quantity}</h4>
-            <Tooltip placement="top" title="Add more">
-              <IconButton
-                onClick={() => incrementQuantity(product.id)}
-                className={styles.updateBtns}
-              >
-                <i className="fas fa-plus" />
-              </IconButton>
-            </Tooltip>
-          </div>
-        )}
+        <IconButton
+          disabled={userDetails.isSeller ? true : false}
+          style={{ opacity: userDetails.isSeller ? "0.4" : "1" }}
+          onClick={handleClickVariant("success", title, id)}
+          className={styles.likeIcon}
+        >
+          <Tooltip title="Add to Cart" placement="top">
+            <i id={id} className={classNames("fas fa-cart-plus")} />
+          </Tooltip>
+        </IconButton>
       </div>
       <div className={styles.buttons}>
         <Button

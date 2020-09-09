@@ -23,13 +23,13 @@ export default (state, action) => {
       sessionStorage.setItem("cart", JSON.stringify(setNewCart));
       let counter = 0;
 
-      const addProduct = () => {
-        userRef.update({
-          cart: setNewCart,
-        });
-        console.log("Added to cart successfully : )");
-      };
-      addProduct();
+      // const addProduct = () => {
+      //   userRef.update({
+      //     cart: setNewCart,
+      //   });
+      //   console.log("Added to cart successfully : )");
+      // };
+      // addProduct();
 
       return {
         ...state,
@@ -39,10 +39,10 @@ export default (state, action) => {
       const setCart = deleteProduct(state.products, action.payload);
       sessionStorage.setItem("cart", JSON.stringify(setCart));
 
-      userRef.update({
-        cart: setCart,
-      });
-      console.log("Deleted", deleteCounter++);
+      // userRef.update({
+      //   cart: setCart,
+      // });
+      // console.log("Deleted", deleteCounter++);
       return {
         products: state.products.filter(
           (product) => product.id !== action.payload
