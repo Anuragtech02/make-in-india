@@ -202,7 +202,7 @@ const MyProduct = ({ product }) => {
               <h4>{`Category : ${category}`}</h4>
               <h5>In Stock</h5>
               <Link to={`/stores/${storeId}`} className={styles.noDecoration}>
-                <h6>by {storeName}</h6>
+                <h6>sold by {storeName}</h6>
               </Link>
               <div className={styles.underLine}></div>
             </motion.div>
