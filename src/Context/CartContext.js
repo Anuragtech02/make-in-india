@@ -10,20 +10,31 @@ import CartReducer from "./CartReducer";
 import debounce from "lodash/debounce";
 import firebase from "../Authentication/Firebase";
 
-const localCart = localStorage.getItem("cart");
-const cartData = JSON.parse(localCart);
+const cartData = JSON.parse(localStorage.getItem("cart"));
+
+//Global Total calculation Function
+const getTotal = (products) => {
+  const tempTotal = products.reduce((currentTotal, product) => {
+    return product.price * product.quantity + currentTotal;
+  }, 0);
+
+  return tempTotal;
+};
 
 //Initialized Context
 export const CartContext = createContext({
   products: cartData,
+  total: getTotal(cartData),
 });
 
 export const CartProvider = ({ children }) => {
   let initialState = {
     products: cartData,
+    total: getTotal(cartData),
   };
 
   const [uid, setUid] = useState(sessionStorage.getItem("uid"));
+  let tempUid = sessionStorage.getItem("uid");
 
   const db = firebase.firestore();
 
@@ -33,7 +44,7 @@ export const CartProvider = ({ children }) => {
 
   useEffect(() => {
     setUid(sessionStorage.getItem("uid"));
-  }, [uid]);
+  }, [tempUid]);
 
   const [state, dispatch] = useReducer(CartReducer, initialState);
 
@@ -96,6 +107,7 @@ export const CartProvider = ({ children }) => {
         incrementQuantity,
         decrementQuantity,
         fetchCartData,
+        total: state.total,
       }}
     >
       {children}

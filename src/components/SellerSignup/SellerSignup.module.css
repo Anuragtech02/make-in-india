@@ -151,10 +151,14 @@
   margin: 20px 0;
 }
 
-.card .signupBtn Button {
+.card .signupBtn .btnSignup {
   background-color: var(--primaryColor) !important;
   color: white !important;
   font-weight: 600;
+}
+
+.card .signupBtn .sellerRegisterBtn {
+  font-weight: 400;
 }
 
 .card .sellerFields .industryWrapper,

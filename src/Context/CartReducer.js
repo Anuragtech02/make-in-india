@@ -4,7 +4,7 @@ import firebase from "../Authentication/Firebase";
 export default (state, action) => {
   const db = firebase.firestore();
   const cartData = localStorage.getItem("cart");
-
+  var total = 0;
   // const { userDetails } = useContext(AuthContext);
   const userRef = db.collection("users").doc(sessionStorage.getItem("uid"));
 
@@ -17,51 +17,39 @@ export default (state, action) => {
     case "ADD_PRODUCT":
       const setNewCart = [newProduct(action.payload), ...state.products];
       localStorage.setItem("cart", JSON.stringify(setNewCart));
-      let counter = 0;
-
-      // const addProduct = () => {
-      //   userRef.update({
-      //     cart: setNewCart,
-      //   });
-      //   console.log("Added to cart successfully : )");
-      // };
-      // addProduct();
+      total = getTotal(setNewCart);
 
       return {
-        ...state,
         products: setNewCart,
+        total,
       };
     case "DELETE_PRODUCT":
       const setCart = deleteProduct(state.products, action.payload);
       localStorage.setItem("cart", JSON.stringify(setCart));
+      total = getTotal(setCart);
 
-      // userRef.update({
-      //   cart: setCart,
-      // });
-      // console.log("Deleted", deleteCounter++);
       return {
         products: state.products.filter(
           (product) => product.id !== action.payload
         ),
       };
     case "INCREMENT_QUANTITY":
+      let dataAfterIncrement = increment(state.products, action.payload);
+      total = getTotal(dataAfterIncrement);
+      localStorage.setItem("cart", JSON.stringify(dataAfterIncrement));
+
       return {
-        products: increment(state.products, action.payload),
+        products: dataAfterIncrement,
+        total,
       };
     case "DECREMENT_QUANTITY":
+      let dataAfterDecrement = decrement(state.products, action.payload);
+      total = getTotal(dataAfterDecrement);
+      localStorage.setItem("cart", JSON.stringify(dataAfterDecrement));
       return {
-        products: decrement(state.products, action.payload),
+        products: dataAfterDecrement,
+        total,
       };
-    case "UPDATE_DB":
-      const updateDB = async () => {
-        await userRef
-          .update({
-            cart: state.products,
-          })
-          .then(() => console.log("Updated On DB"));
-      };
-      updateDB();
-      break;
     default:
       return state;
   }
@@ -80,12 +68,23 @@ const deleteProduct = (products, productToBeDeletedId) => {
   return dataAfterDelete;
 };
 
+const getTotal = (products) => {
+  // console.log(products);
+  // console.log("LOgged from getTotal");
+  const tempTotal = products.reduce((currentTotal, product) => {
+    return product.price * product.quantity + currentTotal;
+  }, 0);
+  console.log(tempTotal);
+  console.log("Total from reducer");
+  return tempTotal;
+};
+
 const increment = (oldProducts, id) => {
   const oldProduct = oldProducts.filter((product) => product.id === id);
   let product = oldProduct[0];
   product.quantity += 1;
   oldProducts.splice(oldProducts.indexOf(product), 1, product);
-  localStorage.setItem("cart", JSON.stringify(oldProducts));
+  // localStorage.setItem("cart", JSON.stringify(oldProducts));
   return oldProducts;
 };
 
@@ -94,8 +93,6 @@ const decrement = (oldProducts, id) => {
   let product = oldProduct[0];
   product.quantity -= 1;
   oldProducts.splice(oldProducts.indexOf(product), 1, product);
-  localStorage.setItem("cart", JSON.stringify(oldProducts));
+  // localStorage.setItem("cart", JSON.stringify(oldProducts));
   return oldProducts;
 };
-
-const addProductToDB = (data) => {};
