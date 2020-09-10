@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useContext, useCallback } from "react";
-import { Grid, Card } from "@material-ui/core";
+import React, { useState, useEffect, useContext } from "react";
+import { Grid, Card, Button } from "@material-ui/core";
 import { CartProduct } from "../../components";
 import styles from "./Cart.module.css";
 import { CartContext } from "../../Context/CartContext";
 import { AuthContext } from "../../Authentication/Auth";
 import box from "../../assets/vectors/box.svg";
+import CurrencyFormat from "react-currency-format";
 
 export const Cart = () => {
   const { products, total } = useContext(CartContext);
@@ -20,25 +21,17 @@ export const Cart = () => {
 export default Cart;
 
 const CartComponent = ({ products, total }) => {
-  // const [total, setTotal] = useState(0);
-
-  // useEffect(() => {
-  //   // let temp = 0;
-  //   // temp = products.reduce((currentTotal, product) => {
-  //   //   return product.price * product.quantity + currentTotal;
-  //   // }, 0);
-  //   // setTotal(temp);
-  //   setTotal(total);
-  // }, [products]);
-
   console.log(total);
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <div className={styles.innerHeader}>
-          <h1>CART</h1>
-          <img src={box} alt="box" />
+          <div className={styles.cartHeading}>
+            <h1>CART</h1>
+            <img src={box} alt="box-cart" />
+          </div>
+          <p>Total Products : {products.length}</p>
         </div>
         <div className={styles.underLine}></div>
       </div>
@@ -55,7 +48,7 @@ const CartComponent = ({ products, total }) => {
             <Grid container spacing={2} className={styles.productGrid}>
               {products.map((product, index) => {
                 return (
-                  <Grid key={index} item md={4}>
+                  <Grid key={index} item sm={12} xs={12} md={6} lg={6} xl={4}>
                     <CartProduct product={product} />
                   </Grid>
                 );
@@ -63,12 +56,33 @@ const CartComponent = ({ products, total }) => {
             </Grid>
           )}
         </Grid>
-        <Grid md={3} item className={styles.total}>
-          <Card>
+        <Grid md={3} item className={styles.totalContainer}>
+          <Card className={styles.total}>
             <div className={styles.heading}>
               <h2>Total</h2>
-              <h2>{total}</h2>
+              <h2>
+                <CurrencyFormat
+                  value={total}
+                  displayType={"text"}
+                  thousandSpacing="2s"
+                  thousandSeparator={true}
+                  prefix={"₹"}
+                />
+              </h2>
             </div>
+            <div className={styles.terms}>
+              <p>
+                By clicking confirm order, you hereby agree to our{" "}
+                <span>Terms & conditions</span>.
+              </p>
+            </div>
+            <Button
+              disabled={!products || !products.length ? true : false}
+              className={styles.orangeBtn}
+              variant="text"
+            >
+              Confirm Order
+            </Button>
           </Card>
         </Grid>
       </Grid>

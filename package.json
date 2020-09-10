@@ -21,6 +21,7 @@
     "notistack": "^0.9.17",
     "react": "^16.13.1",
     "react-color": "^2.18.1",
+    "react-currency-format": "^1.0.0",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
     "react-horizontal-scrolling-menu": "^0.7.7",

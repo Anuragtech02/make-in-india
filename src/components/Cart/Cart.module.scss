@@ -13,11 +13,14 @@
   // background: rgba(230, 230, 230, 0.5);
   width: var(--fixedWidth);
   margin-top: 30px;
-  .innerHeader {
-    margin: auto;
+  .innerHeader,
+  .cartHeading {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
+    .cartHeading {
+      justify-content: flex-start;
+    }
   }
   h1 {
     color: var(--primaryColor);
@@ -41,6 +44,42 @@
     h4 {
       font-weight: 400;
       margin: 20px 0;
+    }
+  }
+  .total {
+    overflow: hidden;
+    .heading {
+      display: flex;
+      padding: 30px 20px;
+      justify-content: space-between;
+      align-items: center;
+      h2 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        &:nth-child(2) {
+          font-weight: 800;
+          color: var(--orangeTint);
+        }
+      }
+    }
+    .terms {
+      padding: 0 20px 10px 20px;
+      p {
+        font-size: 0.8rem;
+        color: rgba(0, 0, 0, 0.6);
+        word-wrap: break;
+        span {
+          color: var(--orangeTint);
+        }
+      }
+    }
+    .orangeBtn {
+      background: var(--primaryColor) !important;
+      color: white !important;
+      font-weight: 600 !important;
+      width: 100% !important;
+      padding: 20px 0 !important;
+      border-radius: 0 !important;
     }
   }
 }
