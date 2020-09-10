@@ -21,6 +21,13 @@
     .cartHeading {
       justify-content: flex-start;
     }
+    p {
+      font-size: 0.9rem;
+      font-weight: 400;
+      span {
+        font-weight: 600;
+      }
+    }
   }
   h1 {
     color: var(--primaryColor);

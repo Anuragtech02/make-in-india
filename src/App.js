@@ -18,7 +18,7 @@ import {
   SellerSignup,
 } from "./components";
 import PrivateRoute from "./Authentication/PrivateRoute";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import styles from "./App.module.css";
 import { Paper, IconButton, Grid, Card } from "@material-ui/core";
 import { ChromePicker } from "react-color";
@@ -67,6 +67,12 @@ const App = () => {
             <div className={styles.navbar}>
               <NavBar />
             </div>
+            <Link to="/cart" className={styles.noDecoration}>
+              <div className={styles.fabCart}>
+                <i className="fas fa-shopping-cart"></i>
+              </div>
+            </Link>
+
             <Switch>
               <Route path="/" exact component={Home} />
               <Route path="/login" exact component={Login} />

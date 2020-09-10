@@ -1,1 +1,181 @@
-/* No CSS *//*# sourceMappingURL=CartProduct.module.css.map */
+.card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 20px;
+  position: relative;
+}
+
+.thumbnail {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 200px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.thumbnail img {
+  max-width: 170px !important;
+  max-height: 200px !important;
+}
+
+.priceLike {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  margin: 15px auto;
+}
+
+.priceLike h4 {
+  color: var(--orangeTint);
+}
+
+.name {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.name .company {
+  font-weight: 600;
+}
+
+.name .category {
+  color: var(--greyFont) !important;
+  text-transform: capitalize;
+  margin-top: 15px;
+}
+
+.likeIcon {
+  z-index: 1000 !important;
+}
+
+.likeIcon i {
+  color: var(--greyIcon) !important;
+}
+
+.noDecoration {
+  text-decoration: none !important;
+}
+
+.buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+}
+
+.buttons .amazonBtn {
+  background: var(--amazonBG) !important;
+  text-transform: lowercase;
+  margin: 0 5px;
+  padding: 10px;
+}
+
+.buttons .flipkartBtn {
+  background: var(--flipkartBG) !important;
+  margin: 0 5px;
+  padding: 10px;
+}
+
+.noDecoration {
+  text-decoration: none !important;
+  color: var(--greyFont) !important;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+
+.noDecoration:hover {
+  color: var(--primaryColor) !important;
+}
+
+.card {
+  position: relative !important;
+}
+
+.cartUpdateContainer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.deleteBtn i {
+  color: rgba(0, 0, 0, 0.2) !important;
+  font-size: 1rem;
+}
+
+.cartUpdate {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: var(--orangeTint);
+  border-radius: 5px;
+  height: 40px;
+  padding: 5px 5px;
+}
+
+.cartUpdate i {
+  font-size: 0.8rem !important;
+}
+
+.cartUpdate .updateBtns {
+  margin: 0 5px;
+}
+
+.cartUpdate h4 {
+  font-size: 1.2rem;
+  font-weight: 600 !important;
+  color: white;
+}
+/*# sourceMappingURL=CartProduct.module.css.map */

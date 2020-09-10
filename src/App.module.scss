@@ -87,6 +87,14 @@ body {
   width: var(--fixedWidth);
   margin: auto;
 }
+.fabCart {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  background: var(--primaryColor);
+  padding: 20px;
+  border-radius: 50%;
+}
 
 @media screen and (max-width: 1500px) {
   :root {

@@ -45,6 +45,17 @@
           justify-content: flex-start;
 }
 
+.header .innerHeader p,
+.header .cartHeading p {
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.header .innerHeader p span,
+.header .cartHeading p span {
+  font-weight: 600;
+}
+
 .header h1 {
   color: var(--primaryColor);
   font-size: 1.4rem;

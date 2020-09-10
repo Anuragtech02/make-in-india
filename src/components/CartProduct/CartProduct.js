@@ -8,7 +8,7 @@ import {
   Divider,
 } from "@material-ui/core";
 import { Link } from "react-router-dom";
-import styles from "../Product/Product.module.css";
+import styles from "../CartProduct/CartProduct.module.css";
 import amazon from "../../icons/amazon-brands.png";
 import flipkart from "../../icons/flipkart.png";
 import { SnackbarProvider, useSnackbar } from "notistack";
@@ -96,29 +96,40 @@ const ProductCard = ({ product }) => {
       </div>
       <div className={styles.priceLike}>
         <h4>₹{price}</h4>
-        <div className={styles.cartUpdate}>
-          <Tooltip
-            placement="top"
-            title={quantity === 1 ? "Delete Product" : "Remove one"}
-          >
-            <IconButton
-              onClick={() =>
-                quantity === 1 ? deleteProductWithId(id) : decrementQuantity(id)
-              }
-              className={styles.updateBtns}
+        <div className={styles.cartUpdateContainer}>
+          <div className={styles.deleteBtn}>
+            <Tooltip placement="top" title="Delete">
+              <IconButton onClick={() => deleteProductWithId(id)}>
+                <i className="fas fa-trash" />
+              </IconButton>
+            </Tooltip>
+          </div>
+          <div className={styles.cartUpdate}>
+            <Tooltip
+              placement="top"
+              title={quantity === 1 ? "Delete Product" : "Remove one"}
             >
-              <i className="fas fa-minus" />
-            </IconButton>
-          </Tooltip>
-          <h4>{quantity}</h4>
-          <Tooltip placement="top" title="Add more">
-            <IconButton
-              onClick={() => incrementQuantity(id)}
-              className={styles.updateBtns}
-            >
-              <i className="fas fa-plus" />
-            </IconButton>
-          </Tooltip>
+              <IconButton
+                onClick={() =>
+                  quantity === 1
+                    ? deleteProductWithId(id)
+                    : decrementQuantity(id)
+                }
+                className={styles.updateBtns}
+              >
+                <i className="fas fa-minus" />
+              </IconButton>
+            </Tooltip>
+            <h4>{quantity}</h4>
+            <Tooltip placement="top" title="Add more">
+              <IconButton
+                onClick={() => incrementQuantity(id)}
+                className={styles.updateBtns}
+              >
+                <i className="fas fa-plus" />
+              </IconButton>
+            </Tooltip>
+          </div>
         </div>
       </div>
       <div className={styles.buttons}>

@@ -13,6 +13,7 @@ export default (state, action) => {
       return {
         ...state,
         products: JSON.parse(cartData),
+        total: getTotal(cartData),
       };
     case "ADD_PRODUCT":
       const setNewCart = [newProduct(action.payload), ...state.products];
@@ -32,6 +33,7 @@ export default (state, action) => {
         products: state.products.filter(
           (product) => product.id !== action.payload
         ),
+        total,
       };
     case "INCREMENT_QUANTITY":
       let dataAfterIncrement = increment(state.products, action.payload);

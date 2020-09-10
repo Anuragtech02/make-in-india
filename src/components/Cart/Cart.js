@@ -31,7 +31,15 @@ const CartComponent = ({ products, total }) => {
             <h1>CART</h1>
             <img src={box} alt="box-cart" />
           </div>
-          <p>Total Products : {products.length}</p>
+          <p>
+            Total Products :{" "}
+            <span>
+              {products.reduce(
+                (currentTotal, product) => product.quantity + currentTotal,
+                0
+              )}
+            </span>
+          </p>
         </div>
         <div className={styles.underLine}></div>
       </div>
