@@ -90,3 +90,43 @@
     }
   }
 }
+//Progress
+.progress {
+  padding: 10px 0;
+  margin: auto;
+  vertical-align: middle;
+}
+
+//Dialog
+.dialogContent {
+  .totalProducts,
+  .totalPrice {
+    display: flex;
+    justify-content: space-between;
+    min-width: 300px;
+
+    p {
+      font-weight: 400;
+      color: rgba(0, 0, 0, 0.6);
+      margin: 5px 0;
+      &:nth-child(2) {
+        font-weight: 600;
+      }
+    }
+  }
+}
+.actionBtnCancel {
+  color: rgb(168, 4, 4) !important;
+}
+.actionBtnAgree {
+  color: var(--primaryColor) !important;
+}
+
+@media screen and (max-width: 800px) {
+  .dialogContent {
+    .totalProducts,
+    .totalPrice {
+      min-width: 200px;
+    }
+  }
+}

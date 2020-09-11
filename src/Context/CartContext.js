@@ -98,6 +98,13 @@ export const CartProvider = ({ children }) => {
     debounceSave();
   };
 
+  const clearCart = () => {
+    dispatch({
+      type: "CLEAR_CART",
+    });
+    debounceSave();
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -107,6 +114,7 @@ export const CartProvider = ({ children }) => {
         incrementQuantity,
         decrementQuantity,
         fetchCartData,
+        clearCart,
         total: state.total,
       }}
     >

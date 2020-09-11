@@ -2,11 +2,9 @@ import React from "react";
 import firebase from "../Authentication/Firebase";
 
 export default (state, action) => {
-  const db = firebase.firestore();
   const cartData = localStorage.getItem("cart");
   var total = 0;
   // const { userDetails } = useContext(AuthContext);
-  const userRef = db.collection("users").doc(sessionStorage.getItem("uid"));
 
   switch (action.type) {
     case "FETCH_CART":
@@ -51,6 +49,13 @@ export default (state, action) => {
       return {
         products: dataAfterDecrement,
         total,
+      };
+    case "CLEAR_CART":
+      const empty = [];
+      localStorage.setItem("cart", JSON.stringify(empty));
+      return {
+        products: [],
+        total: 0,
       };
     default:
       return state;

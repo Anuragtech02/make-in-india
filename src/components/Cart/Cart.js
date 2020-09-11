@@ -1,9 +1,20 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Grid, Card, Button } from "@material-ui/core";
+import {
+  Grid,
+  Card,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  DialogContentText,
+  LinearProgress,
+} from "@material-ui/core";
 import { CartProduct } from "../../components";
 import styles from "./Cart.module.css";
 import { CartContext } from "../../Context/CartContext";
 import { AuthContext } from "../../Authentication/Auth";
+import { OrderContext } from "../../Context/OrderContext";
 import box from "../../assets/vectors/box.svg";
 import CurrencyFormat from "react-currency-format";
 
@@ -21,10 +32,24 @@ export const Cart = () => {
 export default Cart;
 
 const CartComponent = ({ products, total }) => {
-  console.log(total);
+  const [open, setOpen] = useState(false);
 
+  const totalProducts =
+    products && products.length
+      ? products.reduce(
+          (currentTotal, product) => currentTotal + product.quantity,
+          0
+        )
+      : 0;
   return (
     <div className={styles.container}>
+      <ConfirmationDialog
+        totalProducts={totalProducts}
+        total={total}
+        products={products}
+        open={open}
+        setOpen={setOpen}
+      />
       <div className={styles.header}>
         <div className={styles.innerHeader}>
           <div className={styles.cartHeading}>
@@ -32,13 +57,7 @@ const CartComponent = ({ products, total }) => {
             <img src={box} alt="box-cart" />
           </div>
           <p>
-            Total Products :{" "}
-            <span>
-              {products.reduce(
-                (currentTotal, product) => product.quantity + currentTotal,
-                0
-              )}
-            </span>
+            Total Products : <span>{totalProducts}</span>
           </p>
         </div>
         <div className={styles.underLine}></div>
@@ -86,14 +105,108 @@ const CartComponent = ({ products, total }) => {
             </div>
             <Button
               disabled={!products || !products.length ? true : false}
+              style={{ opacity: !products || !products.length ? "0.6" : "1" }}
               className={styles.orangeBtn}
               variant="text"
+              onClick={() => setOpen(!open)}
             >
               Confirm Order
             </Button>
           </Card>
         </Grid>
       </Grid>
+    </div>
+  );
+};
+
+const ConfirmationDialog = ({
+  open,
+  products,
+  setOpen,
+  totalProducts,
+  total,
+}) => {
+  const handleClose = () => {
+    setOpen(!open);
+  };
+
+  const [progress, setProgress] = useState(false);
+
+  const { addOrderToDb } = useContext(OrderContext);
+
+  const { clearCart } = useContext(CartContext);
+
+  const handleSubmit = () => {
+    setProgress(true);
+    let tempProducts = products;
+    tempProducts.forEach((product) => {
+      product["orderTime"] = new Date();
+      const individualTotal = product.quantity * product.price;
+      product["totalPrice"] = individualTotal;
+    });
+    addOrderToDb(tempProducts);
+    setTimeout(() => {
+      setProgress(false);
+      setOpen(false);
+      clearCart();
+    }, 1000);
+  };
+
+  return (
+    <div>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="dialog-title"
+        aria-describedby="dialog-description"
+      >
+        <DialogTitle id="dialog-title">{"Confirm Order"}</DialogTitle>
+        <DialogContent>
+          <div className={styles.dialogContent}>
+            <div className={styles.totalProducts}>
+              <p>Total Products</p>
+              <p>{totalProducts}</p>
+            </div>
+            <div className={styles.totalPrice}>
+              <p>Total Price</p>
+              <p>
+                {
+                  <CurrencyFormat
+                    value={total}
+                    displayType={"text"}
+                    thousandSpacing="2s"
+                    thousandSeparator={true}
+                    prefix={"₹"}
+                  />
+                }
+              </p>
+            </div>
+          </div>
+          <div className={styles.progress}>
+            <LinearProgress
+              style={{ opacity: progress ? "1" : "0" }}
+              variant="indeterminate"
+            />
+          </div>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={handleClose}
+            className={styles.actionBtnCancel}
+            color="primary"
+          >
+            Cancel
+          </Button>
+          <Button
+            onClick={handleSubmit}
+            className={styles.actionBtnAgree}
+            color="primary"
+            autoFocus
+          >
+            Yes, confirm
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };

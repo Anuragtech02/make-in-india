@@ -127,4 +127,48 @@
   padding: 20px 0 !important;
   border-radius: 0 !important;
 }
+
+.progress {
+  padding: 10px 0;
+  margin: auto;
+  vertical-align: middle;
+}
+
+.dialogContent .totalProducts,
+.dialogContent .totalPrice {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  min-width: 300px;
+}
+
+.dialogContent .totalProducts p,
+.dialogContent .totalPrice p {
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.6);
+  margin: 5px 0;
+}
+
+.dialogContent .totalProducts p:nth-child(2),
+.dialogContent .totalPrice p:nth-child(2) {
+  font-weight: 600;
+}
+
+.actionBtnCancel {
+  color: #a80404 !important;
+}
+
+.actionBtnAgree {
+  color: var(--primaryColor) !important;
+}
+
+@media screen and (max-width: 800px) {
+  .dialogContent .totalProducts,
+  .dialogContent .totalPrice {
+    min-width: 200px;
+  }
+}
 /*# sourceMappingURL=Cart.module.css.map */
