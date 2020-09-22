@@ -18,10 +18,10 @@ export const OrderContextProvider = ({ children }) => {
     setUid(sessionStorage.getItem("uid"));
   }, [tempUid]);
 
-  const { myOrders } = useContext(AuthContext);
+  const { userDetails } = useContext(AuthContext);
 
   const initialState = {
-    orders: myOrders,
+    orders: userDetails.myOrders,
   };
 
   const [state, dispatch] = useReducer(OrderReducer, initialState);

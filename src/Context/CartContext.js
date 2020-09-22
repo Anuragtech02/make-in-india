@@ -22,16 +22,23 @@ const getTotal = (products) => {
 };
 
 //Initialized Context
-export const CartContext = createContext({
-  products: cartData,
-  total: getTotal(cartData),
-});
+export const CartContext = createContext(
+  cartData && cartData.length
+    ? {
+        products: cartData,
+        total: getTotal(cartData),
+      }
+    : {}
+);
 
 export const CartProvider = ({ children }) => {
-  let initialState = {
-    products: cartData,
-    total: getTotal(cartData),
-  };
+  let initialState =
+    cartData && cartData.length
+      ? {
+          products: cartData,
+          total: getTotal(cartData),
+        }
+      : {};
 
   const [uid, setUid] = useState(sessionStorage.getItem("uid"));
   let tempUid = sessionStorage.getItem("uid");
@@ -39,11 +46,11 @@ export const CartProvider = ({ children }) => {
   const db = firebase.firestore();
 
   let userRef = sessionStorage.getItem("uid")
-    ? db.collection("users").doc(uid)
+    ? db.collection("users").doc(tempUid)
     : null;
 
   useEffect(() => {
-    setUid(sessionStorage.getItem("uid"));
+    setUid(sessionStorage.getItem(tempUid));
   }, [tempUid]);
 
   const [state, dispatch] = useReducer(CartReducer, initialState);

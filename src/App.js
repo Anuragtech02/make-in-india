@@ -69,11 +69,6 @@ const App = () => {
               <div className={styles.navbar}>
                 <NavBar />
               </div>
-              <Link to="/cart" className={styles.noDecoration}>
-                <div className={styles.fabCart}>
-                  <i className="fas fa-shopping-cart"></i>
-                </div>
-              </Link>
 
               <Switch>
                 <Route path="/" exact component={Home} />

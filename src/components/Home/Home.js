@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./Home.module.css";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import {
   HomeSlider,
   ProductSlider,
@@ -14,6 +14,7 @@ import food from "../../images/food-category.webp";
 import hygiene from "../../images/hygiene-category.webp";
 import sports from "../../images/sports-category.webp";
 import cosmetics from "../../images/cosmetics-category.webp";
+import { AuthContext } from "../../Authentication/Auth";
 
 const Home = ({ history }) => {
   const categories = [
@@ -28,6 +29,8 @@ const Home = ({ history }) => {
     { category: "cosmetics", background: cosmetics },
   ];
 
+  const { userDetails } = useContext(AuthContext);
+
   return (
     <div className={styles.container}>
       <div className={styles.slider}>
@@ -39,6 +42,14 @@ const Home = ({ history }) => {
       <div className={styles.productSlider}>
         <ProductSlider />
       </div>
+      {!userDetails.isSeller ? (
+        <Link to="/cart" className={styles.noDecoration}>
+          <div className={styles.fabCart}>
+            <i className="fas fa-shopping-cart"></i>
+          </div>
+        </Link>
+      ) : null}
+
       <div className={styles.info}>
         <Grid container spacing={2}>
           {categories.map((category) => (

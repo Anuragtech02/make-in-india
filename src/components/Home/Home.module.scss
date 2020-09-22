@@ -63,6 +63,16 @@
 .stores {
   padding: 10vh 0;
 }
+.fabCart {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  background: var(--primaryColor);
+  padding: 20px;
+  border-radius: 50%;
+  z-index: 1000;
+}
+
 @media screen and (max-width: 1200px) {
   .categoryCard {
     .innerDiv {
