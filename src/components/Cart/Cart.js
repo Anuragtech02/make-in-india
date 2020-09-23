@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import { withRouter } from "react-router-dom";
 import {
   Grid,
   Card,
@@ -18,18 +19,26 @@ import { OrderContext } from "../../Context/OrderContext";
 import box from "../../assets/vectors/box.svg";
 import CurrencyFormat from "react-currency-format";
 
-export const Cart = () => {
+export const Cart = ({ history }) => {
   const { products, total } = useContext(CartContext);
-  const { saveCartToLocal } = useContext(AuthContext);
+  const { saveCartToLocal, userDetails } = useContext(AuthContext);
 
   useEffect(() => {
     saveCartToLocal();
   }, [saveCartToLocal]);
 
+  if (userDetails.isSeller) {
+    return (
+      <div className={styles.cartNotAvailable}>
+        <h4>Cart is not available for sellers :(</h4>
+      </div>
+    );
+  }
+
   return <CartComponent total={total} products={products} />;
 };
 
-export default Cart;
+export default withRouter(Cart);
 
 const CartComponent = ({ products, total }) => {
   const [open, setOpen] = useState(false);

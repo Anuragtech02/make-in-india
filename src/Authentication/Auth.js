@@ -52,13 +52,16 @@ export const AuthProvider = ({ children }) => {
       if (userData[0].isSeller) {
         fetchProducts(userData[0].storeId);
       }
-    };
-
-    firebase.auth().onAuthStateChanged((user) => {
-      setCurrentUser(user);
       setPending(false);
-      if (user) fetchUser(user.email);
-    });
+    };
+    const checkUser = async () => {
+      await firebase.auth().onAuthStateChanged((user) => {
+        setCurrentUser(user);
+        if (user) fetchUser(user.email);
+        else setPending(false);
+      });
+    };
+    checkUser();
   }, [currentUser]);
 
   if (pending) {
