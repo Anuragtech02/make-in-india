@@ -1,9 +1,8 @@
-import React from "react";
-import firebase from "../Authentication/Firebase";
-
 export default (state, action) => {
   const cartData = localStorage.getItem("cart");
   var total = 0;
+  let totalProducts = state.totalProducts;
+
   // const { userDetails } = useContext(AuthContext);
 
   switch (action.type) {
@@ -17,10 +16,10 @@ export default (state, action) => {
       const setNewCart = [newProduct(action.payload), ...state.products];
       localStorage.setItem("cart", JSON.stringify(setNewCart));
       total = getTotal(setNewCart);
-
       return {
         products: setNewCart,
         total,
+        totalProducts: totalProducts + 1,
       };
     case "DELETE_PRODUCT":
       const setCart = deleteProduct(state.products, action.payload);
@@ -32,6 +31,7 @@ export default (state, action) => {
           (product) => product.id !== action.payload
         ),
         total,
+        totalProducts: totalProducts - 1,
       };
     case "INCREMENT_QUANTITY":
       let dataAfterIncrement = increment(state.products, action.payload);
@@ -41,6 +41,7 @@ export default (state, action) => {
       return {
         products: dataAfterIncrement,
         total,
+        totalProducts: totalProducts + 1,
       };
     case "DECREMENT_QUANTITY":
       let dataAfterDecrement = decrement(state.products, action.payload);
@@ -49,6 +50,7 @@ export default (state, action) => {
       return {
         products: dataAfterDecrement,
         total,
+        totalProducts: totalProducts - 1,
       };
     case "CLEAR_CART":
       const empty = [];
@@ -56,6 +58,7 @@ export default (state, action) => {
       return {
         products: [],
         total: 0,
+        totalProducts: 0,
       };
     default:
       return state;

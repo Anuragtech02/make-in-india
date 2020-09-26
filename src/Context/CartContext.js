@@ -32,10 +32,10 @@ export const CartContext = createContext(
 );
 
 export const CartProvider = ({ children }) => {
-  const getTotalProducts = () => {
+  const getTotalProducts = (products) => {
     const totalProducts =
-      state.products && state.products.length
-        ? state.products.reduce(
+      products && products.length
+        ? products.reduce(
             (currentTotal, product) => currentTotal + product.quantity,
             0
           )
@@ -48,7 +48,7 @@ export const CartProvider = ({ children }) => {
       ? {
           products: cartData,
           total: getTotal(cartData),
-          totalProducts: getTotalProducts(),
+          totalProducts: getTotalProducts(cartData),
         }
       : {
           products: [],

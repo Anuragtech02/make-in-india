@@ -7,6 +7,7 @@ import {
   Menu,
   MenuItem,
   Button,
+  Badge,
 } from "@material-ui/core";
 import { Link, withRouter, Redirect } from "react-router-dom";
 import styles from "./AppBar.module.css";
@@ -17,6 +18,7 @@ import classNames from "classnames";
 
 const Appbar = ({ history }) => {
   const { currentUser, userDetails } = useContext(AuthContext);
+  const { totalProducts } = useContext(CartContext);
 
   const [changeOnSeller, setChangeOnSeller] = useState(styles.nothing);
 
@@ -48,7 +50,12 @@ const Appbar = ({ history }) => {
             onClick={onClickCart}
             className={styles.cart}
           >
-            <i className="fas fa-shopping-cart"></i>
+            <Badge
+              badgeContent={totalProducts}
+              invisible={totalProducts ? false : true}
+            >
+              <i className="fas fa-shopping-cart"></i>
+            </Badge>
           </IconButton>
         </div>
       </div>
@@ -77,7 +84,13 @@ const Appbar = ({ history }) => {
           onClick={onClickCart}
           className={classNames(styles.cart, changeOnSeller)}
         >
-          <i className="fas fa-shopping-cart"></i>
+          <Badge
+            badgeContent={totalProducts}
+            color="primary"
+            invisible={totalProducts ? false : true}
+          >
+            <i className="fas fa-shopping-cart"></i>
+          </Badge>
         </IconButton>
       </div>
     </div>
