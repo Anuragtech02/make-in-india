@@ -305,7 +305,7 @@ const HorizontalProduct = ({ product, storeId, history }) => {
           </h5>
         </TableCell>
         <TableCell>
-          <h5>{price}</h5>
+          <h5>₹{price}</h5>
         </TableCell>
         <TableCell align="right">
           <div className={styles.editProduct}>
