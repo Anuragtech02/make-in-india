@@ -32,13 +32,29 @@ export const CartContext = createContext(
 );
 
 export const CartProvider = ({ children }) => {
+  const getTotalProducts = () => {
+    const totalProducts =
+      state.products && state.products.length
+        ? state.products.reduce(
+            (currentTotal, product) => currentTotal + product.quantity,
+            0
+          )
+        : 0;
+    return totalProducts;
+  };
+
   let initialState =
     cartData && cartData.length
       ? {
           products: cartData,
           total: getTotal(cartData),
+          totalProducts: getTotalProducts(),
         }
-      : {};
+      : {
+          products: [],
+          total: 0,
+          totalProducts: 0,
+        };
 
   const [uid, setUid] = useState(sessionStorage.getItem("uid"));
   let tempUid = sessionStorage.getItem("uid");
@@ -123,6 +139,7 @@ export const CartProvider = ({ children }) => {
         fetchCartData,
         clearCart,
         total: state.total,
+        totalProducts: state.totalProducts,
       }}
     >
       {children}
