@@ -21,6 +21,7 @@ import {
   TableRow,
   TableCell,
   TableContainer,
+  Avatar,
 } from "@material-ui/core";
 import styles from "./myProfile.module.css";
 import firebase from "../../Authentication/Firebase";
@@ -32,15 +33,13 @@ const MyProfile = ({ history }) => {
   const { currentUser, userDetails, products } = useContext(AuthContext);
 
   return (
-    <div>
-      <ProfileComponent
-        history={history}
-        userId={userId}
-        userDetails={userDetails}
-        currentUser={currentUser}
-        products={products}
-      />
-    </div>
+    <ProfileComponent
+      history={history}
+      userId={userId}
+      userDetails={userDetails}
+      currentUser={currentUser}
+      products={products}
+    />
   );
 };
 
@@ -53,91 +52,110 @@ const ProfileComponent = ({
   userDetails,
   products,
 }) => {
-  // const [products, setProducts] = useState([]);
-
   useEffect(() => {
-    // const fetchProducts = async () => {
-    //   const db = firebase.firestore();
-    //   const storeRef = db.collection("stores").doc(userDetails.storeId);
-    //   const snapshost = await storeRef.collection("products").get();
-    //   const productData = snapshost.docs.map((doc) => ({
-    //     ...doc.data(),
-    //   }));
-    //   setProducts(productData);
-    // };
-
     if (currentUser && userDetails.uid) {
       if (userId !== userDetails.uid) {
         history.push("/login");
         alert("You're not authorized for this");
-      } else {
-        // fetchProducts();
       }
     }
   }, [currentUser, history, userDetails.storeId, userId, userDetails.uid]);
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [mobile, setMobile] = useState("");
-  const [website, setWebsite] = useState("");
-  const [industry, setIndustry] = useState("");
-  const [email2, setEmail2] = useState("");
-  const [mobile2, setMobile2] = useState("");
-  const [facebook, setFacebook] = useState("");
-  const [insta, setInsta] = useState("");
+  const gotoItem = (location) => {
+    history.push(`/my-profile/${location}`);
+  };
 
   return (
     <div className={styles.container}>
-      <Paper className={styles.profileSection}>
-        <div className={styles.profileWrapper}>
-          <div
-            className={styles.profile}
-            style={{
-              backgroundImage: `url(https://upload.wikimedia.org/wikipedia/commons/b/bf/Mona_Lisa-restored.jpg`,
-            }}
-          ></div>
-          <div className={styles.personalDetails}>
-            <div className={styles.inputContainer}>
-              <h5>{userDetails.displayName}</h5>
+      <Grid container spacing={4}>
+        <Grid item md={4} lg={4} xl={3} sm={6} xs={12}>
+          <Paper className={styles.profileSection}>
+            <div className={styles.profile}>
+              <Avatar src="https://i.ibb.co/sbFmnGm/clover-bling-brown-03.jpg">
+                {userDetails.displayName.slice(0, 2)}
+              </Avatar>
             </div>
-
-            <div className={styles.inputContainer}>
-              <h5>{userDetails.email}</h5>
+            <div className={styles.controlPanel}>
+              <div
+                onClick={() => gotoItem("products")}
+                className={classNames(
+                  styles.myProducts,
+                  styles.controlItem,
+                  history.location.pathname.includes("products")
+                    ? styles.selected
+                    : null
+                )}
+              >
+                <i className="fas fa-list"></i>
+                <p>Products</p>
+              </div>
+              <div
+                onClick={() => gotoItem("new-orders")}
+                className={classNames(
+                  styles.newOrders,
+                  styles.controlItem,
+                  history.location.pathname.includes("new-orders")
+                    ? styles.selected
+                    : null
+                )}
+              >
+                <i className="fas fa-bell"></i>
+                <p>New Orders</p>
+              </div>
+              <div
+                onClick={() => gotoItem("prev-orders")}
+                className={classNames(
+                  styles.oldOrders,
+                  styles.controlItem,
+                  history.location.pathname.includes("prev-orders")
+                    ? styles.selected
+                    : null
+                )}
+              >
+                <i className="fas fa-layer-group"></i>
+                <p>Prev Orders</p>
+              </div>
             </div>
-            <div>
-              <h5>{userDetails.mobile}</h5>
+            <div className={styles.settings}>
+              <h4>Tools</h4>
+              <div className={styles.setttingsItem}>
+                <i className="fas fa-cog"></i>
+                <p>Settings</p>
+              </div>
             </div>
-          </div>
-        </div>
-      </Paper>
-      <Paper className={styles.dashboard}>
-        <div className={styles.heading}>
-          <h2>My Products</h2>
-        </div>
-        <TableContainer className={styles.tableContainer} component={Paper}>
-          <Table className={styles.table}>
-            <TableHead className={styles.tableHead}>
-              <TableRow>
-                <TableCell>Status</TableCell>
-                <TableCell>Image</TableCell>
-                <TableCell>Product Name</TableCell>
-                <TableCell>Price</TableCell>
-                <TableCell align="right">Actions</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {products.map((product) => (
-                <HorizontalProduct
-                  key={product.title}
-                  storeId={userDetails.storeId}
-                  product={product}
-                  history={history}
-                />
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Paper>
+          </Paper>
+        </Grid>
+        <Grid item md={8} lg={8} xl={9} sm={6} xs={12}>
+          <Paper className={styles.dashboard}>
+            <div className={styles.heading}>
+              <h2>My Products</h2>
+            </div>
+            <TableContainer className={styles.tableContainer} component={Paper}>
+              <Table className={styles.table}>
+                <TableHead className={styles.tableHead}>
+                  <TableRow>
+                    <TableCell>Status</TableCell>
+                    <TableCell>Image</TableCell>
+                    <TableCell>Product Name</TableCell>
+                    <TableCell>Price</TableCell>
+                    <TableCell align="right">Actions</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {products.map((product) => (
+                    <HorizontalProduct
+                      key={product.title}
+                      storeId={userDetails.storeId}
+                      product={product}
+                      history={history}
+                    />
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Paper>
+        </Grid>
+      </Grid>
     </div>
   );
 };
