@@ -74,7 +74,13 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ currentUser, userDetails, products, saveCartToLocal }}
+      value={{
+        currentUser,
+        userDetails,
+        products,
+        saveCartToLocal,
+        setPending,
+      }}
     >
       {children}
     </AuthContext.Provider>

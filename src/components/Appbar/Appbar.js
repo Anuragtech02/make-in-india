@@ -26,6 +26,14 @@ const Appbar = ({ history }) => {
     history.push("/cart");
   };
 
+  console.log(currentUser);
+
+  const badgeInvisibility = () => {
+    if (currentUser && !userDetails.isSeller && totalProducts) {
+      return false;
+    } else return true;
+  };
+
   useEffect(() => {
     userDetails.isSeller
       ? setChangeOnSeller(styles.disabledCart)
@@ -50,10 +58,7 @@ const Appbar = ({ history }) => {
             onClick={onClickCart}
             className={styles.cart}
           >
-            <Badge
-              badgeContent={totalProducts}
-              invisible={totalProducts ? false : true}
-            >
+            <Badge badgeContent={totalProducts} invisible={badgeInvisibility}>
               <i className="fas fa-shopping-cart"></i>
             </Badge>
           </IconButton>
@@ -87,7 +92,7 @@ const Appbar = ({ history }) => {
           <Badge
             badgeContent={totalProducts}
             color="primary"
-            invisible={totalProducts ? false : true}
+            invisible={badgeInvisibility}
           >
             <i className="fas fa-shopping-cart"></i>
           </Badge>
@@ -136,11 +141,12 @@ const AccountComponent = ({ history, currentUser, userDetails }) => {
     setItem1Route("/login");
     setItem2Route("/signup");
     setIsSeller(false);
-    firebase.auth().signOut();
-    history.push("/login");
-    setTimeout(() => {
-      history.push("/login");
-    }, 1000);
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        history.push("/login");
+      });
   };
 
   const handleClickMenu = (event) => {

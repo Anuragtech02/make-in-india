@@ -3,8 +3,6 @@ export default (state, action) => {
   var total = 0;
   let totalProducts = state.totalProducts;
 
-  // const { userDetails } = useContext(AuthContext);
-
   switch (action.type) {
     case "FETCH_CART":
       return {
