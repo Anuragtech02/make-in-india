@@ -92,7 +92,17 @@ const App = () => {
                 <PrivateRoute exact path="/cart" component={Cart} />
                 <PrivateRoute
                   exact
-                  path="/my-profile/:userId"
+                  path="/my-profile/:userId/products"
+                  component={MyProfile}
+                />
+                <PrivateRoute
+                  exact
+                  path="/my-profile/:userId/new-orders"
+                  component={MyProfile}
+                />
+                <PrivateRoute
+                  exact
+                  path="/my-profile/:userId/prev-orders"
                   component={MyProfile}
                 />
                 <PrivateRoute

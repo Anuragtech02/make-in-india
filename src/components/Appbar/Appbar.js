@@ -19,6 +19,7 @@ import classNames from "classnames";
 const Appbar = ({ history }) => {
   const { currentUser, userDetails } = useContext(AuthContext);
   const { totalProducts } = useContext(CartContext);
+  const [badgeInvisibility, setBadgeInvisibility] = useState(true);
 
   const [changeOnSeller, setChangeOnSeller] = useState(styles.nothing);
 
@@ -26,19 +27,15 @@ const Appbar = ({ history }) => {
     history.push("/cart");
   };
 
-  console.log(currentUser);
-
-  const badgeInvisibility = () => {
-    if (currentUser && !userDetails.isSeller && totalProducts) {
-      return false;
-    } else return true;
-  };
-
   useEffect(() => {
     userDetails.isSeller
       ? setChangeOnSeller(styles.disabledCart)
       : setChangeOnSeller(styles.nothing);
-  }, [userDetails]);
+
+    if (currentUser && !userDetails.isSeller && totalProducts) {
+      setBadgeInvisibility(false);
+    } else setBadgeInvisibility(true);
+  }, [userDetails, currentUser, totalProducts]);
 
   return (
     <div className={styles.container}>
@@ -121,7 +118,7 @@ const AccountComponent = ({ history, currentUser, userDetails }) => {
         setItem2("Logout");
         try {
           setAccount(userDetails.displayName);
-          setItem1Route(`/my-profile/${userDetails.uid}`);
+          setItem1Route(`/my-profile/${userDetails.uid}/products`);
           setItem2Route("/login");
           userDetails.isSeller ? setIsSeller(true) : setIsSeller(false);
         } catch (error) {

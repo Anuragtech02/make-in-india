@@ -62,18 +62,25 @@ const ProfileComponent = ({
   }, [currentUser, history, userDetails.storeId, userId, userDetails.uid]);
 
   const gotoItem = (location) => {
-    history.push(`/my-profile/${location}`);
+    history.push(`/my-profile/${userDetails.uid}/${location}`);
   };
 
   return (
     <div className={styles.container}>
-      <Grid container spacing={4}>
-        <Grid item md={4} lg={4} xl={3} sm={6} xs={12}>
+      <Grid container spacing={2}>
+        <Grid item md={4} lg={4} xl={3} sm={12} xs={12}>
           <Paper className={styles.profileSection}>
             <div className={styles.profile}>
-              <Avatar src="https://i.ibb.co/sbFmnGm/clover-bling-brown-03.jpg">
+              <Avatar
+                variant="rounded"
+                src="https://www.deshairtravels.com/mobilesite//cdn/resume/-social_media_profile_picture-3.jpg"
+              >
                 {userDetails.displayName.slice(0, 2)}
               </Avatar>
+              <div className={styles.nameDetails}>
+                <h5>{userDetails.displayName}</h5>
+                <p>{userDetails.mobile}</p>
+              </div>
             </div>
             <div className={styles.controlPanel}>
               <div
@@ -86,7 +93,7 @@ const ProfileComponent = ({
                     : null
                 )}
               >
-                <i className="fas fa-list"></i>
+                <i className="fas fa-th-list"></i>
                 <p>Products</p>
               </div>
               <div
@@ -125,34 +132,46 @@ const ProfileComponent = ({
             </div>
           </Paper>
         </Grid>
-        <Grid item md={8} lg={8} xl={9} sm={6} xs={12}>
-          <Paper className={styles.dashboard}>
-            <div className={styles.heading}>
-              <h2>My Products</h2>
+        <Grid item md={8} lg={8} xl={9} sm={12} xs={12}>
+          <Paper className={styles.dashboardContainer}>
+            <div className={styles.actionBar}>
+              <Tooltip placement="top" title="Add Product">
+                <IconButton>
+                  <i className="fas fa-plus-circle"></i>
+                </IconButton>
+              </Tooltip>
             </div>
-            <TableContainer className={styles.tableContainer} component={Paper}>
-              <Table className={styles.table}>
-                <TableHead className={styles.tableHead}>
-                  <TableRow>
-                    <TableCell>Status</TableCell>
-                    <TableCell>Image</TableCell>
-                    <TableCell>Product Name</TableCell>
-                    <TableCell>Price</TableCell>
-                    <TableCell align="right">Actions</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {products.map((product) => (
-                    <HorizontalProduct
-                      key={product.title}
-                      storeId={userDetails.storeId}
-                      product={product}
-                      history={history}
-                    />
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
+            <div className={styles.dashboard}>
+              <div className={styles.heading}>
+                <h2>My Products</h2>
+              </div>
+              <TableContainer
+                className={styles.tableContainer}
+                component={Paper}
+              >
+                <Table className={styles.table}>
+                  <TableHead className={styles.tableHead}>
+                    <TableRow>
+                      <TableCell>Status</TableCell>
+                      <TableCell>Image</TableCell>
+                      <TableCell>Product Name</TableCell>
+                      <TableCell>Price</TableCell>
+                      <TableCell align="right">Actions</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {products.map((product) => (
+                      <HorizontalProduct
+                        key={product.title}
+                        storeId={userDetails.storeId}
+                        product={product}
+                        history={history}
+                      />
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </div>
           </Paper>
         </Grid>
       </Grid>
@@ -282,7 +301,7 @@ const HorizontalProduct = ({ product, storeId, history }) => {
           <h5>
             <b>{title}</b>
             <br />
-            {headline}
+            <span className={styles.headlineSpan}>{headline}</span>
           </h5>
         </TableCell>
         <TableCell>
