@@ -27,10 +27,38 @@ import styles from "./myProfile.module.css";
 import firebase from "../../Authentication/Firebase";
 import { AuthContext } from "../../Authentication/Auth";
 import classNames from "classnames";
+import { SellerContext } from "../../Context/SellerContext";
 
 const MyProfile = ({ history }) => {
   const { userId } = useParams();
   const { currentUser, userDetails, products } = useContext(AuthContext);
+
+  const { orders } = useContext(SellerContext);
+
+  console.log(orders);
+
+  const [panelProducts, setPanelProducts] = useState(products);
+
+  useEffect(() => {
+    switch (history.location.pathname) {
+      case `my-profile/${userId}/products`:
+        setPanelProducts(products);
+        break;
+      case `my-profile/${userId}/new-orders`:
+        setPanelProducts(
+          userDetails.orders && userDetails.orders.length
+            ? userDetails.orders
+            : []
+        );
+        break;
+      case `my-profile/${userId}/prev-orders`:
+        setPanelProducts(orders && orders.length ? orders : []);
+        break;
+      default:
+        setPanelProducts(products);
+        break;
+    }
+  }, [history, orders, userDetails, products, userId]);
 
   return (
     <ProfileComponent
@@ -38,7 +66,7 @@ const MyProfile = ({ history }) => {
       userId={userId}
       userDetails={userDetails}
       currentUser={currentUser}
-      products={products}
+      products={panelProducts}
     />
   );
 };

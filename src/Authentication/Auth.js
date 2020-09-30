@@ -51,6 +51,7 @@ export const AuthProvider = ({ children }) => {
       // localStorage.setItem()
       if (userData[0].isSeller) {
         fetchProducts(userData[0].storeId);
+        sessionStorage.setItem("storeId", JSON.stringify(userData[0].storeId));
       }
       setPending(false);
     };
